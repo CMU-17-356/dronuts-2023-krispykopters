@@ -1,8 +1,8 @@
 version: '3'
 services:
 
-  your_app:
-    container_name: your_app
+  web_app:
+    container_name: web_app
     build: ./
     ports:
       - "80:80"
