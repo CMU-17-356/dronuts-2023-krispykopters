@@ -1,5 +1,5 @@
 FROM node:alpine3.11
-MAINTAINER <GROUP_NAME_HERE>
+LABEL org.opencontainers.image.authors="https://github.com/orgs/CMU-17-356/teams/krispykopters"
 
 # Change working directory
 WORKDIR /usr/src/app
