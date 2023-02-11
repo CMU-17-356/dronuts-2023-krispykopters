@@ -4,7 +4,7 @@ import { ICoord } from "./coord";
 export interface IOrder {
   customer : Types.ObjectId, // Reference to Customer
   donuts : [Types.ObjectId], // List of donuts in order
-  location : ICoord,  // Path to image of the Order
+  location : ICoord,  // Delivery coordinates
   orderTime : Date    // Time of order
 }
 
