@@ -5,7 +5,7 @@ describe("donut", () => {
   it("should create a new donut", () => {
     const donut: IDonut = {
       price: 1.99,
-      count: 1,
+      count: 0,
       imagePath: "./path/to/image",
       displayName: "Plain"
     };
@@ -16,7 +16,8 @@ describe("donut", () => {
       expect(result.displayName).to.equal(donut.displayName);
     })
   });
-  it("should reject negative count", () => {
+
+  it("should reject negative count", async () => {
     const donut: IDonut = {
       price: 1.99,
       count: -1,
@@ -24,10 +25,12 @@ describe("donut", () => {
       displayName: "Plain"
     };
 
+    let error = null;
     try {
-      new Donut(donut).save();
+      await new Donut(donut).save();
     } catch (err) {
-      expect(err).to.be.not.null;
+      error = err;
     }
+    expect(error).to.be.not.null;
   });
 });

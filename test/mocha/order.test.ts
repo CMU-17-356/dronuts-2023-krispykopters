@@ -2,7 +2,6 @@ import { IDonut, Donut } from "../../src/db/donut";
 import { ICustomer, Customer } from "../../src/db/customer";
 import { IOrder, Order } from "../../src/db/order";
 import { expect } from "chai";
-import { ICoord } from "../../src/db/coord";
 
 describe("order", () => {
   it("should create a new order", async () => {

@@ -3,7 +3,7 @@ import { IStore, Store } from "../../src/db/store";
 import { expect } from "chai";
 
 describe("store", () => {
-  it("should create a new order", async () => {
+  it("should create a new store", async () => {
     const donut: IDonut = {
       price: 1.99,
       count: 1,
@@ -54,10 +54,12 @@ describe("store", () => {
       bankAccount: "account info",
     };
 
+    let error = null;
     try {
       await new Store(store).save();
     } catch (err) {
-      expect(err).to.be.not.null;
+      error = err;
     }
+    expect(error).to.be.not.null;
   });
 });
