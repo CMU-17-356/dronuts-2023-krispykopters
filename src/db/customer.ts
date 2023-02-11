@@ -1,4 +1,4 @@
-import * as Mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
 export interface ICustomer {
   username : string,    // UNIQUE, URL-SAFE
@@ -6,7 +6,7 @@ export interface ICustomer {
   displayName : string  // String
 }
 
-const CustomerSchema = new Mongoose.Schema<ICustomer>({
+const CustomerSchema = new Schema<ICustomer>({
   username: {
     type: String,
     unique: true,
@@ -23,4 +23,4 @@ const CustomerSchema = new Mongoose.Schema<ICustomer>({
 });
 
 export default CustomerSchema;
-export const Customer = Mongoose.model<ICustomer>("Customer", CustomerSchema)
+export const Customer = model<ICustomer>("Customer", CustomerSchema)

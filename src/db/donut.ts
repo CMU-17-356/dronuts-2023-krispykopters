@@ -1,4 +1,4 @@
-import * as Mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
 export interface IDonut {
   price : number,      // Price of the donut
@@ -7,7 +7,7 @@ export interface IDonut {
   displayName : string // String
 }
 
-const DonutSchema = new Mongoose.Schema<IDonut>({
+const DonutSchema = new Schema<IDonut>({
   price: {
     type: Number,
     required: true
@@ -28,4 +28,4 @@ const DonutSchema = new Mongoose.Schema<IDonut>({
 });
 
 export default DonutSchema;
-export const Donut = Mongoose.model<IDonut>("Donut", DonutSchema)
+export const Donut = model<IDonut>("Donut", DonutSchema)

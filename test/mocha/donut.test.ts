@@ -7,7 +7,7 @@ describe("donut", () => {
       price: 1.99,
       count: 1,
       imagePath: "./path/to/image",
-      displayName: "A User"
+      displayName: "Plain"
     };
 
     return new Donut(donut).save().then(result => {
@@ -21,7 +21,7 @@ describe("donut", () => {
       price: 1.99,
       count: -1,
       imagePath: "./path/to/image",
-      displayName: "A User"
+      displayName: "Plain"
     };
 
     try {
