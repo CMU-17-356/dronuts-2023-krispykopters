@@ -10,7 +10,7 @@ export enum DroneStatus {
 
 export interface IDrone {
   name : string,                // UNIQUE, URL-SAFE
-  battery : number,             // Percent 0.0 - 1.0
+  battery : number,             // Battery level 0.0 - 1.0
   location : ICoord,            // Coordinates representing current map coordinates
   status : DroneStatus,         // Possible values: out_for_delivery, returning_to_store, recharging, idle
   order? : Types.ObjectId,      // Reference to Order if out for delivery, else empty

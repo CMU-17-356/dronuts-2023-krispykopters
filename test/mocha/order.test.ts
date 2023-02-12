@@ -9,7 +9,7 @@ describe("order", () => {
       price: 1.99,
       count: 1,
       imagePath: "./path/to/image",
-      displayName: "Plain"
+      name: "Plain"
     };
     const donutDoc = await new Donut(donut).save();
 

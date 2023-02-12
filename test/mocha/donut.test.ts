@@ -7,13 +7,13 @@ describe("donut", () => {
       price: 1.99,
       count: 0,
       imagePath: "./path/to/image",
-      displayName: "Plain"
+      name: "Plain"
     };
 
     return new Donut(donut).save().then(result => {
       expect(result.price).to.equal(donut.price);
       expect(result.imagePath).to.equal(donut.imagePath);
-      expect(result.displayName).to.equal(donut.displayName);
+      expect(result.name).to.equal(donut.name);
     })
   });
 
@@ -22,7 +22,7 @@ describe("donut", () => {
       price: 1.99,
       count: -1,
       imagePath: "./path/to/image",
-      displayName: "Plain"
+      name: "Plain"
     };
 
     let error = null;

@@ -4,7 +4,7 @@ export interface IDonut {
   price : number,      // Price of the donut
   count : number,      // Count of the donut
   imagePath : string,  // Path to image of the donut
-  displayName : string // String
+  name : string        // String
 }
 
 const DonutSchema = new Schema<IDonut>({
@@ -21,7 +21,7 @@ const DonutSchema = new Schema<IDonut>({
     type: String,
     required: true
   },
-  displayName: {
+  name: {
     type: String,
     required: true
   }

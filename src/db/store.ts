@@ -6,8 +6,8 @@ export interface IStore {
   password : string,              // Salted, Hashed Password
   location : ICoord,              // Custom type representing store map coordinates
   droneCapacity : number,         // Number of drones that can be hosted at this location
-  donutStock : [Types.ObjectId], // List of donuts in stock
-  bankAccount : string            // Meta data for receiving payments from customers, format depends on third party API
+  donutStock : [Types.ObjectId],  // List of donuts in stock
+  bankAccount : string            // Metadata for receiving payments from customers, format depends on third party API
 }
 
 const StoreSchema = new Schema<IStore>({
