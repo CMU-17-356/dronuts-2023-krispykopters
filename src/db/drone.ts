@@ -42,14 +42,14 @@ const DroneSchema = new Schema<IDrone>({
     type: Schema.Types.ObjectId,
     ref: "Order",
     required: function(this: IDrone) {
-      return this.status == DroneStatus.OutForDelivery;
+      return this.status === DroneStatus.OutForDelivery;
     }
   },
   destination: {
     type: Schema.Types.ObjectId,
     ref: "Store",
     required: function(this: IDrone) {
-      return this.status == DroneStatus.ReturningToStore;
+      return this.status === DroneStatus.ReturningToStore;
     }
   }
 });
