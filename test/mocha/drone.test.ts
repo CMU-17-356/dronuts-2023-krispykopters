@@ -31,19 +31,23 @@ describe("drone", () => {
       status: DroneStatus.Recharging
     };
 
+    let error = null;
     try {
         await new Drone(drone).save();
     } catch (err) {
-      expect(err).to.be.not.null;
+      error = err;
     }
+    expect(error).to.not.equal(null);
 
     drone.battery = 1.5;
 
+    error = null;
     try {
         await new Drone(drone).save();
     } catch (err) {
-      expect(err).to.be.not.null;
+      error = err;
     }
+    expect(error).to.not.equal(null);
   });
 
   it("should require order if out for delivery", async () => {
@@ -57,11 +61,13 @@ describe("drone", () => {
       status: DroneStatus.OutForDelivery
     };
 
+    let error = null;
     try {
         await new Drone(drone).save();
     } catch (err) {
-      expect(err).to.be.not.null;
+      error = err;
     }
+    expect(error).to.not.equal(null);
   });
 
   it("should require destination if returning to store", async () => {
@@ -81,6 +87,6 @@ describe("drone", () => {
     } catch (err) {
       error = err;
     }
-    expect(error).to.be.not.null;
+    expect(error).to.not.equal(null);
   });
 });

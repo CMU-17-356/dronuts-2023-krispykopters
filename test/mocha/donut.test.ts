@@ -31,6 +31,6 @@ describe("donut", () => {
     } catch (err) {
       error = err;
     }
-    expect(error).to.be.not.null;
+    expect(error).to.not.equal(null);
   });
 });
