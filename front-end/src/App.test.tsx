@@ -1,10 +1,19 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 import App from './App';
+import fetchMock from 'jest-fetch-mock';
 
-test('renders learn react link', () => {
+test('renders glazed donut', async () => {
+  // Mocking the API call
+  fetchMock.mockResponse(JSON.stringify([{ id: 1, name: 'glazed donut' }]));
+
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  // Wait for the API call to complete
+  await screen.findByText('glazed donut');
+
+  // Now we can make our assertions
+  const textElement = screen.getByText('glazed donut');
+  expect(textElement).toBeInTheDocument();
 });
+
