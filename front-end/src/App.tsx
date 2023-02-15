@@ -6,7 +6,7 @@ function App() {
   const [data, setData] = useState<{ id: number, name: string }[]>([]);
 
   useEffect(() => {
-    const url = process.env.REACT_APP_DEPLOYMENT === 'true' ? 'http://krispykopters.fly.dev:3000/' : 'http://localhost:3000/';
+    const url = process.env.REACT_APP_DEPLOYMENT === 'true' ? 'https://krispykopters.fly.dev:3000/' : 'http://localhost:3000/';
     console.log('Deployment: ' + process.env.REACT_APP_DEPLOYMENT);
     console.log('Url: ' + url);
     fetch(url)
@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Data from the backend (Deployment: {process.env.REACT_APP_DEPLOYMENT}):
+          Data from the backend:
         </p>
         <ul>
           {data.map(item => (
