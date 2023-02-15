@@ -6,6 +6,7 @@ kill_timeout = 5
 processes = []
 
 [env]
+  REACT_APP_DEPLOYMENT=true
 
 [experimental]
   auto_rollback = true
@@ -22,7 +23,6 @@ processes = []
     type = "connections"
 
   [[services.ports]]
-    force_https = true
     handlers = ["http"]
     port = 3000
 

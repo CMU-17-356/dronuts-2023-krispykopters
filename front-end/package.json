@@ -19,7 +19,7 @@
   },
   "scripts": {
     "host": "PORT=3001 BROWSER=none react-scripts start",
-    "start": "PORT=3001 react-scripts start",
+    "start": "echo $REACT_APP_DEPLOYMENT && PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "integration-test": "jest path/to/app.integrationTest.tsx",
