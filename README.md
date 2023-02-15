@@ -56,8 +56,6 @@ Visit us at https://krispykopters.fly.dev/.
   - run `docker build -t krispykopters/<unique tag> .`
 - Run docker image:
   - run `docker run -p 80:80 -it krispykopters/<unique tag>`
-- Alternative to manually building and running the image, use docker compose
-  - run `docker compose up`
 
 ### Deploy to Fly.io
 

@@ -1,9 +1,0 @@
-version: '3'
-services:
-
-  web_app:
-    container_name: web_app
-    build: ./
-    ports:
-      - "80:80"
-    restart: always

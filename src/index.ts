@@ -3,10 +3,10 @@ import cors from "cors";
 
 const app = express();
 const host = '0.0.0.0';
-const port = 80;
+const port = 3000;
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:3001',
 }));
 
 app.get('/', (req, res) => {
