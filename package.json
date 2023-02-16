@@ -10,7 +10,9 @@
     "prebuild": "npm run lint",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node .",
+    "start:backend": "echo $REACT_APP_DEPLOYMENT && node ./dist/index.js",
+    "start:frontend": "echo $REACT_APP_DEPLOYMENT && sh -c 'cd front-end && npm install && npm start'",
+    "start": "concurrently --kill-others-on-fail 'npm run start:backend' 'npm run start:frontend'",
     "test:jest": "jest --coverage ./test/jest",
     "test:mocha": "mocha --config .mocharc.json ./test/mocha/**/*.ts",
     "test": "npm-run-all --parallel --continue-on-error test:jest test:mocha"
@@ -32,19 +34,20 @@
   "homepage": "https://github.com/CMU-17-356/dronuts-2023-krispykopters#readme",
   "dependencies": {
     "@testing-library/react": "^13.4.0",
+    "concurrently": "^7.6.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "jest-fetch-mock": "^3.0.3",
-    "react": "^18.2.0",
-    "mongoose": "^6.9.1"
+    "mongoose": "^6.9.1",
+    "react": "^18.2.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.4",
     "@babel/core": "^7.20.12",
     "@babel/plugin-transform-modules-commonjs": "^7.20.11",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.18.6",
     "@testing-library/jest-dom": "^5.16.5",
+    "@types/chai": "^4.3.4",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.4.0",
