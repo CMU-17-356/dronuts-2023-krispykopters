@@ -38,7 +38,7 @@ const CartItem = ({ item }: { item: cartItem }) => {
         <div className="flex flex-col gap-0 ">
           <p className="text-base text-gray-50">{foodItem?.title}</p>
           <p className="text-sm block text-gray-300 font-semibold">
-            <span className="text-xs text-red-600">₵</span> {foodItem?.price}
+            <span className="text-xs text-red-600">$</span> {foodItem?.price}
           </p>
         </div>
       </div>
