@@ -40,7 +40,7 @@ export const SingleFoodItem = ({
         )}
         <div className="flex items-center justify-between gap-8 ">
           <p className="text-base text-headingColor font-semibold">
-            <span className="text-sm text-red-600">₵</span> {price}
+            <span className="text-sm text-red-600">$</span> {price}
           </p>
         </div>
       </div>
