@@ -1,0 +1,49 @@
+.banner-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: grey;
+    color: rgb(0, 0, 0);
+    padding: 1px;
+  }
+  
+  .left-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .center-container {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  
+  .logo-icon {
+    height: 50px;
+  }
+  
+  .settings-icon {
+    height: 20px;
+    margin-right: 5px;
+  }
+  
+  .settings-text {
+    font-size: 18px;
+  }
+  
+  .logo-left {
+    margin-right: 20px;
+  }
+  
+  .logo-right {
+    margin-left: 20px;
+  }
+
+  .cart-icon {
+    height: 30px;
+    margin-right: 5px;
+  }
+  

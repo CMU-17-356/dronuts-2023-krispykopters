@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import logo from './logo.svg';
 import './App.css';
+import Banner from './Banner';
 
 function App() {
   const [data, setData] = useState<{ id: number, name: string }[]>([]);
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div className="App">
+      <Banner />
       <header className="App-header">
         <p>
           Data from the backend:
