@@ -1,38 +1,76 @@
-import React, { useState, useEffect } from 'react';
-// import logo from './logo.svg';
-import './App.css';
+import "react-toastify/dist/ReactToastify.css";
+
+import {
+  About,
+  Admin,
+  Home,
+  Login,
+  Menu,
+  Profile,
+  Services,
+  Signup,
+} from "./Pages";
+import { Cart, Footer, Header } from "./components";
+import { Route, Routes } from "react-router-dom";
+import {
+  calculateCartTotal,
+  dispatchUsers,
+  fetchFoodData,
+  fetchUserCartData,
+  isAdmin,
+} from "./utils/functions";
+
+import { AnimatePresence } from "framer-motion";
+import Contact from "./components/Contact";
+import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
+import { useStateValue } from "./context/StateProvider";
 
 function App() {
-  const [data, setData] = useState<{ id: number, name: string }[]>([]);
+  const [{ showCart,showContactForm, user, foodItems, cartItems, adminMode }, dispatch] =
+    useStateValue();
 
   useEffect(() => {
-    const url = process.env.REACT_APP_DEPLOYMENT === 'true' ? 'https://krispykopters.fly.dev:3000/' : 'http://localhost:3000/';
-    console.log('Deployment: ' + process.env.REACT_APP_DEPLOYMENT);
-    console.log('Url: ' + url);
-    fetch(url)
-      .then(response => {
-        console.log('response: ', response);
-        return response.json();
-      })
-      .then(data => {
-        console.log('data: ', data);
-        setData(data);
-      });
+    fetchFoodData(dispatch);
+    dispatchUsers(dispatch);
+    user && fetchUserCartData(user, dispatch);
   }, []);
 
+  useEffect(() => {
+    foodItems &&
+      cartItems.length > 0 &&
+      calculateCartTotal(cartItems, foodItems, dispatch);
+  }, [cartItems, foodItems, dispatch]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Data from the backend:
-        </p>
-        <ul>
-          {data.map(item => (
-            <li key={item.id}>{item.name}</li>
-          ))}
-        </ul>
-      </header>
-    </div>
+    <AnimatePresence exitBeforeEnter>
+      <ToastContainer />
+      <div className="w-screen h-auto min-h-[100vh] flex flex-col bg-primary">
+        {showCart && <Cart />}
+        {showContactForm && <Contact />}
+        {!(adminMode && isAdmin(user)) && <Header />}
+        <main
+          className={`${
+            !(adminMode && isAdmin(user)) &&
+            "mt-16 md:mt-16 px-3 md:px-8 md:py-6 py-4"
+          } w-full h-auto`}
+          onClick={() => {}}
+        >
+          {/* Routes */}
+          <Routes>
+            <Route path="/*" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Signup />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/services" element={<Services />} />
+          </Routes>
+
+          {!(adminMode && isAdmin(user)) && <Footer />}
+        </main>
+      </div>
+    </AnimatePresence>
   );
 }
 
