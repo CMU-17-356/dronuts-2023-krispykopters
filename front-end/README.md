@@ -2,7 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This front-end framework references with the guidance and base from an opensource library, please see here: https://github.com/qbentil/Bentilzone-Restaurant
+This front-end framework references with the guidance and base from an opensource library, please see here: https://github.com/qbentil/Bentilzone-Restaurant.
+
+Thanks Bentil!
 
 ## Available Scripts
 
