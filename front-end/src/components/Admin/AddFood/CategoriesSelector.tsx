@@ -1,11 +1,11 @@
 import React from "react";
-export type FoodCategory = {
+export type DonutCategory = {
   id: number;
   name: string;
   urlParam: string;
 };
 
-export type FoodCategories = FoodCategory[];
+export type FoodCategories = DonutCategory[];
 
 interface Props {
   categories: FoodCategories;

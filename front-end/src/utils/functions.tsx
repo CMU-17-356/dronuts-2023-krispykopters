@@ -1,11 +1,11 @@
-import { FoodItem, cartItem } from "../../types";
+import { Donut, cartItem } from "../../types";
 import {
   firebaseAddToCart,
   firebaseDeleteCartItem,
   firebaseDeleteFood,
   firebaseEmptyUserCart,
   firebaseFetchAllCartItems,
-  firebaseFetchFoodItems,
+  firebaseFetchDonutItems,
   firebaseGetAllUsers,
   firebaseGetUser,
   firebaseLogout,
@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 
 export const addToCart = async (
   cartItems: cartItem[],
-  foodItems: FoodItem[],
+  DonutItems: Donut[],
   user: any,
   fid: number,
   dispatch: any
@@ -46,7 +46,7 @@ export const addToCart = async (
       type: "SET_CARTITEMS",
       cartItems: [...cartItems, data],
     });
-    calculateCartTotal(cartItems, foodItems, dispatch);
+    calculateCartTotal(cartItems, DonutItems, dispatch);
     await firebaseAddToCart(data);
   }
   // }
@@ -83,11 +83,11 @@ export const fetchUserCartData = async (user: any, dispatch: any) => {
 
 // fetch the data for the food
 export const fetchFoodData = async (dispatch: any) => {
-  await firebaseFetchFoodItems()
+  await firebaseFetchDonutItems()
     .then((data) => {
       dispatch({
         type: "SET_FOOD_ITEMS",
-        foodItems: data,
+        DonutItems: data,
       });
     })
     .then(() => {})
@@ -97,8 +97,8 @@ export const fetchFoodData = async (dispatch: any) => {
 };
 
 // get the specific food by Id
-export const getFoodyById = (menu: FoodItem[], fid: number) => {
-  return menu.find((item: FoodItem) => item.id === fid);
+export const getFoodyById = (menu: Donut[], fid: number) => {
+  return menu.find((item: Donut) => item.id === fid);
 };
 
 //  Update cart item State
@@ -127,7 +127,7 @@ export const updateCartItemState = async (
 // Update Cart Item Quantity (for example, adding or decreasing cart food qty)
 export const updateCartItemQty = async (
   cartItems: cartItem[],
-  foodItems: FoodItem[],
+  DonutItems: Donut[],
   item: cartItem,
   dispatch: any,
   val: number
@@ -141,7 +141,7 @@ export const updateCartItemQty = async (
       type: "SET_CARTITEMS",
       cartItems: cartItems,
     });
-    calculateCartTotal(cartItems, foodItems, dispatch);
+    calculateCartTotal(cartItems, DonutItems, dispatch);
     await firebaseUpdateCartItem(cartItems[index])
       .then(() => {})
       .catch((e) => {
@@ -153,7 +153,7 @@ export const updateCartItemQty = async (
 //  Delete specific items from the cart.
 export const deleteCartItem = async (
   cartItems: cartItem[],
-  foodItems: FoodItem[],
+  DonutItems: Donut[],
   item: cartItem,
   dispatch: any
 ) => {
@@ -166,7 +166,7 @@ export const deleteCartItem = async (
       type: "SET_CARTITEMS",
       cartItems: cartItems,
     });
-    calculateCartTotal(cartItems, foodItems, dispatch);
+    calculateCartTotal(cartItems, DonutItems, dispatch);
     await firebaseDeleteCartItem(item)
       .then(() => {})
       .catch((e) => {
@@ -178,12 +178,12 @@ export const deleteCartItem = async (
 // Calculate Total Price Round to 2 decimal places
 export const calculateCartTotal = (
   cartItems: cartItem[],
-  foodItems: FoodItem[],
+  DonutItems: Donut[],
   dispatch: any
 ) => {
   let total = 0;
   cartItems.forEach((item: cartItem) => {
-    const foodItem = getFoodyById(foodItems, item.fid);
+    const foodItem = getFoodyById(DonutItems, item.fid);
     total += item.qty * parseFloat(foodItem?.price || "0");
   });
   dispatch({
@@ -196,7 +196,7 @@ export const calculateCartTotal = (
 // Empty Cart
 export const emptyCart = async (
   cartItems: cartItem[],
-  foodItems: FoodItem[],
+  DonutItems: Donut[],
   dispatch: any
 ) => {
   if (cartItems.length > 0) {
@@ -204,7 +204,7 @@ export const emptyCart = async (
       type: "SET_CARTITEMS",
       cartItems: [],
     });
-    calculateCartTotal(cartItems, foodItems, dispatch);
+    calculateCartTotal(cartItems, DonutItems, dispatch);
     await firebaseEmptyUserCart(cartItems)
       .then(() => {})
       .catch((e) => {
@@ -349,19 +349,19 @@ export const getAllUser = async () => {
 };
 // delete food
 export const deleteFood = async (
-  food: FoodItem,
-  foodItems: FoodItem[],
+  food: Donut,
+  DonutItems: Donut[],
   dispatch: any
 ) => {
   await firebaseDeleteFood(food.id);
-  // remove food from foodItems
-  const foodIndex = foodItems.indexOf(food);
+  // remove food from DonutItems
+  const foodIndex = DonutItems.indexOf(food);
   if (foodIndex !== -1) {
-    foodItems.splice(foodIndex, 1);
+    DonutItems.splice(foodIndex, 1);
   }
   dispatch({
     type: "SET_FOOD_ITEMS",
-    foodItems,
+    DonutItems,
   });
   toast.success("Food deleted successfully");
 };

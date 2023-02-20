@@ -1,4 +1,4 @@
-import { FoodItem } from "../../../types";
+import { Donut } from "../../../types";
 import { motion } from "framer-motion";
 import Action from "./action";
 export const SingleFoodItem = ({
@@ -6,7 +6,7 @@ export const SingleFoodItem = ({
   col,
   admin,
 }: {
-  item: FoodItem;
+  item: Donut;
   col?: boolean;
   admin?: boolean;
 }) => {

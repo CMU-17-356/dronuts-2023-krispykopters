@@ -8,7 +8,7 @@ import { useStateValue } from "../../../context/StateProvider";
 
 const Menu = ({ title }: { title?: string }) => {
   const [scrollValue, setScrollValue] = useState(0);
-  const [{ foodItems }, dispatch] = useStateValue();
+  const [{ DonutItems }, dispatch] = useStateValue();
   const [filter, setFilter] = useState<string>("all");
 
   return (
@@ -21,7 +21,7 @@ const Menu = ({ title }: { title?: string }) => {
         className="bg-containerbg"
         col
         scrollOffset={scrollValue}
-        items={filter === "all" ? foodItems : FilterFood(filter)}
+        items={filter === "all" ? DonutItems : FilterFood(filter)}
       />
     </section>
   );

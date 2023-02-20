@@ -1,6 +1,19 @@
 import { app, firestore, storage } from "../firebase.config";
-import { collection, deleteDoc, doc, getDocs, orderBy, query, setDoc } from "firebase/firestore";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+} from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import {
   deleteObject,
   getDownloadURL,
@@ -13,7 +26,7 @@ import { toast } from "react-toastify";
 import { shuffleItems } from "../utils/functions";
 
 // The mock data is in here.
-import { data } from "../utils/fruitStatic"
+import { data } from "../utils/fetchDronesData";
 
 export const firebaseUploadImage = (
   imageFile,
@@ -66,25 +79,31 @@ export const firebaseRemoveUploadedImage = (
   imageHandler,
   promise
 ) => {
-  const dummy = "https://firebasestorage.googleapis.com/v0/b/bentilzone-restaurant.appspot.com/o/Images"
+  const dummy =
+    "https://firebasestorage.googleapis.com/v0/b/bentilzone-restaurant.appspot.com/o/Images";
   promise(true);
   toast.info(`Removing Image.....`, {
     icon: <MdOutlineCloudUpload className="text-blue-600" />,
     autoClose: 1500,
     toastId: "remove-image",
   });
-  if(ImageFile.includes(dummy))
-  {
+  if (ImageFile.includes(dummy)) {
     const deleteRef = ref(storage, ImageFile);
     deleteObject(deleteRef).then(() => {
       imageHandler(null);
       promise(false);
-      toast.success("Photo removed Successfully😊", { autoClose: 2000, toastId: "remove-image" });
+      toast.success("Photo removed Successfully😊", {
+        autoClose: 2000,
+        toastId: "remove-image",
+      });
     });
-  }else{
+  } else {
     imageHandler(null);
     promise(false);
-    toast.success("Photo removed Successfully😊", { autoClose: 2000, toastId: "remove-image" });
+    toast.success("Photo removed Successfully😊", {
+      autoClose: 2000,
+      toastId: "remove-image",
+    });
   }
 };
 
@@ -114,40 +133,41 @@ export const AUTHPROVIDER = async (provider) => {
 // Signup with email and password
 export const EMAILSIGNUP = async (email, password) => {
   const firebaseAuth = getAuth(app);
-  return createUserWithEmailAndPassword(firebaseAuth, email, password)
+  return createUserWithEmailAndPassword(firebaseAuth, email, password);
 };
 
 //  Signin with email and password
 export const EMAILSIGNIN = async (email, password) => {
   const firebaseAuth = getAuth(app);
-  const result = await signInWithEmailAndPassword(firebaseAuth, email, password)
+  const result = await signInWithEmailAndPassword(
+    firebaseAuth,
+    email,
+    password
+  );
   let user = result.user.providerData[0];
 
-  return await firebaseGetUser(user.uid)
+  return await firebaseGetUser(user.uid);
 };
 
-
 // Fetch All Food Products from Firestore
-export const firebaseFetchFoodItems = async () => {
+export const firebaseFetchDonutItems = async () => {
   const items = await getDocs(
     query(collection(firestore, "Food"), orderBy("id", "desc"))
   );
 
   const mockItems = data;
 
-  return mockItems
+  return mockItems;
 
   // return shuffleItems(items.docs.map((doc) => doc.data()));
-}
+};
 
-
-//  cart operation    
+//  cart operation
 export const firebaseAddToCart = async (data) => {
   await setDoc(doc(firestore, "CartItems", `${data.id}`), data, {
     merge: true,
   });
 };
-
 
 // Fetch All Cart Items  from Firestore
 export const firebaseFetchAllCartItems = async () => {
@@ -156,36 +176,36 @@ export const firebaseFetchAllCartItems = async () => {
   );
 
   return shuffleItems(items.docs.map((doc) => doc.data()));
-}
+};
 
 // Update Cart Items
 export const firebaseUpdateCartItem = async (data) => {
   await setDoc(doc(firestore, "CartItems", `${data.id}`), data, {
     merge: true,
   });
-}
+};
 
 //  Delete Cart from Firestore
 export const firebaseDeleteCartItem = async (item) => {
   await deleteDoc(doc(firestore, "CartItems", `${item.id}`));
-}
+};
 
 //  Delete Cart from Firestore
 export const firebaseEmptyCart = async () => {
   await deleteDoc(doc(firestore, "CartItems"));
-}
+};
 
 //  Empty user cart from firestore
 export const firebaseEmptyUserCart = async (cartItems) => {
   cartItems.forEach((item) => {
-     firebaseDeleteCartItem(item);
-  })
-}
+    firebaseDeleteCartItem(item);
+  });
+};
 
 // Logout user
 export const firebaseLogout = async () => {
   await getAuth(app).signOut();
-}
+};
 
 // ADMIN USER MANAGEMENT
 
@@ -198,34 +218,30 @@ export const firebaseAddUser = async (data) => {
       merge: true,
     });
   }
-}
+};
 
 // get user
 export const firebaseGetUser = async (uid) => {
-  const user = await getDocs(
-    query(collection(firestore, "Users"))
-  );
+  const user = await getDocs(query(collection(firestore, "Users")));
   let users = user.docs.map((doc) => doc.data());
-  return users.filter((user) => user.uid === uid)
-}
+  return users.filter((user) => user.uid === uid);
+};
 
-// update user 
+// update user
 export const firebaseUpdateUser = async (data) => {
   await setDoc(doc(firestore, "Users", `${data.uid}`), data, {
     merge: true,
   });
-}
+};
 
 // firebase get all users
 export const firebaseGetAllUsers = async () => {
-  const users = await getDocs(
-    query(collection(firestore, "Users"))
-  );
+  const users = await getDocs(query(collection(firestore, "Users")));
   let usersData = users.docs.map((doc) => doc.data());
-  return usersData
-}
+  return usersData;
+};
 
 // delete food
 export const firebaseDeleteFood = async (id) => {
   await deleteDoc(doc(firestore, "Food", `${id}`));
-}
+};

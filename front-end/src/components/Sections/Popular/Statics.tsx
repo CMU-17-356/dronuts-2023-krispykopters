@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { foodItemsStatic } from "../../../../types";
+import { DonutItems } from "../../../../types";
 
-const StaticsImages: React.FC<foodItemsStatic> = ({ items }) => {
+const StaticsImages: React.FC<DonutItems> = ({ items }) => {
   return (
     <div className="w-full h-full absolute flex items-center justify-center top-6 left-0 lg:px-30 lg:py-4 gap-4 flex-wrap ">
       {items.map((item, index) => (
@@ -13,13 +13,15 @@ const StaticsImages: React.FC<foodItemsStatic> = ({ items }) => {
           <motion.img
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 1.1 }}
-            src={item.imgSrc}
+            src={item.imageURL}
             alt="icecream"
             className="w-24 lg:w-40 -mt-10 lg:-mt-20"
           />
-          <p className="text-base lg:text-lg font-semibold text-textColor">{item.title}</p>
+          <p className="text-base lg:text-lg font-semibold text-textColor">
+            {item.title}
+          </p>
           <p className="text-[10px] lg:text-lg text-lightGray font-semibold my-2 lg:my-3">
-            {item.desc}
+            {item.description}
           </p>
           <p className="text-sm font-semibold text-headingColor">
             <span className="text-xs text-red-600">$</span> {item.price}

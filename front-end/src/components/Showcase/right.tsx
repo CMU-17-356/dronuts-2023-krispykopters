@@ -3,7 +3,7 @@ import { HeroBg } from "../Assets";
 import StaticsImages from "./Statics";
 
 // Import the data from static URL
-import { data } from "../../utils/showcaseStatic";
+import { data } from "../../utils/fetchTopDronesData";
 
 // The right panel
 const Right = () => {

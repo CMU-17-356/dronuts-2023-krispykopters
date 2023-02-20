@@ -7,7 +7,7 @@ import { useState } from "react";
 const Fruits = () => {
   // filter by fruits
   // Here could be anything that we want...
-  const fruits = FilterFood("fruits");
+  const premiums = FilterFood("premium");
   const [scrollValue, setScrollValue] = useState(0);
   return (
     <section className="w-full my-5">
@@ -21,7 +21,7 @@ const Fruits = () => {
       <Container
         className="bg-containerbg"
         scrollOffset={scrollValue}
-        items={fruits}
+        items={premiums}
       />
     </section>
   );
