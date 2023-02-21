@@ -10,7 +10,7 @@ export const data = [
     price: "7.25",
     calories: "0.1",
     qty: "30",
-    category: "fruits",
+    category: "new",
     imageURL: donut1,
   },
   {
@@ -21,7 +21,7 @@ export const data = [
     price: "15.65",
     calories: "0.2",
     qty: "20",
-    category: "fruits",
+    category: "new",
     imageURL: donut2,
   },
   {
@@ -32,7 +32,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "fruits",
+    category: "new",
     imageURL: donut3,
   }
 ];

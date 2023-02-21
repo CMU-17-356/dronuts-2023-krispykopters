@@ -12,11 +12,10 @@ const Menu = ({ title }: { title?: string }) => {
   const [filter, setFilter] = useState<string>("all");
 
   return (
-    <section className="w-full my-5" id="menu">
-      <div className="w-full flex items-center justify-center">
-        <Title title={title || "Donuts Categories"} center />
+    <section className="w-full my-0" id="menu">
+      <div className="w-full flex items-center justify-between">
+        <Title title="Fan Favorites" />
       </div>
-      <Filters filter={filter} setFilter={setFilter} />
       <Container
         className="bg-containerbg"
         col

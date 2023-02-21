@@ -28,7 +28,7 @@ export const data = [
     price: "7.25",
     calories: "0.1",
     qty: "30",
-    category: "fruits",
+    category: "normal",
     imageURL: donut1,
   },
   {
@@ -39,7 +39,7 @@ export const data = [
     price: "15.65",
     calories: "0.2",
     qty: "20",
-    category: "fruits",
+    category: "normal",
     imageURL: donut2,
   },
   {
@@ -50,7 +50,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "fruits",
+    category: "normal",
     imageURL: donut3,
   },
   {
@@ -61,7 +61,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "fruits",
+    category: "normal",
     imageURL: donut4,
   },
   {
@@ -72,7 +72,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "fruits",
+    category: "normal",
     imageURL: donut5,
   },
   {
@@ -83,7 +83,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "fruits",
+    category: "normal",
     imageURL: donut6,
   },
   {
@@ -94,7 +94,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "fruits",
+    category: "normal",
     imageURL: donut7,
   },
   {
@@ -105,7 +105,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "fruits",
+    category: "normal",
     imageURL: donut8,
   },
   {
@@ -116,7 +116,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "fruits",
+    category: "normal",
     imageURL: donut9,
   },
   {
@@ -127,7 +127,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "fruits",
+    category: "featured",
     imageURL: donut10,
   },
   {
@@ -138,7 +138,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "fruits",
+    category: "featured",
     imageURL: donut11,
   },
   {
@@ -149,7 +149,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "premium",
+    category: "featured",
     imageURL: donut12,
   },
   {
@@ -160,7 +160,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "premium",
+    category: "featured",
     imageURL: donut13,
   },
   {
@@ -171,7 +171,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "premium",
+    category: "featured",
     imageURL: donut14,
   },
   {
@@ -182,7 +182,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "premium",
+    category: "featured",
     imageURL: donut15,
   },
   {
@@ -193,7 +193,7 @@ export const data = [
     price: "10.25",
     calories: "0.3",
     qty: "10",
-    category: "premium",
+    category: "featured",
     imageURL: donut16,
   },
 ];
