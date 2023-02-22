@@ -32,6 +32,14 @@ function App() {
     dispatch,
   ] = useStateValue();
 
+  fetch('/api')
+    .then(response =>
+      response.json()
+        .then(json => console.log(json)))
+
+  const [{ showCart,showContactForm, user, foodItems, cartItems, adminMode }, dispatch] =
+    useStateValue();
+
   useEffect(() => {
     fetchFoodData(dispatch);
     dispatchUsers(dispatch);
