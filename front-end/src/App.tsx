@@ -27,6 +27,12 @@ import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
 
 function App() {
+
+  fetch('/api')
+    .then(response =>
+      response.json()
+        .then(json => console.log(json)))
+
   const [{ showCart,showContactForm, user, foodItems, cartItems, adminMode }, dispatch] =
     useStateValue();
 
