@@ -27,8 +27,10 @@ import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
 
 function App() {
-  const [{ showCart,showContactForm, user, foodItems, cartItems, adminMode }, dispatch] =
-    useStateValue();
+  const [
+    { showCart, showContactForm, user, DonutItems, cartItems, adminMode },
+    dispatch,
+  ] = useStateValue();
 
   useEffect(() => {
     fetchFoodData(dispatch);
@@ -37,10 +39,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    foodItems &&
+    DonutItems &&
       cartItems.length > 0 &&
-      calculateCartTotal(cartItems, foodItems, dispatch);
-  }, [cartItems, foodItems, dispatch]);
+      calculateCartTotal(cartItems, DonutItems, dispatch);
+  }, [cartItems, DonutItems, dispatch]);
   return (
     <AnimatePresence exitBeforeEnter>
       <ToastContainer />

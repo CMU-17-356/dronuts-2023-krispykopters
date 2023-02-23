@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef } from "react";
 
-import { FoodItem } from "../../../types";
+import { Donut } from "../../../types";
 import Loader from "../Loader";
-import { SingleFoodItem } from "../FoodItem";
+import { SingleFoodItem } from "../Donut";
 import { motion } from "framer-motion";
 import NotFound from "../NotFound";
 import { isAdmin } from "../../utils/functions";
@@ -16,7 +16,7 @@ const Container = ({
 }: {
   scrollOffset: number;
   col?: boolean;
-  items: FoodItem[];
+  items: Donut[];
   className?: string;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -41,7 +41,7 @@ const Container = ({
       }`}
     >
       {items &&
-        items.map((item: FoodItem) => (
+        items.map((item: Donut) => (
           <SingleFoodItem
             key={item.id}
             item={item}

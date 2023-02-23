@@ -1,26 +1,29 @@
 import { FaSearch } from "react-icons/fa";
-import { FoodItem } from "../../../../types";
-import { SingleFoodItem } from "../../FoodItem";
+import { Donut } from "../../../../types";
+import { SingleFoodItem } from "../../Donut";
 import React, { useState } from "react";
 import { useStateValue } from "../../../context/StateProvider";
 
 const Menu = () => {
-    const [{ foodItems }, dispatch] = useStateValue();
-    const [query, setQuery] = useState("");
-    const [filteredFoodItems, setFilteredFoodItems] = useState<FoodItem[]>(foodItems);
-    
-    const filterFood = () => {
-        if(query.length === 0) {
-            setFilteredFoodItems(foodItems);
-        }else{
-          const filteredFoodItems = foodItems.filter((foodItem:FoodItem) => foodItem.title.toLowerCase().includes(query.toLowerCase()));
-          setFilteredFoodItems(filteredFoodItems);
-        }
+  const [{ DonutItems }, dispatch] = useStateValue();
+  const [query, setQuery] = useState("");
+  const [filteredDonutItems, setFilteredDonutItems] =
+    useState<Donut[]>(DonutItems);
+
+  const filterFood = () => {
+    if (query.length === 0) {
+      setFilteredDonutItems(DonutItems);
+    } else {
+      const filteredDonutItems = DonutItems.filter((foodItem: Donut) =>
+        foodItem.title.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredDonutItems(filteredDonutItems);
     }
-    const searchFood = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(e.target.value);
-        filterFood();
-    }
+  };
+  const searchFood = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    filterFood();
+  };
   return (
     <div className="w-full flex flex-col justify-center">
       {/* search bar */}
@@ -38,11 +41,9 @@ const Menu = () => {
         </button>
       </div>
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
-        {
-            filteredFoodItems.map((item: FoodItem) => (
-                <SingleFoodItem key={item.id} item={item} col admin />
-            ))
-        }
+        {filteredDonutItems.map((item: Donut) => (
+          <SingleFoodItem key={item.id} item={item} col admin />
+        ))}
       </div>
     </div>
   );

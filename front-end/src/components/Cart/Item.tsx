@@ -15,16 +15,16 @@ import { type } from "os";
 
 const CartItem = ({ item }: { item: cartItem }) => {
   // Here we should get all of the food items:
-  const [{ foodItems, cartItems }, dispatch] = useStateValue();
+  const [{ DonutItems, cartItems }, dispatch] = useStateValue();
 
   // Extract the relevant data and information out and const an item.
   const { id, fid, qty } = item;
 
   // self created useState for testing reachability.
-  // const [foodItems, SET_FOOD_ITEMS] = React.useState(data);
+  // const [DonutItems, SET_FOOD_ITEMS] = React.useState(data);
 
   // Get the food item by its id.
-  const foodItem = getFoodyById(foodItems, fid);
+  const foodItem = getFoodyById(DonutItems, fid);
 
   return (
     <div className="w-full p-1 px-2 rounded-lg bg-cartItem hover:shadow-md flex items-center justify-between gap-2 cursor-pointer ">
@@ -50,7 +50,7 @@ const CartItem = ({ item }: { item: cartItem }) => {
           onClick={
             qty > 1
               ? () =>
-                  updateCartItemQty(cartItems, foodItems, item, dispatch, -1)
+                  updateCartItemQty(cartItems, DonutItems, item, dispatch, -1)
               : () => {}
           }
         >
@@ -63,7 +63,7 @@ const CartItem = ({ item }: { item: cartItem }) => {
           className=""
           whileTap={{ scale: 0.75 }}
           onClick={() =>
-            updateCartItemQty(cartItems, foodItems, item, dispatch, 1)
+            updateCartItemQty(cartItems, DonutItems, item, dispatch, 1)
           }
         >
           <BiPlus className="text-gray-50" />
@@ -73,7 +73,7 @@ const CartItem = ({ item }: { item: cartItem }) => {
       <motion.div
         whileTap={{ scale: 0.75 }}
         className="text-sm text-gray-50 w-6 h-6 rounded-lg bg-cartNumBg flex items-center justify-center"
-        onClick={() => deleteCartItem(cartItems, foodItems, item, dispatch)}
+        onClick={() => deleteCartItem(cartItems, DonutItems, item, dispatch)}
       >
         <MdDelete />
       </motion.div>

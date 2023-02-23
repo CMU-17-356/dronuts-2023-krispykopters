@@ -7,12 +7,12 @@ import { useState } from "react";
 const Fruits = () => {
   // filter by fruits
   // Here could be anything that we want...
-  const fruits = FilterFood("fruits");
+  const featuredDonut = FilterFood("featured");
   const [scrollValue, setScrollValue] = useState(0);
   return (
     <section className="w-full my-5">
       <div className="w-full flex items-center justify-between">
-        <Title title="Popular & Best sellers" />
+        <Title title="Featured" />
         <PrevNextButtons
           onNext={() => setScrollValue(10000)}
           onPrev={() => setScrollValue(-10000)}
@@ -21,7 +21,7 @@ const Fruits = () => {
       <Container
         className="bg-containerbg"
         scrollOffset={scrollValue}
-        items={fruits}
+        items={featuredDonut}
       />
     </section>
   );

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Button from "./Button";
 import { Categories } from "../../utils/categories";
-import {  FoodCategory } from "../../../types";
+import {  DonutCategory } from "../../../types";
 import { BiRestaurant } from "react-icons/bi";
 
 const Filters = ({filter, setFilter}: {filter:string, setFilter: any}) => {
@@ -15,7 +15,7 @@ const Filters = ({filter, setFilter}: {filter:string, setFilter: any}) => {
     >
       <Button category={{id: 666, name: "Menu", urlParam: "all", icon: <BiRestaurant />}} filter = {filter} setFilter = {setFilter} />
         {
-            Categories.map((category: FoodCategory) =>{
+            Categories.map((category: DonutCategory) =>{
                 return <Button key = {category.id} category = {category} filter = {filter} setFilter = {setFilter} />
             })
         }

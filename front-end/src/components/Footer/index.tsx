@@ -41,7 +41,7 @@ const Footer = () => {
             whileTap={{ scale: 1.1 }}
             target={"_blank"}
             rel="noreferrer"
-            href="https://qbentil.com"
+            href="https://github.com/CMU-17-356/dronuts-2023-krispykopters"
             className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
           >
             <BsDribbble />
@@ -50,7 +50,7 @@ const Footer = () => {
             whileTap={{ scale: 1.1 }}
             target={"_blank"}
             rel="noreferrer"
-            href="https://github.com/qbentil"
+            href="https://github.com/CMU-17-356/dronuts-2023-krispykopters"
             className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
           >
             <BsGithub />
@@ -59,7 +59,7 @@ const Footer = () => {
             whileTap={{ scale: 1.1 }}
             target={"_blank"}
             rel="noreferrer"
-            href="https://linkedin.com/in/bentil"
+            href="https://github.com/CMU-17-356/dronuts-2023-krispykopters"
             className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
           >
             <BsLinkedin />
@@ -68,7 +68,7 @@ const Footer = () => {
             whileTap={{ scale: 1.1 }}
             target={"_blank"}
             rel="noreferrer"
-            href="https://twitter.com/themanbentil"
+            href="https://github.com/CMU-17-356/dronuts-2023-krispykopters"
             className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
           >
             <BsTwitter />
@@ -77,7 +77,7 @@ const Footer = () => {
             whileTap={{ scale: 1.1 }}
             target={"_blank"}
             rel="noreferrer"
-            href="https://instagram.com/qbentil"
+            href="https://github.com/CMU-17-356/dronuts-2023-krispykopters"
             className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
           >
             <BsInstagram />
@@ -86,7 +86,7 @@ const Footer = () => {
             whileTap={{ scale: 1.1 }}
             target={"_blank"}
             rel="noreferrer"
-            href="https://facebook.com/qbentil"
+            href="https://github.com/CMU-17-356/dronuts-2023-krispykopters"
             className="text-textColor h-10 w-10 bg-primary rounded-full flex items-center justify-center"
           >
             <BsFacebook />
