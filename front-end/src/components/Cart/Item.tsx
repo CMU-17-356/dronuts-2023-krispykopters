@@ -51,7 +51,7 @@ const CartItem = ({ item }: { item: cartItem }) => {
             qty > 1
               ? () =>
                   updateCartItemQty(cartItems, foodItems, item, dispatch, -1)
-              : () => {}
+              : () => {/**/}
           }
         >
           <BiMinus className="text-gray-50" />

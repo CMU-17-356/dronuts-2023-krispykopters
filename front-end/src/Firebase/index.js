@@ -90,7 +90,7 @@ export const firebaseRemoveUploadedImage = (
 
 export const silentRemoveUploadedImage = (ImageFile) => {
   const deleteRef = ref(storage, ImageFile);
-  deleteObject(deleteRef).then(() => {});
+  deleteObject(deleteRef).then(() => {/**/});
 };
 
 export const firebaseSaveProduct = async (data) => {
@@ -141,7 +141,7 @@ export const firebaseFetchFoodItems = async () => {
 }
 
 
-//  cart operation    
+//  cart operation
 export const firebaseAddToCart = async (data) => {
   await setDoc(doc(firestore, "CartItems", `${data.id}`), data, {
     merge: true,
@@ -209,7 +209,7 @@ export const firebaseGetUser = async (uid) => {
   return users.filter((user) => user.uid === uid)
 }
 
-// update user 
+// update user
 export const firebaseUpdateUser = async (data) => {
   await setDoc(doc(firestore, "Users", `${data.uid}`), data, {
     merge: true,

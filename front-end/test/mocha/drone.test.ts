@@ -1,4 +1,4 @@
-import { IDrone, Drone, DroneStatus } from "../../src/db/drone";
+import { IDrone, Drone, DroneStatus } from "../../server/db/drone";
 import { expect } from "chai";
 
 describe("drone", () => {

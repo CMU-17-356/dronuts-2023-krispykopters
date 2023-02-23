@@ -62,7 +62,7 @@ function App() {
             !(adminMode && isAdmin(user)) &&
             "mt-16 md:mt-16 px-3 md:px-8 md:py-6 py-4"
           } w-full h-auto`}
-          onClick={() => {}}
+          onClick={() => {/**/}}
         >
           {/* Routes */}
           <Routes>

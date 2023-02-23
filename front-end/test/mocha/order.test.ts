@@ -1,6 +1,6 @@
-import { IDonut, Donut } from "../../src/db/donut";
-import { ICustomer, Customer } from "../../src/db/customer";
-import { IOrder, Order } from "../../src/db/order";
+import { IDonut, Donut } from "../../server/db/donut";
+import { ICustomer, Customer } from "../../server/db/customer";
+import { IOrder, Order } from "../../server/db/order";
 import { expect } from "chai";
 
 describe("order", () => {

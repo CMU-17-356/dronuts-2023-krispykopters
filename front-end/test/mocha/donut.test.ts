@@ -1,4 +1,4 @@
-import { IDonut, Donut } from "../../src/db/donut";
+import { IDonut, Donut } from "../../server/db/donut";
 import { expect } from "chai";
 
 describe("donut", () => {
