@@ -1,4 +1,32 @@
-# Getting Started with Create React App
+# KrispyKopters
+
+Visit us at https://krispykopters.fly.dev/.
+
+## Tools and Technologies
+
+- Collaboration: Slack
+- Issue Tracking: GitHub Issues
+- Kanban Board: GitHub Projects
+- CI: GitHub Actions
+- Framework: NodeJS
+- Language: Typescript
+- Backend: Express
+- Package Updates: npm-check-updates
+- Linting: ESLint
+- Testing: Jest
+- Deployment Fly.io
+
+## Repository Setup
+
+- Install [NodeJS/NPM](https://nodejs.org/en/download/)
+- Install packages
+  - Run `npm install` in the repo root directory
+- Install [Docker](https://docs.docker.com/get-docker/)
+- Install tools
+  - Run `npm install -g npm-check-updates` for dependencies checker
+  - Install [`flyctl`](https://fly.io/docs/hands-on/install-flyctl/)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -10,6 +38,9 @@ Thanks Bentil!
 
 In the project directory, you can run:
 
+### `npm run lint`
+
+This runs ESLint for the files in the `src/` directory containing the React app and the `server/` directory containing the API server.
 
 ### Local development
 

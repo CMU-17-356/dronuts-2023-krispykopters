@@ -1,4 +1,4 @@
-import { ICustomer, Customer } from "../../src/db/customer";
+import { ICustomer, Customer } from "../../server/db/customer";
 import { expect } from "chai";
 
 describe("customer", () => {

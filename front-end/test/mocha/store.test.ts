@@ -1,5 +1,5 @@
-import { IDonut, Donut } from "../../src/db/donut";
-import { IStore, Store } from "../../src/db/store";
+import { IDonut, Donut } from "../../server/db/donut";
+import { IStore, Store } from "../../server/db/store";
 import { expect } from "chai";
 
 describe("store", () => {

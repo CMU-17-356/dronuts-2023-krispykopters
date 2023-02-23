@@ -72,7 +72,7 @@ export const fetchUserCartData = async (user: any, dispatch: any) => {
         const userCart = dispatchtUserCartItems(user.uid, data, dispatch);
         localStorage.setItem("cartItems", JSON.stringify(userCart));
       })
-      .then(() => {})
+      .then(() => {/**/})
       .catch((e) => {
         console.log(e);
       });
@@ -90,7 +90,7 @@ export const fetchFoodData = async (dispatch: any) => {
         DonutItems: data,
       });
     })
-    .then(() => {})
+    .then(() => {/**/})
     .catch((e) => {
       console.log(e);
     });
@@ -118,7 +118,7 @@ export const updateCartItemState = async (
     cartItems: cartItems,
   });
   await firebaseUpdateCartItem(item)
-    .then(() => {})
+    .then(() => {/**/})
     .catch((e) => {
       console.log(e);
     });
@@ -143,7 +143,7 @@ export const updateCartItemQty = async (
     });
     calculateCartTotal(cartItems, DonutItems, dispatch);
     await firebaseUpdateCartItem(cartItems[index])
-      .then(() => {})
+      .then(() => {/**/})
       .catch((e) => {
         console.log(e);
       });
@@ -168,7 +168,7 @@ export const deleteCartItem = async (
     });
     calculateCartTotal(cartItems, DonutItems, dispatch);
     await firebaseDeleteCartItem(item)
-      .then(() => {})
+      .then(() => {/**/})
       .catch((e) => {
         console.log(e);
       });
@@ -206,7 +206,7 @@ export const emptyCart = async (
     });
     calculateCartTotal(cartItems, DonutItems, dispatch);
     await firebaseEmptyUserCart(cartItems)
-      .then(() => {})
+      .then(() => {/**/})
       .catch((e) => {
         console.log(e);
       });
@@ -292,7 +292,7 @@ export const ToggleAdminMode = (dispatch: any, state: boolean) => {
 };
 
 export const isAdmin = (user: any) => {
-  let isAdmin =
+  const isAdmin =
     user?.email == "bentilshadrack72@gmail.com" ||
     user?.email == "admin@test.com";
   return isAdmin;
