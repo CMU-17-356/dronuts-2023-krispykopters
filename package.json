@@ -34,11 +34,7 @@
   "homepage": "https://github.com/CMU-17-356/dronuts-2023-krispykopters#readme",
   "dependencies": {
     "@testing-library/react": "^13.4.0",
-    "concurrently": "^7.6.0",
-    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "jest-fetch-mock": "^3.0.3",
-    "mongoose": "^6.9.1",
     "react": "^18.2.0"
   },
   "devDependencies": {
@@ -58,7 +54,6 @@
     "@types/testing-library__react": "^10.2.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
-    "babel-jest": "^29.4.3",
     "chai": "^4.3.7",
     "eslint": "^8.34.0",
     "eslint-config-react-app": "^7.0.1",
