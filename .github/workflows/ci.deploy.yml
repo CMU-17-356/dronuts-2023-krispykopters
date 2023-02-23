@@ -1,0 +1,38 @@
+name: 'CI Deployment'
+
+on:
+  push:
+    # branches:
+    #   - master
+
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+jobs:
+  Fly-Deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: Install
+        run: npm install
+
+      - name: Compile server
+        run: npm run preserver
+
+      - name: Compile react app
+        run: CI=false npm run build
+
+      - name: Install flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy to fly.io
+        run: flyctl deploy

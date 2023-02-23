@@ -109,7 +109,7 @@ export const firebaseRemoveUploadedImage = (
 
 export const silentRemoveUploadedImage = (ImageFile) => {
   const deleteRef = ref(storage, ImageFile);
-  deleteObject(deleteRef).then(() => {});
+  deleteObject(deleteRef).then(() => {/**/});
 };
 
 export const firebaseSaveProduct = async (data) => {

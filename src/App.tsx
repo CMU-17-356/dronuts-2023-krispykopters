@@ -25,12 +25,20 @@ import Contact from "./components/Contact";
 import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
+import { ServerUrl } from "./consts";
 
 function App() {
   const [
     { showCart, showContactForm, user, DonutItems, cartItems, adminMode },
     dispatch,
   ] = useStateValue();
+
+  console.log(`Server url: ${ServerUrl}`)
+
+  fetch(`${ServerUrl}/api`)
+    .then(response =>
+      response.json()
+        .then(json => console.log(json)))
 
   useEffect(() => {
     fetchFoodData(dispatch);
@@ -55,7 +63,7 @@ function App() {
             !(adminMode && isAdmin(user)) &&
             "mt-16 md:mt-16 px-3 md:px-8 md:py-6 py-4"
           } w-full h-auto`}
-          onClick={() => {}}
+          onClick={() => {/**/}}
         >
           {/* Routes */}
           <Routes>
