@@ -25,10 +25,13 @@ import Contact from "./components/Contact";
 import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
+import { ServerUrl } from "./consts";
 
 function App() {
 
-  fetch('/api')
+  console.log(`Server url: ${ServerUrl}`)
+
+  fetch(`${ServerUrl}/api`)
     .then(response =>
       response.json()
         .then(json => console.log(json)))
