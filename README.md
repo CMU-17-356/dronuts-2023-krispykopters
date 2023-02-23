@@ -34,6 +34,12 @@ This front-end framework references with the guidance and base from an opensourc
 
 Thanks Bentil!
 
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -70,8 +76,21 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Docker
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Build server for deployment
+  - run `npm run preserver`
+- Build react app
+  - run `npm run build`
+- Build docker image:
+  - run `docker build -t krispykopters/<unique tag> .`
+- Run docker image:
+  - run `docker run -it -p 3000:3000 krispykopters/<unique tag>`
+- Stop docker image:
+  - run `docker ps` to find the ID of the container you want to stop
+  - run `docker stop <container id>` to stop the container
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Deploy to Fly.io
+
+- run `flyctl auth login`
+- run `flyctl deploy`
