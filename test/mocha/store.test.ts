@@ -6,7 +6,7 @@ describe("store", () => {
   it("should create a new store", async () => {
     const donut: IDonut = {
       price: 1.99,
-      count: 1,
+      qty: 1,
       imagePath: "./path/to/image",
       name: "Plain"
     };
@@ -36,7 +36,7 @@ describe("store", () => {
   it("should reject negative drone capacity", async () => {
     const donut: IDonut = {
       price: 1.99,
-      count: 1,
+      qty: 1,
       imagePath: "./path/to/image",
       name: "Plain"
     };

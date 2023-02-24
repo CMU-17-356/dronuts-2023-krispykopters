@@ -7,7 +7,7 @@ describe("order", () => {
   it("should create a new order", async () => {
     const donut: IDonut = {
       price: 1.99,
-      count: 1,
+      qty: 1,
       imagePath: "./path/to/image",
       name: "Plain"
     };

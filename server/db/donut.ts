@@ -1,10 +1,16 @@
 import { Schema, model } from "mongoose";
 
 export interface IDonut {
-  price : number,      // Price of the donut
-  count : number,      // Count of the donut
-  imagePath : string,  // Path to image of the donut
-  name : string        // String
+  // Required
+  price : number,         // Price of the donut
+  qty : number,           // Quantity
+  imageURL : string,      // Path to image of the donut
+  title : string,         // String
+  id : number,            // Unique
+  // Optional
+  description? : string,  // The description of the donut
+  calories? : string,     // The calories for this donut
+  category? : string,     // e.g. Featured, New
 }
 
 const DonutSchema = new Schema<IDonut>({
@@ -12,19 +18,26 @@ const DonutSchema = new Schema<IDonut>({
     type: Number,
     required: true
   },
-  count: {
+  qty: {
     type: Number,
     required: true,
     min: 0
   },
-  imagePath: {
+  imageURL: {
     type: String,
     required: true
   },
-  name: {
+  title: {
     type: String,
     required: true
-  }
+  },
+  id: {
+    type: Number,
+    required: true,
+  },
+  description: String,
+  calories: String,
+  category: String,
 });
 
 export default DonutSchema;

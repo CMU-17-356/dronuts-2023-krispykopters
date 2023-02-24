@@ -4,25 +4,27 @@ import { expect } from "chai";
 describe("donut", () => {
   it("should create a new donut", () => {
     const donut: IDonut = {
+      id: 1,
       price: 1.99,
-      count: 0,
-      imagePath: "./path/to/image",
-      name: "Plain"
+      qty: 0,
+      imageURL: "./path/to/image",
+      title: "Plain"
     };
 
     return new Donut(donut).save().then(result => {
       expect(result.price).to.equal(donut.price);
-      expect(result.imagePath).to.equal(donut.imagePath);
-      expect(result.name).to.equal(donut.name);
+      expect(result.imageURL).to.equal(donut.imageURL);
+      expect(result.title).to.equal(donut.title);
     })
   });
 
   it("should reject negative count", async () => {
     const donut: IDonut = {
+      id: 2,
       price: 1.99,
-      count: -1,
-      imagePath: "./path/to/image",
-      name: "Plain"
+      qty: -1,
+      imageURL: "./path/to/image",
+      title: "Plain"
     };
 
     let error = null;
