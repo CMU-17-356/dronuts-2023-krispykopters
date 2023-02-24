@@ -107,7 +107,6 @@ app.get('*', async (req, res) => {
 
 app.listen(port, host, () => {
   console.log(`Starting server with directory ${__dirname}`)
-  console.log(`Testing secret: ${process.env.TEST_SECRET}`)
   console.log(`Example app listening on port ${port}`);
 });
 
