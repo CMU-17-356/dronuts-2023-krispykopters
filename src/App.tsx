@@ -1,16 +1,18 @@
 import "react-toastify/dist/ReactToastify.css";
+import { useLocation } from "react-router-dom";
 
 import {
   About,
   Admin,
   Home,
-  Login,
+  CustomerLogin,
+  Employees,
   Menu,
   Profile,
   Services,
   Signup,
 } from "./Pages";
-import { Cart, Footer, Header } from "./components";
+import { Cart, Footer, Header, EmployeeHeader } from "./components";
 import { Route, Routes } from "react-router-dom";
 import {
   calculateCartTotal,
@@ -29,6 +31,7 @@ import { useStateValue } from "./context/StateProvider";
 import { ServerUrl } from "./consts";
 
 function App() {
+  const location = useLocation();
   const [
     { showCart, showContactForm, user, DonutItems, cartItems, adminMode, showOrder },
     dispatch,
@@ -52,6 +55,23 @@ function App() {
       cartItems.length > 0 &&
       calculateCartTotal(cartItems, DonutItems, dispatch);
   }, [cartItems, DonutItems, dispatch]);
+
+  const renderHeader = () => {
+    if (location.pathname.startsWith("/employee")) {
+      return <EmployeeHeader />;
+    } else {
+      return <Header />;
+    }
+  };
+
+  // const renderFooter = () => {
+  //   if (location.pathname.startsWith("/employee")) {
+  //     return <EmployeeFooter />;
+  //   } else {
+  //     return <Footer />;
+  //   }
+  // };
+
   return (
     <AnimatePresence exitBeforeEnter>
       <ToastContainer />
@@ -59,7 +79,7 @@ function App() {
         {showCart && <Cart />}
         {showContactForm && <Contact />}
         {showOrder && <OrderStatus />}
-        {!(adminMode && isAdmin(user)) && <Header />}
+        {!(adminMode && isAdmin(user)) && renderHeader()}
         <main
           className={`${
             !(adminMode && isAdmin(user)) &&
@@ -70,7 +90,8 @@ function App() {
           {/* Routes */}
           <Routes>
             <Route path="/*" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/customer-login" element={<CustomerLogin />} />
+            <Route path="/employee-login" element={<Employees />} />
             <Route path="/register" element={<Signup />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/profile" element={<Profile />} />
@@ -79,7 +100,7 @@ function App() {
             <Route path="/services" element={<Services />} />
           </Routes>
 
-          {!(adminMode && isAdmin(user)) && <Footer />}
+          {!(adminMode && isAdmin(user))}
         </main>
       </div>
     </AnimatePresence>

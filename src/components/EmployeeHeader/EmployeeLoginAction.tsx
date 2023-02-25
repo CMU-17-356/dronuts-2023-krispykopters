@@ -2,9 +2,9 @@ import { Link } from "react-router-dom"
 import { MdLogin } from "react-icons/md"
 import { motion } from "framer-motion"
 
-const LoginAction = ({text,  mobile}:{text?:string, mobile?:boolean}) => {
+const CustomerLoginAction = ({text,  mobile}:{text?:string, mobile?:boolean}) => {
   return (
-    <Link to="/login">
+    <Link to="/employee-login">
         <motion.div
           className={` flex items-center gap-3 border border-slate-200 px-3 py-1 rounded-lg cursor-pointer`}
           whileTap={{ scale: 0.8 }}
@@ -12,10 +12,12 @@ const LoginAction = ({text,  mobile}:{text?:string, mobile?:boolean}) => {
           
         >
           <MdLogin className={` ${mobile && 'text-2xl text-headingColor'}`} />
-          {text && <p className="text-headingColor ">{text}</p>}
+          <p className={`text-headingColor ${mobile && 'text-2xl'}`}>
+          Employee Login
+        </p>
         </motion.div>
     </Link>
   )
 }
 
-export default LoginAction
+export default CustomerLoginAction
