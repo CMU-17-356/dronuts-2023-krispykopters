@@ -365,3 +365,12 @@ export const deleteFood = async (
   });
   toast.success("Food deleted successfully");
 };
+
+// Fulfilling order
+export const fulfillOrder = {
+}
+
+export const deleteOrder = {
+  
+}
+
