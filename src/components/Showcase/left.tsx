@@ -19,7 +19,7 @@ const Left = () => {
         The Fastest Food Delivery in
         <span className="text-orange-600 text-[2.5rem] lg:text-[4.6rem]">
           {" "}
-          Pitts
+          Pittsburgh
         </span>
       </p>
       <p className="text-base text-textColor text-center md:text-left md:w-[80%]">
