@@ -10,7 +10,7 @@ const Employees = () => {
 const [{ user }, dispatch] = useStateValue();
 
   return (
-    <div>
+    <div className= "w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
       {orderData &&
         orderData.map((order: Order) => (
           <OrderDisplay

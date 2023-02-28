@@ -71,6 +71,8 @@ export type Order = {
   donuts : Donut[],     // List of donuts in order
   location: Coord; // Coordinates representing current map coordinates
   orderTime: Date; // Time of order
+  drone?: number; //Drone number
+  status?: boolean; //status
 };
 
 export type Store = {
