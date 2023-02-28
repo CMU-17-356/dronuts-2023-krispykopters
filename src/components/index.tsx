@@ -6,6 +6,7 @@ export {default as AssetUploader} from './Upload';
 export {default as FruitsSection} from './Sections/Popular';
 export {default as MenuSection} from './Sections/Menu';
 export {default as EmptyCart} from './EmptyCart';
+export {default as OrderStatus} from './OrderStatus';
 export {default as Cart} from './Cart';
 export {default as Footer} from './Footer';
 export {default as Sidenav} from './Admin/Sidenav';

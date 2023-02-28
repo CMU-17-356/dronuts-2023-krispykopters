@@ -71,6 +71,11 @@ const reducer = (state, action) => {
         ...state,
         showContactForm: action.showContactForm,
       };
+    case actionTypes.TOGGLE_ORDER:
+      return {
+        ...state,
+        showOrder: action.showOrder,
+      };
     default:
       return state;
   }

@@ -8,6 +8,7 @@ import EmptyCartI from "../../img/emptyCart.svg";
 import NotFoundI from "../../img/NotFound.svg";
 import Visa from "../../img/visa.png";
 import Momo from "../../img/momo.png";
+import Map from "../../img/map.jpg";
 
 // Donut Static Images Assets
 import donut1I from "../../img/donut1.png";
@@ -35,6 +36,7 @@ export const Cheff1 = Cheff1I;
 export const BikeDelivery = BikeDeliveryI;
 export const HeroBg = HeroBgI;
 export const EmptyCartImg = EmptyCartI;
+export const MapImg = Map;
 export const NotFoundImg = NotFoundI;
 export const CreditCard = Visa;
 export const MOMO = Momo;

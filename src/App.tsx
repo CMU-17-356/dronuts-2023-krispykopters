@@ -26,10 +26,10 @@ import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
 import { ServerUrl } from "./consts";
-
+import OrderStatus from "./components/OrderStatus";
 function App() {
   const [
-    { showCart, showContactForm, user, DonutItems, cartItems, adminMode },
+    { showCart, showContactForm, user, DonutItems, cartItems, adminMode, showOrder },
     dispatch,
   ] = useStateValue();
 
@@ -57,6 +57,7 @@ function App() {
       <div className="w-screen h-auto min-h-[100vh] flex flex-col bg-primary">
         {showCart && <Cart />}
         {showContactForm && <Contact />}
+        {showOrder && <OrderStatus />}
         {!(adminMode && isAdmin(user)) && <Header />}
         <main
           className={`${
