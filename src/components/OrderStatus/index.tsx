@@ -14,6 +14,6 @@ const OrderStatus = () => {
       <Form />
     </motion.div>
   );
-}
+};
 
-export default OrderStatus
+export default OrderStatus;

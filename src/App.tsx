@@ -22,11 +22,12 @@ import {
 
 import { AnimatePresence } from "framer-motion";
 import Contact from "./components/Contact";
+import OrderStatus from "./components/OrderStatus";
 import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
 import { ServerUrl } from "./consts";
-import OrderStatus from "./components/OrderStatus";
+
 function App() {
   const [
     { showCart, showContactForm, user, DonutItems, cartItems, adminMode, showOrder },
