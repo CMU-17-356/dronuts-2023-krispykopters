@@ -64,14 +64,6 @@ function App() {
     }
   };
 
-  // const renderFooter = () => {
-  //   if (location.pathname.startsWith("/employee")) {
-  //     return <EmployeeFooter />;
-  //   } else {
-  //     return <Footer />;
-  //   }
-  // };
-
   return (
     <AnimatePresence exitBeforeEnter>
       <ToastContainer />

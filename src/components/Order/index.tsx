@@ -15,7 +15,6 @@ export const OrderDisplay = ({
   const [isFulfilled, setIsFulfilled] = useState(false);
 
   const handleFulfillOrder = () => {
-    // fulfillOrder(order._id);
     setIsFulfilled(true);
   };
 
