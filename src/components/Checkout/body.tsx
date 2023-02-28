@@ -12,10 +12,11 @@ import { toast } from "react-toastify";
 
 const Body = ({ action }: { action: any }) => {
   const [
-    { checkoutData, cartTotal, paymentMethod, cartItems, DonutItems },
+    { checkoutData, cartTotal, paymentMethod, cartItems, DonutItems, showContactForm, showOrder, showCart },
     dispatch,
   ] = useStateValue();
   const [loading, setLoading] = useState(false);
+
 
   const completePayment = () => {
     if (!checkoutData) return toast.error("Complete payment info");
@@ -25,13 +26,26 @@ const Body = ({ action }: { action: any }) => {
       await emptyCart(cartItems, DonutItems, dispatch);
       action(false);
       toast.success(
-        "Order completed successfuly with payment. Thank you for your patronage.",
-        {
-          position: "top-center",
-          autoClose: 6000,
-        }
+          "Order completed successfuly with payment. Thank you for your patronage.",
+          {
+            position: "top-center",
+            autoClose: 6000,
+          }
       );
     }, 3000);
+
+    dispatch({
+      type: "TOGGLE_ORDER",
+      showOrder: !showOrder,
+    });
+  };
+
+  const handleToggleCart = () => {
+
+    dispatch({
+      type: "TOGGLE_CART",
+      showCart: !showCart,
+    });
   };
   return (
     <div className="w-full h-full rounded-t-[2rem]  bg-cartBg flex flex-col">
