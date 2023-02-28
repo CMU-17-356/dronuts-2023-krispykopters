@@ -1,7 +1,24 @@
+import { useEffect, useState } from "react";
+import { useStateValue } from "../../context/StateProvider";
+
+import {orderData} from "../../utils/fetchOrdersData";
+import {OrderDisplay} from "../../components/Order/index";
+import { isAdmin } from "../../utils/functions";
+import type { Order } from "../../../types";
+
 const Employees = () => {
+const [{ user }, dispatch] = useStateValue();
+
   return (
     <div>
-      <h1>Employee page coming soon!!</h1>
+      {orderData &&
+        orderData.map((order: Order) => (
+          <OrderDisplay
+            order={order}
+            col
+            admin={isAdmin(user)}
+          />
+        ))}
     </div>
   );
 }
