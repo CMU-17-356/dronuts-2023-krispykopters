@@ -7,7 +7,7 @@ import { isAdmin } from "../../utils/functions";
 import type { Order } from "../../../types";
 
 const Employees = () => {
-const [{ user }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
 
   return (
     <div className= "w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
