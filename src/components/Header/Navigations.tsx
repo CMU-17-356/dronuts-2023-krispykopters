@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useStateValue } from "../../context/StateProvider";
 
 const Navigations = ({ direction }: { direction?: string }) => {
-  const [{ showContactForm, cartItems }, dispatch] = useStateValue();
+  const [{ showContactForm, cartItems, showOrder}, dispatch] = useStateValue();
   const handleToggleCart = () => {
     dispatch({
       type: "TOGGLE_CART",

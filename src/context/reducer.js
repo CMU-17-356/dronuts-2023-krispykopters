@@ -10,6 +10,7 @@ export const actionTypes = {
   SET_PAYMENT_METHOD: "SET_PAYMENT_METHOD",
   UPDATE_CHECKOUT_DATA: "UPDATE_CHECKOUT_DATA",
   TOGGLE_CONTACT_FORM: "TOGGLE_CONTACT_FORM",
+  TOGGLE_ORDER: "TOGGLE_ORDER",
 };
 
 const reducer = (state, action) => {
