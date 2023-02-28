@@ -10,15 +10,6 @@ import { useState } from "react";
 import { ImSpinner3 } from "react-icons/im";
 import { toast } from "react-toastify";
 
-
-
-
-// import React from 'react'
-import { Link } from "react-router-dom";
-import { MdShoppingBasket } from "react-icons/md";
-
-
-
 const Body = ({ action }: { action: any }) => {
   const [
     { checkoutData, cartTotal, paymentMethod, cartItems, DonutItems, showContactForm, showOrder, showCart },
@@ -26,13 +17,6 @@ const Body = ({ action }: { action: any }) => {
   ] = useStateValue();
   const [loading, setLoading] = useState(false);
 
-
-  // const completePayment = () => {
-  //   dispatch({
-  //     type: "TOGGLE_ORDER",
-  //     showOrder: !showOrder,
-  //   });
-  // }
 
   const completePayment = () => {
     if (!checkoutData) return toast.error("Complete payment info");
@@ -50,10 +34,6 @@ const Body = ({ action }: { action: any }) => {
       );
     }, 3000);
 
-    // dispatch({
-    //   type: "TOGGLE_CONTACT_FORM",
-    //   showContactForm: !showContactForm,
-    // });
     dispatch({
       type: "TOGGLE_ORDER",
       showOrder: !showOrder,
