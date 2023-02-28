@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import CustomerLoginAction from "./CustomerLoginAction";
-import EmployeeLoginAction from "./EmployeeLoginAction";
 import MobileNav from "./mobile-nav";
-import Navigations from "./Navigations";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useStateValue } from "../../context/StateProvider";
-const Header = () => {
+const EmployeeHeader = () => {
   //
   // const firebaseAuth = getAuth(app);
   const [{ user }] = useStateValue();
@@ -21,48 +19,20 @@ const Header = () => {
   return (
     <header className="w-screen fixed z-50 bg-cardOverlay backdrop-blur-md md:p-3 md:px-4 lg:p-6 lg:px-16">
       {/* Tablet and Desktop */}
-      <div className="hidden md:flex w-full justify-between itesm-center">
-        <Link to={"/"}>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="flex items-center gap-2 cursor-pointer"
-          >
-            <img src={Logo} alt="Logo" className="md:w-6 lg:w-8 object-cover" />
-            <p className="text-headingColor md:text-lg lg:text-xl font-bold">
-              Krispy Kopters
-            </p>
-          </motion.div>
-        </Link>
-
-        {/* navigation */}
-        <Navigations />
-
-        {/* User */}
-
-        {user ? (
-          <div className={`group flex items-center gap-3 px-3 py-1 rounded-lg`}>
+        <div className="hidden md:flex w-full justify-between itesm-center">
+          <Link to={"/"}>
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className=" flex items-center justify-center"
+              className="flex items-center gap-2 cursor-pointer"
             >
-              <img
-                src={user.photoURL || Avatar}
-                className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-2xl rounded-full cursor-pointer object-contain"
-                alt="profile"
-              />
-              <p className="text-headingColor cursor-pointer flex items-center justify-center gap-2">
-                <RiArrowDropDownLine />
+              <img src={Logo} alt="Logo" className="md:w-6 lg:w-8 object-cover" />
+              <p className="text-headingColor md:text-lg lg:text-xl font-bold">
+                Krispy Kopters
               </p>
             </motion.div>
-            <DropDown user={user} />
-          </div>
-        ) : (
-          <div className="flex items-center gap-4">
-            <CustomerLoginAction text={"Customer Login"} />
-            <EmployeeLoginAction text={"Employee Login"} />
-          </div>
-        )}
-      </div>
+          </Link>
+          <p className="text-2xl font-bold text-center flex-1">Drone Command Center</p>
+        </div>
 
       {/* Mobile */}
       <motion.div
@@ -123,4 +93,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default EmployeeHeader;

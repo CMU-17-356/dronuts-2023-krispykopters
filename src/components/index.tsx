@@ -1,4 +1,5 @@
 export {default as Header} from './Header';
+export {default as EmployeeHeader} from './EmployeeHeader';
 export {default as ShowcaseBanner} from './Showcase';
 export {default as Loader} from './Loader';
 export {Loader2 as LoaderAlt} from './Loader';

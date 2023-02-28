@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useStateValue } from "../../context/StateProvider";
 
 const Navigations = ({ direction }: { direction?: string }) => {
-  const [{ showContactForm, cartItems, showOrder}, dispatch] = useStateValue();
+  const [{ showContactForm, cartItems }, dispatch] = useStateValue();
   const handleToggleCart = () => {
     dispatch({
       type: "TOGGLE_CART",
@@ -42,6 +42,20 @@ const Navigations = ({ direction }: { direction?: string }) => {
           whileHover={{ scale: 1.1 }}
           className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
         >
+          <Link to={'/services'}>Services</Link>
+        </motion.li>
+        <motion.li
+          whileHover={{ scale: 1.1 }}
+          className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
+        >
+          <Link to={'/about'}>About us</Link>
+        </motion.li>
+        <motion.li
+          whileHover={{ scale: 1.1 }}
+          className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
+          onClick={handleToggleContact}
+        >
+          Contact us
         </motion.li>
       </motion.ul>
 
