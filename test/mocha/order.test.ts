@@ -6,10 +6,11 @@ import { expect } from "chai";
 describe("order", () => {
   it("should create a new order", async () => {
     const donut: IDonut = {
+      id: 1,
       price: 1.99,
-      count: 1,
-      imagePath: "./path/to/image",
-      name: "Plain"
+      qty: 1,
+      imageURL: "./path/to/image",
+      title: "Plain"
     };
     const donutDoc = await new Donut(donut).save();
 
