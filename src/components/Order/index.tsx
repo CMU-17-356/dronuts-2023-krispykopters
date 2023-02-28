@@ -31,7 +31,7 @@ export const OrderDisplay = ({
       <div>
         <p>Order #{order._id}</p>
         <table>
-          <thead>
+          <thead className = "flex items-end">
             <th>Items</th>
           </thead>
           <tbody>
@@ -47,15 +47,16 @@ export const OrderDisplay = ({
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 1.1 }}
         >
-          <button
-            className={`flex items-center gap-2 justify-center bg-${
-              isFulfilled ? "gray" : "green"
-            }-200 padding p-2 p-2`}
-            onClick={handleFulfillOrder}
-            disabled={isFulfilled}
-          >
-            {isFulfilled ? "Fulfilled" : "Complete Order"}
-          </button>
+          {isFulfilled ? 
+            <p>Fulfilled</p> :
+            <button
+                className={`flex items-end gap-2 justify-center bg-green-200 padding p-2 p-2`}
+                onClick={handleFulfillOrder}
+                disabled={isFulfilled}
+            >
+            Load to Drone {order.drone}
+            </button> 
+            }
         </motion.div>
       </div>
     </motion.div>
