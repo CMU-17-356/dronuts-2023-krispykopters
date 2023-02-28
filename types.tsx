@@ -4,10 +4,10 @@ export type Donut = {
   id: number;                // Each Donut has a specific number, 1, 2, 3, 4, 5...
   title: string;             // name of the donut
   description?: string;      // Description of the Donut
-  price: string;             // Price of the donut
+  price: number;             // Price of the donut
   imageURL: string;          // Image source: static Imgae source
-  calories: string;          // Calories / Or number
-  qty: string;               // Available Quantity
+  calories: number;          // Calories / Or number
+  qty: number;               // Available Quantity
   category: string;          // One of ['featured', 'normal', 'new'], where to exhibit
 };
 

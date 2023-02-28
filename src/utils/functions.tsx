@@ -184,7 +184,7 @@ export const calculateCartTotal = (
   let total = 0;
   cartItems.forEach((item: cartItem) => {
     const foodItem = getFoodyById(DonutItems, item.fid);
-    total += item.qty * parseFloat(foodItem?.price || "0");
+    total += item.qty * (foodItem?.price || 0);
   });
   dispatch({
     type: "SET_CART_TOTAL",

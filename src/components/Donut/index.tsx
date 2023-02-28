@@ -11,7 +11,7 @@ export const SingleFoodItem = ({
   admin?: boolean;
 }) => {
   // Const a food item
-  const { id, title, price, calories, imageURL, description } = item;
+  const { id, title, price, qty, calories, imageURL, description } = item;
 
   return (
     <motion.div
@@ -42,6 +42,10 @@ export const SingleFoodItem = ({
           <p className="text-base text-headingColor font-semibold">
             <span className="text-sm text-red-600">$</span> {price}
           </p>
+        </div>
+        <div>
+          {qty == 0 && <p className="mt-1 text-sm text-gray-500 font-semibold">Out of Stock</p>}
+          {qty > 0 && <p className="mt-1 text-sm text-gray-500 font-semibold">In-Stock</p> }
         </div>
       </div>
     </motion.div>
