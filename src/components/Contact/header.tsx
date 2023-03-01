@@ -1,6 +1,6 @@
 import { MdOutlineKeyboardBackspace, MdOutlineMessage } from "react-icons/md";
 
-import { hideContactform } from "../../utils/functions";
+import { hideContactForm } from "../../utils/functions";
 import { motion } from "framer-motion";
 import { useStateValue } from "../../context/StateProvider";
 
@@ -10,7 +10,7 @@ const ContactHeader = () => {
     <div className="w-full flex flex-row-reverse items-center bg-white justify-between px-4 py-2 cursor-pointer">
       <motion.div
         whileTap={{ scale: 0.8 }}
-        onClick={() => hideContactform(dispatch)}
+        onClick={() => hideContactForm(dispatch)}
       >
         <MdOutlineKeyboardBackspace className="text-textColor text-2xl " />
       </motion.div>
