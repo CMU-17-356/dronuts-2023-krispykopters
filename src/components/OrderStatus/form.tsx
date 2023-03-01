@@ -5,12 +5,25 @@ import imgae from "../../img/delivery.png";
 import { useStateValue } from "../../context/StateProvider";
 
 const Form = () => {
-  const [name, setName] = useState("");
+  const startPoint = "Carnegie+Mellon+University+Pittsburgh";
+
+  //console.log(checkoutData);
+  //console.log(checkoutData.checkoutData.address);
 
   // obtain the checkout data here for address signing
   const [checkoutData] = useStateValue();
+  let destinationAddr = checkoutData.checkoutData.address;
+  destinationAddr = destinationAddr.replace(/ /g, "+");
 
-  console.log(checkoutData.cartTotal);
+  console.log(destinationAddr);
+
+  const [name, setName] = useState("");
+
+  const map =
+    "https://www.google.com/maps/embed/v1/directions?key=AIzaSyDpus6ZNfg1h0VC2cmhJU-GGVqz2qfb_T8";
+  const origin = map.concat("&origin=Carnegie+Mellon+University+Pittsburgh");
+  const destination = origin.concat("&destination=").concat(destinationAddr);
+  const finalApiCall = destination.concat("&zoom=13&mode=driving");
 
   const submitForm = (e: any) => {
     e.preventDefault();
@@ -24,7 +37,7 @@ const Form = () => {
   return (
     <div className="h-full w-full flex items-center flex-col justify-center px-4 bg-primary">
       <iframe
-        src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDpus6ZNfg1h0VC2cmhJU-GGVqz2qfb_T8&origin=Carnegie+Mellon+University+Pittsburgh&destination=3333+Forbes+Ave+Pittsburgh&zoom=13&mode=driving"
+        src={finalApiCall}
         width="100%"
         height="100%"
         loading="lazy"
