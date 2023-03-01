@@ -12,9 +12,10 @@ import { toast } from "react-toastify";
 
 const Body = ({ action }: { action: any }) => {
   const [
-    { checkoutData, cartTotal, paymentMethod, cartItems, DonutItems, showContactForm, showOrder, showCart },
+    { checkoutData, cartTotal, paymentMethod, cartItems, DonutItems, showOrder, showCart },
     dispatch,
   ] = useStateValue();
+
   const [loading, setLoading] = useState(false);
 
 
@@ -36,6 +37,7 @@ const Body = ({ action }: { action: any }) => {
 
     dispatch({
       type: "TOGGLE_ORDER",
+      checkoutData: checkoutData,
       showOrder: !showOrder,
     });
   };
@@ -47,6 +49,7 @@ const Body = ({ action }: { action: any }) => {
       showCart: !showCart,
     });
   };
+
   return (
     <div className="w-full h-full rounded-t-[2rem]  bg-cartBg flex flex-col">
       {/* Payment Selectors */}
