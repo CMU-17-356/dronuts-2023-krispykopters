@@ -5,7 +5,7 @@ import MomoForm from "./forms/Momo";
 import Selector from "./Selector";
 import { motion } from "framer-motion";
 import { useStateValue } from "../../context/StateProvider";
-import { emptyCart } from "../../utils/functions";
+import { emptyCart, hideCart } from "../../utils/functions";
 import { useState, useEffect } from "react";
 import { ImSpinner3 } from "react-icons/im";
 import { toast } from "react-toastify";
@@ -42,7 +42,13 @@ const Body = ({ action }: { action: any }) => {
     setLoading(true);
     setTimeout(async () => {
       setLoading(false);
+
+      // First empty the shopping Cart
       await emptyCart(cartItems, DonutItems, dispatch);
+
+      // If also, hide the Cart
+      // await hideCart(dispatch);
+
       action(false);
       toast.success(
         "Order completed successfuly with payment. Thank you for your patronage.",
