@@ -2,13 +2,12 @@ import AvatarI from "../../img/avatar.png";
 import Cheff1I from "../../img/chef1.png";
 import CheffI from "../../img/cheff.png";
 import LogoI from "../../img/chef1.png";
-import BikeDeliveryI from "../../img/delivery.png";
+import DroneDeliveryI from "../../img/delivery.png";
 import HeroBgI from "../../img/hero-bg.png";
 import EmptyCartI from "../../img/emptyCart.svg";
 import NotFoundI from "../../img/NotFound.svg";
 import Visa from "../../img/visa.png";
 import Momo from "../../img/momo.png";
-import Map from "../../img/map.jpg";
 
 // Donut Static Images Assets
 import donut1I from "../../img/donut1.png";
@@ -28,12 +27,21 @@ import donut14I from "../../img/donut14.png";
 import donut15I from "../../img/donut15.png";
 import donut16I from "../../img/donut16.png";
 
+// Test background
+import bg1I from "../../img/bg1.png";
+import bg2I from "../../img/bg2.png";
+import bg3I from "../../img/bg3.png";
+
+export const Bg1 = bg1I;
+export const Bg2 = bg2I;
+export const Bg3 = bg3I;
+
 // Exports
 export const Logo = LogoI;
 export const Avatar = AvatarI;
 export const Cheff = CheffI;
 export const Cheff1 = Cheff1I;
-export const BikeDelivery = BikeDeliveryI;
+export const DroneDelivery = DroneDeliveryI;
 export const HeroBg = HeroBgI;
 export const EmptyCartImg = EmptyCartI;
 export const MapImg = Map;
