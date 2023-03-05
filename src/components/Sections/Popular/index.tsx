@@ -12,7 +12,7 @@ const Fruits = () => {
   return (
     <section className="w-full my-5">
       <div className="w-full flex items-center justify-between">
-        <Title title="Featured" />
+        <Title title="Best Sellers" />
         <PrevNextButtons
           onNext={() => setScrollValue(10000)}
           onPrev={() => setScrollValue(-10000)}
