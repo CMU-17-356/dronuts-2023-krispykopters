@@ -1,6 +1,9 @@
 import { Schema, Types, model } from "mongoose";
 import { ICoord } from "./coord";
 
+/**
+ * Store Interface
+ */
 export interface IStore {
   name : string,                  // UNIQUE, URL-SAFE
   password : string,              // Salted, Hashed Password
@@ -10,6 +13,9 @@ export interface IStore {
   bankAccount : string            // Metadata for receiving payments from customers, format depends on third party API
 }
 
+/**
+ * Store Schema
+ */
 const StoreSchema = new Schema<IStore>({
   name: {
     type: String,
@@ -40,4 +46,6 @@ const StoreSchema = new Schema<IStore>({
 });
 
 export default StoreSchema;
+
+/** Store Model */
 export const Store = model<IStore>("Store", StoreSchema)

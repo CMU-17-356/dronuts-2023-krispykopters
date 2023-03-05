@@ -1,11 +1,17 @@
 import { Schema, model } from "mongoose";
 
+/**
+ * The Customer Interface
+ */
 export interface ICustomer {
   username : string,    // UNIQUE, URL-SAFE
   password : string,    // Salted, Hashed Password
   displayName : string  // String
 }
 
+/**
+ * The Customer Schema
+ */
 const CustomerSchema = new Schema<ICustomer>({
   username: {
     type: String,
@@ -23,4 +29,6 @@ const CustomerSchema = new Schema<ICustomer>({
 });
 
 export default CustomerSchema;
+
+/** Customer Model */
 export const Customer = model<ICustomer>("Customer", CustomerSchema)
