@@ -83,7 +83,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 - Build react app
   - run `npm run build`
 - Build docker image:
-  - run `docker build -t krispykopters/<unique tag> .`
+  - run `docker build . -t krispykopters/<unique tag> .`
 - Run docker image:
   - run `docker run -it -p 3000:3000 krispykopters/<unique tag>`
 - Stop docker image:
