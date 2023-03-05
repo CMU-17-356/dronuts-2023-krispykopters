@@ -1,5 +1,8 @@
 import { Schema, model } from "mongoose";
 
+/**
+ * Donut Interface
+ */
 export interface IDonut {
   // Required
   price : number,         // Price of the donut
@@ -13,6 +16,9 @@ export interface IDonut {
   category? : string,     // e.g. Featured, New
 }
 
+/**
+ * Donut Schema
+ */
 const DonutSchema = new Schema<IDonut>({
   price: {
     type: Number,
@@ -41,4 +47,6 @@ const DonutSchema = new Schema<IDonut>({
 });
 
 export default DonutSchema;
+
+/** Donut Model */
 export const Donut = model<IDonut>("Donut", DonutSchema)
