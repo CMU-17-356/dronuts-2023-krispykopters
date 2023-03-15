@@ -72,7 +72,9 @@ export const fetchUserCartData = async (user: any, dispatch: any) => {
         const userCart = dispatchtUserCartItems(user.uid, data, dispatch);
         localStorage.setItem("cartItems", JSON.stringify(userCart));
       })
-      .then(() => {/**/})
+      .then(() => {
+        /**/
+      })
       .catch((e) => {
         console.log(e);
       });
@@ -90,7 +92,9 @@ export const fetchFoodData = async (dispatch: any) => {
         DonutItems: data,
       });
     })
-    .then(() => {/**/})
+    .then(() => {
+      /**/
+    })
     .catch((e) => {
       console.log(e);
     });
@@ -118,7 +122,9 @@ export const updateCartItemState = async (
     cartItems: cartItems,
   });
   await firebaseUpdateCartItem(item)
-    .then(() => {/**/})
+    .then(() => {
+      /**/
+    })
     .catch((e) => {
       console.log(e);
     });
@@ -143,7 +149,9 @@ export const updateCartItemQty = async (
     });
     calculateCartTotal(cartItems, DonutItems, dispatch);
     await firebaseUpdateCartItem(cartItems[index])
-      .then(() => {/**/})
+      .then(() => {
+        /**/
+      })
       .catch((e) => {
         console.log(e);
       });
@@ -168,7 +176,9 @@ export const deleteCartItem = async (
     });
     calculateCartTotal(cartItems, DonutItems, dispatch);
     await firebaseDeleteCartItem(item)
-      .then(() => {/**/})
+      .then(() => {
+        /**/
+      })
       .catch((e) => {
         console.log(e);
       });
@@ -206,7 +216,9 @@ export const emptyCart = async (
     });
     calculateCartTotal(cartItems, DonutItems, dispatch);
     await firebaseEmptyUserCart(cartItems)
-      .then(() => {/**/})
+      .then(() => {
+        /**/
+      })
       .catch((e) => {
         console.log(e);
       });
@@ -223,8 +235,16 @@ export const hideCart = (dispatch: any) => {
   });
 };
 
+// Hide Order
+export const hideOrder = (dispatch: any) => {
+  dispatch({
+    type: "TOGGLE_ORDER",
+    showOrder: !true,
+  });
+};
+
 // Hide Cart
-export const hideContactform = (dispatch: any) => {
+export const hideContactForm = (dispatch: any) => {
   dispatch({
     type: "TOGGLE_CONTACT_FORM",
     showContactForm: !true,
@@ -367,10 +387,6 @@ export const deleteFood = async (
 };
 
 // Fulfilling order
-export const fulfillOrder = {
-}
+export const fulfillOrder = {};
 
-export const deleteOrder = {
-  
-}
-
+export const deleteOrder = {};
