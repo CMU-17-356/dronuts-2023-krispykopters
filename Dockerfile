@@ -1,16 +1,17 @@
 FROM node:alpine3.11
-MAINTAINER <GROUP_NAME_HERE>
+LABEL org.opencontainers.image.authors="https://github.com/orgs/CMU-17-356/teams/krispykopters"
 
 # Change working directory
 WORKDIR /usr/src/app
 
 # Install App Dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install --omit=dev
 
 # Copy App Source
-COPY . .
+COPY ./dist ./dist
+COPY ./build ./build
 #TODO Run any build scripts here
 
-EXPOSE 80
-CMD [ "npm", "start" ]
+EXPOSE 3000
+CMD [ "node", "./dist/index.js" ]

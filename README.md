@@ -1,102 +1,96 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=9942102&assignment_repo_type=AssignmentRepo)
-# dronut-starter
-In order to get ready to write productive code, complete the following steps during Sprint 0:
+# KrispyKopters
 
-### Repository Setup
-1. Create a new team and GitHub repository for your project using [GitHub classroom](https://classroom.github.com/a/gHfJdaqu).
-Your associated *cmu email* should show up in a listing and you can link your GitHub account.
-Subsequent members should choose to join an existing team using the same link.
-You may want to name your repository something like `foobarbaz`, which
-will end up as `dronuts-2023-foobarbaz`, aka your *$respository_name*.
+Visit us at https://krispykopters.fly.dev/.
 
-We're ok with you keeping your project public, but you can make it private if you so desire. Don't
-forget to add `.gitignore` and `License** files!
+## Tools and Technologies
 
-2. In addition, you should setup any tools needed for collaboration, issue
-tracking and project managment; Slack, Jira, GitHub Issues, ZenHub, Trello,
-whatever it is your team would like to use.
+- Collaboration: Slack
+- Issue Tracking: GitHub Issues
+- Kanban Board: GitHub Projects
+- CI: GitHub Actions
+- Framework: NodeJS
+- Language: Typescript
+- Backend: Express
+- Package Updates: npm-check-updates
+- Linting: ESLint
+- Testing: Jest
+- Deployment Fly.io
 
-If you're new to Git and GitHub, we highly recommend reading the [GitHub Documentation](https://docs.github.com/).
+## Repository Setup
 
-### Github Actions
-1. Enable Github Actions. To do this, [these steps can be followed](https://docs.github.com/en/actions/quickstart).
+- Install [NodeJS/NPM](https://nodejs.org/en/download/)
+- Install packages
+  - Run `npm install` in the repo root directory
+- Install [Docker](https://docs.docker.com/get-docker/)
+- Install tools
+  - Run `npm install -g npm-check-updates` for dependencies checker
+  - Install [`flyctl`](https://fly.io/docs/hands-on/install-flyctl/)
 
-### Initialize NodeJS/NPM
-1. If you haven't already, install NodeJS and NPM on your computer.
+## Getting Started with Create React App
 
-2. Initialize your repository for NPM by running `npm init`. This will generate a `package.json` file in your repository.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Choose a Web Framework and Install It
-Within the NodeJS runtime, there a many frameworks for creating
-server applications. For the purposes of this assignment, there are two options you should consider:
+This front-end framework references with the guidance and base from an opensource library, please see here: https://github.com/qbentil/Bentilzone-Restaurant.
 
-* <b>Option 1: Express</b><br>
-The [Express Framework](https://expressjs.com/) is a general-purpose web
-development framework with widespread adoption.
+Thanks Bentil!
 
-* <b>Option 2: Fastify</b><br>
-The [Fastify Framework](https://fastify.io/) is a low overhead web framework built for Node.js.
+## Learn More
 
-As a deliverable of Sprint 0, you will be asked to compare these frameworks. You
-should familiarize yourself with both projects in order to justify your decision.
-Once the decision is made, install it in your groups repository.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### QA/Helpful Tools
-1. You should install a linter for your repository, to help manage code style.
-We highly recommend [eslint](https://eslint.org/docs/user-guide/getting-started)
-or [tslint](https://palantir.github.io/tslint/) if you decide to use typescript.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-To go a little further, we can use [eslint-watch](https://www.npmjs.com/package/eslint-watch) to automatically lint
-while we're programming:
+## Available Scripts
 
-   > Success Condition:
-   > ```
-   > $ npm run lint (## which is calling esw -w src test)
-   > > ✓ Clean (10:12:27 AM)
-   > ```
+In the project directory, you can run:
 
-2. Because NodeJS projects have many dependencies, it is massively beneficial to
-use a tool to detect dependency updates and alert you as to potential
-vulnerabilities. Normally, we would recommend using a SaaS tool like
-[GreenKeeper](https://greenkeeper.io/) or [requires.io](https://requires.io/).
-However, if you're repository is private, these tools require payment. If
-that's the case, you should install [npm-check](https://www.npmjs.com/package/npm-check).
+### `npm run lint`
 
-   > Success Condition:
-   > ```
-   > $ npm-check
-   > > ❤️  Your modules look amazing. Keep up the great work. ❤️
-   > ```
+This runs ESLint for the files in the `src/` directory containing the React app and the `server/` directory containing the API server.
 
-3. You should setup a test framework within your application to help with later
-test-driven development. We'd suggest [Jest](https://jestjs.io/) (especially for React
-development). Another option is to go with the [Mocha](https://mochajs.org/)
-framework along with [Chai](http://chaijs.com/). Once installed, write a
-single test, which doesn't actually test anything (besides that your tests run).
+### Local development
 
-    > Success Condition:
-    > ```
-    > $ npm run test
-    > > PASS test/routes.test.js
-    > > GET /
-    > > ✓ should render properly (853ms)
-    > > GET /list
-    > > ✓ should render properly with valid parameters (48ms)
-    > > ✓ should error without a valid parameter (29ms)
-    > > GET /404
-    > > ✓ should return 404 for non-existent URLs (61ms)
-    > > ...
-    > ```
+1. Start the API server with `npm run server`. This starts the backend server at http://localhost:3000.
+2. Start the front end development server with `npm start` and let it select a free port. This runs the app in the development mode at http://localhost:3001 (port number may vary).
+   - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   - The page will reload if you make edits. You will also see any lint errors in the console.
 
-4. Verify that the above tools and targets can be executed by Github Actions.
+### Hosting
 
-5. Document the above tools in your README. Also update this boilerplate once
-it's no longer needed.
+To host the app, the front-end React app needs to be built by running `npm run build`. This compiles and bundles the app for production in the `build` folder.
+- This includes optimization, minification and creating hashes.
+- See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ### Docker
-1. Although Docker should already be configured (see `Dockerfile` and `docker-compose.yml`) as
-necessary, you may need to install the Docker Daemon on your machine to properly
-complete the assignment. Read the [get-started](https://www.docker.com/get-started) guide for downloading Docker
-locally. If you're on a Linux OS, starting [here](https://docs.docker.com/machine/install-machine/) would be more helpful.
-**MAKE sure you do not install docker via snap. Snap's version of docker is outdated**
 
+- Build server for deployment
+  - run `npm run preserver`
+- Build react app
+  - run `npm run build`
+- Build docker image:
+  - run `docker build -t krispykopters/<unique tag> .`
+- Run docker image:
+  - run `docker run -it -p 3000:3000 krispykopters/<unique tag>`
+- Stop docker image:
+  - run `docker ps` to find the ID of the container you want to stop
+  - run `docker stop <container id>` to stop the container
+
+### Deploy to Fly.io
+
+- run `flyctl auth login`
+- run `flyctl deploy`
