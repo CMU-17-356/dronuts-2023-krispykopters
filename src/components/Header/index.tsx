@@ -11,6 +11,9 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useStateValue } from "../../context/StateProvider";
+
+import { DroneDelivery } from "../Assets";
+
 const Header = () => {
   //
   // const firebaseAuth = getAuth(app);
@@ -22,17 +25,35 @@ const Header = () => {
     <header className="w-screen fixed z-50 bg-cardOverlay backdrop-blur-md md:p-3 md:px-4 lg:p-6 lg:px-16">
       {/* Tablet and Desktop */}
       <div className="hidden md:flex w-full justify-between itesm-center">
-        <Link to={"/"}>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="flex items-center gap-2 cursor-pointer"
-          >
-            <img src={Logo} alt="Logo" className="md:w-6 lg:w-8 object-cover" />
-            <p className="text-headingColor md:text-lg lg:text-xl font-bold">
-              Krispy Kopters
+        <div className="flex items-center gap-2 justify-center">
+          <Link to={"/"}>
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <img
+                src={Logo}
+                alt="Logo"
+                className="md:w-6 lg:w-8 object-cover"
+              />
+              <p className="text-headingColor md:text-lg lg:text-xl font-bold">
+                Krispy Kopters
+              </p>
+            </motion.div>
+          </Link>
+          <div className="flex items-center gap-2 justify-center bg-orange-100 px-4 py-1 rounded-full">
+            <p className="text-base text-orange-500 font-bold">
+              Drone Delivery
             </p>
-          </motion.div>
-        </Link>
+            <div className="w-8 h-8 rounded-full overflow-hidden bg-white drop-shadow-xl">
+              <img
+                src={DroneDelivery}
+                alt="delivery"
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
 
         {/* navigation */}
         <Navigations />

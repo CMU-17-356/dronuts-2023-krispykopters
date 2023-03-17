@@ -1,6 +1,9 @@
 import { Schema, Types, model } from "mongoose";
 import { ICoord } from "./coord";
 
+/**
+ * Drone Status
+ */
 export enum DroneStatus {
   OutForDelivery = 1,
   ReturningToStore = 2,
@@ -8,6 +11,9 @@ export enum DroneStatus {
   Idle = 0
 }
 
+/**
+ * Drone Interface
+ */
 export interface IDrone {
   name : string,                // UNIQUE, URL-SAFE
   battery : number,             // Battery level 0.0 - 1.0
@@ -17,6 +23,9 @@ export interface IDrone {
   destination? : Types.ObjectId // Reference to Store if returning to store, else empty
 }
 
+/**
+ * Drone Schema
+ */
 const DroneSchema = new Schema<IDrone>({
   name: {
     type: String,
@@ -55,4 +64,6 @@ const DroneSchema = new Schema<IDrone>({
 });
 
 export default DroneSchema;
+
+/** Drone Model */
 export const Drone = model<IDrone>("Drone", DroneSchema)
