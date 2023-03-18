@@ -24,7 +24,7 @@ const app = express();
 const host = "0.0.0.0";
 const port = 3000;
 
-// Link the api routers
+// Link the api routers to sub path
 app.use('/customer', customerRouter);
 app.use('/donut', donutRouter);
 app.use('/drone', droneRouter);
@@ -40,9 +40,21 @@ async function connectToMongo() {
   // Connect to MongoDB
   await mongoose.connect(`${process.env.MONGO_DB}`);
 
-  // Dummy Data if collection is empty
+  // If the drone is empty, create dummy data
   if ((await Drone.collection.countDocuments()) === 0) {
-    console.log("Inserting dummy Drone document");
+    createDummyDrone();
+  }
+
+  // If the order info is empty, create dummy data
+  if ((await Order.collection.countDocuments()) === 0) {
+    createDummyOrder();
+  }
+  console.log("Mongo DB connection established");
+}
+
+/** Create Dummy Drone */
+async function createDummyDrone() {
+  console.log("Inserting dummy Drone document");
     // Mock Drone data
     const drone: IDrone = {
       name: "Frodo",
@@ -54,19 +66,9 @@ async function connectToMongo() {
       status: DroneStatus.Recharging,
     };
     await new Drone(drone).save();
-  }
-
-  // If the DB is empty, create dummy data
-  if ((await Order.collection.countDocuments()) === 0) {
-    createDummyOrder();
-  }
-
-  console.log("Mongo DB connection established");
 }
 
-/**
- * Create Dummy Order
- */
+/** Create Dummy Order */
 async function createDummyOrder() {
   // Mock Drone data
   console.log("Inserting dummy Donut document");
@@ -107,19 +109,20 @@ async function createDummyOrder() {
   await new Order(order).save();
 }
 
-// Connection
+// Connect
 connectToMongo();
 
+// Enables CORS (cross-origin resource sharing).
+// In order for your server to be accessible by other origins (domains).
 app.use(cors());
-
 app.use(express.static(path.join(__dirname, "..", "build")));
 
 // Testing
 app.get("/api/testing", (req, res) => {
-  res.json({ id: 1, testing: "sucessful test" });
+  res.json({ id: 1, testing: "sucessful test!" });
 });
 
-// API listen
+// Initialization finished
 app.listen(port, host, () => {
   console.log(`Starting server with directory ${__dirname}`);
   console.log(`Example app listening on port ${port}`);
