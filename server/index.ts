@@ -10,13 +10,25 @@ import { Donut, IDonut } from "./db/donut";
 import { Customer, ICustomer } from "./db/customer";
 import { Order, IOrder } from "./db/order";
 
+// Acquire the routers
+import { customerRouter } from "./routers/customerAPI"
+import { donutRouter } from "./routers/donutAPI"
+import { droneRouter } from "./routers/droneAPI"
+import { orderRouter } from "./routers/orderAPI"
+
 /**
- * Express Framework
+ * Main App Express
  * host & port
  */
 const app = express();
 const host = "0.0.0.0";
 const port = 3000;
+
+// Link the api routers
+app.use('/customer', customerRouter);
+app.use('/donut', donutRouter);
+app.use('/drone', droneRouter);
+app.use('/order', orderRouter);
 
 /**
  * Database Connection func
@@ -102,14 +114,9 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, "..", "build")));
 
-// Index Page
-app.get("*", async (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-});
-
 // Testing
 app.get("/api/testing", (req, res) => {
-  res.json({ id: 1, name: "glazed donut" });
+  res.json({ id: 1, testing: "sucessful test" });
 });
 
 // API listen
@@ -117,5 +124,10 @@ app.listen(port, host, () => {
   console.log(`Starting server with directory ${__dirname}`);
   console.log(`Example app listening on port ${port}`);
 });
+
+// Index Page
+/* app.get("*", async (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+}); */
 
 export { app };
