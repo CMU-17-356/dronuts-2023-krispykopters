@@ -8,7 +8,8 @@ import mongoose from "mongoose";
 import { Drone, DroneStatus, IDrone } from "./db/drone";
 import { Donut, IDonut } from "./db/donut";
 import { Customer, ICustomer } from "./db/customer";
-import { Order, IOrder } from "./db/order";
+import { IOrder, Order } from "./db/order";
+import { IStore, Store } from "./db/store";
 
 // Acquire the routers
 import { customerRouter } from "./routers/customerAPI"
@@ -58,10 +59,45 @@ async function connectToMongo() {
 
   // If the DB is empty, create dummy data
   if ((await Order.collection.countDocuments()) === 0) {
-    createDummyOrder();
+    await createDummyOrder();
+  }
+  if (await Store.collection.countDocuments() === 0) {
+    await createDummyStore();
   }
 
   console.log("Mongo DB connection established");
+}
+
+/**
+ * Create Dummy Store
+ */
+async function createDummyStore() {
+  // Mock Drone data
+  console.log("Inserting dummy Donut document")
+  const donut: IDonut = {
+    id: 1,
+    price: 1.99,
+    qty: 24,
+    imageURL: "https://thefirstyearblog.com/wp-content/uploads/2020/10/chocolate-donuts-Square2.png",
+    title: "Triple Choco",
+    description: "Chocolate doughnut + chocolate glaze + chocolate sprinkles = delicious.",
+    calories: "200 kCal",
+    category: "Featured"
+  };
+  const donutDoc = await new Donut(donut).save();
+
+  const store: IStore = {
+    name: "admin",
+    password: "password",
+    location: {
+      lat: 40.443336,
+      long: -79.944023
+    },
+    droneCapacity: 3,
+    donutStock: [donutDoc._id],
+    bankAccount: "account info",
+  };
+  await new Store(store).save();
 }
 
 /**
