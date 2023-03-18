@@ -1,6 +1,7 @@
-import { donut1, donut2, donut3, donut4, donut5 } from "../components/Assets";
+import { donut1, donut2, donut3 } from "../components/Assets";
+import { Donut } from "../../types";
 
-export const donutData = [
+export const donutsData = [
   // Here's are where the image comes.
   {
     id: 2,
@@ -36,3 +37,9 @@ export const donutData = [
     imageURL: donut3,
   }
 ];
+
+export const Donuts = () => {
+  return donutsData.filter(
+    (item: Donut) => item.title !== ""
+  );
+}

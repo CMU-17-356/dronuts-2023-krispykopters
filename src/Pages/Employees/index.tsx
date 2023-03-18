@@ -3,8 +3,9 @@ import { useStateValue } from "../../context/StateProvider";
 
 import { orderData } from "../../utils/fetchOrdersData";
 import { OrderDisplay } from "../../components/Order/index";
-import { donutData } from "../../utils/fetchDonutData";
-import { ManageMenuDisplay } from "../../components/ManageMenu/index";
+import { FilterFood } from "../../utils/filters";
+// import { Donuts } from "../../utils/fetchDonutData";
+import { ManageMenuDisplay, Title } from "../../components/ManageMenu/index";
 import { isAdmin } from "../../utils/functions";
 import type { Donut, Order } from "../../../types";
 
@@ -19,6 +20,9 @@ import "leaflet/dist/leaflet.css";
 const Employees = () => {
   // Order Information
   const [{ user }, dispatch] = useStateValue();
+
+  // Menu Information
+  const featuredDonut = FilterFood("featured");
 
   // Customized Colored Icon
   const myIcon = L.icon({
@@ -50,6 +54,7 @@ const Employees = () => {
 
   return (
     <div className="order-location-content">
+      <Title title="Current Orders" />
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
         {orderData &&
           orderData.map((order: Order) => (
@@ -57,10 +62,12 @@ const Employees = () => {
           ))}
       </div>
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
-        {donutData &&
-          donutData.map((donut: Donut) => (
-            <ManageMenuDisplay donut={donut} col admin={isAdmin(user)} />
-          ))}
+        <ManageMenuDisplay donuts={featuredDonut} />
+      </div>
+      <Title title="Drone Locations" />
+      <div>
+        {/* For spacing */}
+        <p>""</p>
       </div>
       <MapContainer
         center={[40.442329, -79.944068]}
