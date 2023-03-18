@@ -3,8 +3,10 @@ import { useStateValue } from "../../context/StateProvider";
 
 import { orderData } from "../../utils/fetchOrdersData";
 import { OrderDisplay } from "../../components/Order/index";
+import { donutData } from "../../utils/fetchDonutData";
+import { ManageMenuDisplay } from "../../components/ManageMenu/index";
 import { isAdmin } from "../../utils/functions";
-import type { Order } from "../../../types";
+import type { Donut, Order } from "../../../types";
 
 import * as L from "leaflet";
 
@@ -52,6 +54,12 @@ const Employees = () => {
         {orderData &&
           orderData.map((order: Order) => (
             <OrderDisplay order={order} col admin={isAdmin(user)} />
+          ))}
+      </div>
+      <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
+        {donutData &&
+          donutData.map((donut: Donut) => (
+            <ManageMenuDisplay donut={donut} col admin={isAdmin(user)} />
           ))}
       </div>
       <MapContainer
