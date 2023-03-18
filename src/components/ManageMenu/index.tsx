@@ -50,6 +50,7 @@ export const ManageMenuDisplay = ({
         className="bg-containerbg"
         scrollOffset={scrollValue}
         items={donuts}
+        admin={true}
       />
     </section>
   );
