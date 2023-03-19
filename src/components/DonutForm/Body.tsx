@@ -1,11 +1,13 @@
 import { Donut } from "../../../types"
 import { useStateValue } from "../../context/StateProvider";
-import { editFood, listFood } from "../../utils/functions";
+import { editFood, addFood } from "../../utils/functions";
 
 const EditDonutBody = ({
-  donut
+  donut,
+  newDonut
 }: {
   donut: Donut;
+  newDonut: boolean;
 }) => {
 
   const [{donutInfo}, dispatch] = useStateValue();
@@ -27,9 +29,9 @@ const EditDonutBody = ({
   }
 
   const submitDonut = (donut: Donut) => {
-    console.log("Listing donut");
+    console.log("Adding donut");
     console.log(donut);
-    listFood(donutInfo, dispatch);
+    addFood(donutInfo, dispatch);
   }
 
   return (
@@ -256,7 +258,7 @@ const EditDonutBody = ({
           )}
         </div>
         <div className="w-full flex flex-col mb-2">
-          {donut.id === -1 ? (
+          {newDonut ? (
             <input
               type="submit"
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"

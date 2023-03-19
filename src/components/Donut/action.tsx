@@ -26,22 +26,22 @@ const Action = ({ food, admin }: { food: Donut; admin?: boolean }) => {
             category: "",
             imageURL: "",
           },
-          newDonut: true
+          newDonut: true,
         });
       } else {
         dispatch({
           type: "TOGGLE_DONUT_FORM",
           showDonutForm: true,
           donutInfo: food,
-          newDonut: false
+          newDonut: false,
         });
       }
     }
-    // editFood(food, DonutItems, dispatch);
   }
   const handleDeleteDonut = (food: Donut, dispatch: any) => {
     deleteFood(food, DonutItems, dispatch);
   }
+
   return (
     <div className="flex flex-col gap-2">
       {admin ? (

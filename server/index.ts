@@ -156,11 +156,14 @@ app.get("/api/testing", (req, res) => {
   res.json({ id: 1, testing: "sucessful test" });
 });
 
+// Middleware
+app.use(express.json());
+
 // Subroutes
-app.use(donutRouter)
-app.use(droneRouter)
-app.use(orderRouter)
-app.use(storeRouter)
+app.use(donutRouter);
+app.use(droneRouter);
+app.use(orderRouter);
+app.use(storeRouter);
 
 // API listen
 app.listen(port, host, () => {

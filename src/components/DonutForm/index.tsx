@@ -14,7 +14,7 @@ const DonutForm = () => {
       className={`w-full h-screen md:w-[350px] bg-white md:backdrop-blur-sm flex flex-col z-[101] drop-shadow-xl fixed top-0 right-0`}
     >
       <Header newDonut={newDonut} />
-      <DonutFormBody donut={donutInfo}/>
+      <DonutFormBody donut={donutInfo} newDonut={newDonut} />
     </motion.div>
   );
 };

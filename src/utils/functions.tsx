@@ -376,10 +376,6 @@ export const deleteFood = async (
   DonutItems: Donut[],
   dispatch: any
 ) => {
-  // dispatch({
-  //   type: "TOGGLE_DONUT_FORM",
-  //   showDonutForm: true,
-  // });
   toast.success("Donut deleted successfully");
 };
 
@@ -393,12 +389,27 @@ export const editFood = async (
 };
 
 // create food
-export const listFood = async (
+export const addFood = async (
   food: Donut,
   dispatch: any
 ) => {
   hideDonutForm(dispatch);
-  toast.success("Donut listed successfully");
+
+  console.log(`Adding food ${food}`);
+
+  const response = await fetch(`${ServerUrl}/api/store/admin/donut`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+    body: JSON.stringify(food)});
+
+  if (response.ok) {
+    toast.success("Donut added successfully");
+  }
+  else {
+    toast.error(`Adding donut failed: ${response.status} - ${await response.text()}`)
+  }
 };
 
 // Fulfilling order
