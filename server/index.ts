@@ -24,12 +24,6 @@ const app = express();
 const host = "0.0.0.0";
 const port = 3000;
 
-// Link the api routers to sub path
-app.use('/customer', customerRouter);
-app.use('/donut', donutRouter);
-app.use('/drone', droneRouter);
-app.use('/order', orderRouter);
-
 /**
  * Database Connection func
  */
