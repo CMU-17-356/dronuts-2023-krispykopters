@@ -4,7 +4,6 @@ import { useStateValue } from "../../context/StateProvider";
 import { orderData } from "../../utils/fetchOrdersData";
 import { OrderDisplay } from "../../components/Order/index";
 import { FilterFood } from "../../utils/filters";
-// import { Donuts } from "../../utils/fetchDonutData";
 import { ManageMenuDisplay, Title } from "../../components/ManageMenu/index";
 import { isAdmin } from "../../utils/functions";
 import type { Donut, Order } from "../../../types";
