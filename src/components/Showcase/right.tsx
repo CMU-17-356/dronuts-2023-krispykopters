@@ -1,4 +1,5 @@
-import React from "react";
+import {useEffect, useState} from "react";
+import { ServerUrl } from "../../consts";
 import { HeroBg } from "../Assets";
 import StaticsImages from "./Statics";
 
@@ -7,6 +8,18 @@ import { data } from "../../utils/fetchTopDronesData";
 
 // The right panel
 const Right = () => {
+  const [donuts, setDonuts] = useState([]);
+  useEffect(() => {
+    fetch(`${ServerUrl}/api/donuts`)
+     .then((response) => response.json())
+     .then((data) => {
+      console.log(data);
+      setDonuts(data);
+     })
+     .catch((err) => {
+        console.log(err.message);
+     })
+   }, []);
   return (
     <div className="py-2 flex-1 flex items-center relative">
       <img
@@ -14,7 +27,7 @@ const Right = () => {
         alt=""
         className="ml-auto lg:h-[550px] h-[420px] w-full lg:w-auto"
       />
-      <StaticsImages items={data} />
+      <StaticsImages items={donuts} />
     </div>
   );
 };
