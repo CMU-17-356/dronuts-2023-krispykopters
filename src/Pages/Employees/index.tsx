@@ -3,8 +3,10 @@ import { useStateValue } from "../../context/StateProvider";
 
 import { orderData } from "../../utils/fetchOrdersData";
 import { OrderDisplay } from "../../components/Order/index";
+import { FilterFood } from "../../utils/filters";
+import { ManageMenuDisplay, Title } from "../../components/ManageMenu/index";
 import { isAdmin } from "../../utils/functions";
-import type { Order } from "../../../types";
+import type { Donut, Order } from "../../../types";
 
 import * as L from "leaflet";
 
@@ -16,7 +18,7 @@ import "leaflet/dist/leaflet.css";
 
 const Employees = () => {
   // Order Information
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, DonutItems }, dispatch] = useStateValue();
 
   // Customized Colored Icon
   const myIcon = L.icon({
@@ -48,11 +50,20 @@ const Employees = () => {
 
   return (
     <div className="order-location-content">
+      <Title title="Current Orders" />
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
         {orderData &&
           orderData.map((order: Order) => (
             <OrderDisplay order={order} col admin={isAdmin(user)} />
           ))}
+      </div>
+      <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
+        <ManageMenuDisplay donuts={DonutItems} />
+      </div>
+      <Title title="Drone Locations" />
+      <div>
+        {/* For spacing */}
+        <p>""</p>
       </div>
       <MapContainer
         center={[40.442329, -79.944068]}

@@ -6,7 +6,7 @@ export type Donut = {
   description?: string;      // Description of the Donut
   price: number;             // Price of the donut
   imageURL: string;          // Image source: static Imgae source
-  calories: number;          // Calories / Or number
+  calories: string;          // Calories / Or number
   qty: number;               // Available Quantity
   category: string;          // One of ['featured', 'normal', 'new'], where to exhibit
 };

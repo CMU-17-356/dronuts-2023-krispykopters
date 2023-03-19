@@ -13,11 +13,13 @@ const Container = ({
   col,
   items,
   className,
+  admin,
 }: {
   scrollOffset: number;
   col?: boolean;
   items: Donut[];
   className?: string;
+  admin?: boolean;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
@@ -46,7 +48,7 @@ const Container = ({
             key={item.id}
             item={item}
             col={col}
-            admin={isAdmin(user)}
+            admin={admin}
           />
         ))}
       {!items &&
@@ -58,6 +60,22 @@ const Container = ({
       {items && items.length <= 0 && (
         <NotFound text="No Food Items Available " />
       )}
+      {admin && (<SingleFoodItem
+        key="-1"
+        item={{
+          id: -1,
+          _id: "",
+          title: "New Donut",
+          description: "",
+          price: 0,
+          calories: "0",
+          qty: 0,
+          category: "normal",
+          imageURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png",
+        }}
+        col={col}
+        admin={admin}
+      />)}
     </motion.div>
   );
 };

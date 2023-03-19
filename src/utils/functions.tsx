@@ -15,6 +15,7 @@ import {
 
 import { MdShoppingBasket } from "react-icons/md";
 import { toast } from "react-toastify";
+import { ServerUrl } from "../consts";
 
 export const addToCart = async (
   cartItems: cartItem[],
@@ -85,19 +86,12 @@ export const fetchUserCartData = async (user: any, dispatch: any) => {
 
 // fetch the data for the food
 export const fetchFoodData = async (dispatch: any) => {
-  await firebaseFetchDonutItems()
-    .then((data) => {
-      dispatch({
-        type: "SET_FOOD_ITEMS",
-        DonutItems: data,
-      });
-    })
-    .then(() => {
-      /**/
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  const response = await fetch(`${ServerUrl}/api/store/admin`);
+  const storeJson = await response.json();
+  dispatch({
+    type: "SET_FOOD_ITEMS",
+    DonutItems: storeJson["donutStock"],
+  });
 };
 
 // get the specific food by Id
@@ -251,6 +245,14 @@ export const hideContactForm = (dispatch: any) => {
   });
 };
 
+// Hide Donut Form
+export const hideDonutForm = (dispatch: any) => {
+  dispatch({
+    type: "TOGGLE_DONUT_FORM",
+    showDonutForm: false,
+  });
+};
+
 export const shuffleItems = (items: any) => {
   let currentIndex = items.length,
     randomIndex;
@@ -367,23 +369,73 @@ export const getAllUser = async () => {
       console.log(e);
     });
 };
+
 // delete food
 export const deleteFood = async (
   food: Donut,
-  DonutItems: Donut[],
   dispatch: any
 ) => {
-  await firebaseDeleteFood(food.id);
-  // remove food from DonutItems
-  const foodIndex = DonutItems.indexOf(food);
-  if (foodIndex !== -1) {
-    DonutItems.splice(foodIndex, 1);
+  console.log(`Deleting food ${food}`);
+
+  const response = await fetch(`${ServerUrl}/api/store/admin/donut/${food._id}`, { method: 'DELETE'});
+
+  if (response.ok) {
+    toast.success("Donut deleted successfully");
+    fetchFoodData(dispatch);
   }
-  dispatch({
-    type: "SET_FOOD_ITEMS",
-    DonutItems,
-  });
-  toast.success("Food deleted successfully");
+  else {
+    toast.error(`Deleting donut failed: ${response.status} - ${await response.text()}`)
+  }
+};
+
+// edit food
+export const editFood = async (
+  food: Donut,
+  dispatch: any
+) => {
+  hideDonutForm(dispatch);
+
+  console.log(`Editing food ${food}`);
+
+  const response = await fetch(`${ServerUrl}/api/store/admin/donut`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+    body: JSON.stringify(food)});
+
+  if (response.ok) {
+    toast.success("Donut edited successfully");
+    fetchFoodData(dispatch);
+  }
+  else {
+    toast.error(`Editing donut failed: ${response.status} - ${await response.text()}`)
+  }
+};
+
+// create food
+export const addFood = async (
+  food: Donut,
+  dispatch: any
+) => {
+  hideDonutForm(dispatch);
+
+  console.log(`Adding food ${food}`);
+
+  const response = await fetch(`${ServerUrl}/api/store/admin/donut`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+    body: JSON.stringify(food)});
+
+  if (response.ok) {
+    toast.success("Donut added successfully");
+    fetchFoodData(dispatch);
+  }
+  else {
+    toast.error(`Adding donut failed: ${response.status} - ${await response.text()}`)
+  }
 };
 
 // Fulfilling order

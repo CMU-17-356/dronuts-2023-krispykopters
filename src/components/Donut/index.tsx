@@ -35,17 +35,23 @@ export const SingleFoodItem = ({
       <div className="w-full flex items-end justify-end flex-col">
         <p className="text-textColor font-semi-bold text-lg">{title}</p>
         <p className="mt-1 text-sm text-gray-500">{description} </p>
-        {admin && (
+        {/* id == -1 is a placeholder for a new donut */}
+        {id !== -1 && admin && (
           <p className="mt-1 text-sm text-gray-500">{calories} calories </p>
         )}
         <div className="flex items-center justify-between gap-8 ">
-          <p className="text-base text-headingColor font-semibold">
+          {/* id == -1 is a placeholder for a new donut */}
+          {id !== -1 && (
+            <p className="text-base text-headingColor font-semibold">
             <span className="text-sm text-red-600">$</span> {price}
-          </p>
+            </p>
+          )}
         </div>
         <div>
-          {qty == 0 && <p className="mt-1 text-sm text-gray-500 font-semibold">Out of Stock</p>}
-          {qty > 0 && <p className="mt-1 text-sm text-gray-500 font-semibold">In-Stock</p> }
+          {/* id == -1 is a placeholder for a new donut */}
+          {!admin && id !== -1 && qty <= 0 && <p className="mt-1 text-sm text-gray-500 font-semibold">Out of Stock</p>}
+          {!admin && id !== -1 && qty > 0 && <p className="mt-1 text-sm text-gray-500 font-semibold">In-Stock</p> }
+          {admin && id !== -1 && <p className="mt-1 text-sm text-gray-500 font-semibold">Quantity: {qty}</p> }
         </div>
       </div>
     </motion.div>
