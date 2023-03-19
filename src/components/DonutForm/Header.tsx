@@ -1,4 +1,4 @@
-import { MdOutlineKeyboardBackspace } from "react-icons/md";
+import { MdOutlineClose } from "react-icons/md";
 import { motion } from "framer-motion";
 import { hideDonutForm } from "../../utils/functions";
 import { useStateValue } from "../../context/StateProvider";
@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div className="w-full flex items-center bg-white justify-between p-4 cursor-pointer">
       <motion.div whileTap={{ scale: 0.8 }} onClick={() => hideDonutForm(dispatch)}>
-        <MdOutlineKeyboardBackspace className="text-textColor text-2xl " />
+        <MdOutlineClose className="text-textColor text-2xl " />
       </motion.div>
       <motion.div
         initial={{ opacity: 0, x: 200 }}
@@ -20,7 +20,6 @@ const Header = () => {
       <motion.div
         whileTap={{scale:0.9}}
         className="flex items-center justify-center gap-1"
-        title="Secured"
       >
       </motion.div>
     </div>

@@ -4,7 +4,7 @@ import Header from "./Header";
 import { useStateValue } from "../../context/StateProvider";
 
 const DonutForm = () => {
-  const [donutToEdit] = useStateValue();
+  const [{donutToEdit}, dispatch] = useStateValue();
   return (
 
     <motion.div
@@ -14,7 +14,7 @@ const DonutForm = () => {
       className={`w-full h-screen md:w-[350px] bg-white md:backdrop-blur-sm flex flex-col z-[101] drop-shadow-xl fixed top-0 right-0`}
     >
       <Header />
-      <DonutFormBody />
+      <DonutFormBody donut={donutToEdit}/>
     </motion.div>
   );
 };

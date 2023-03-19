@@ -14,6 +14,7 @@ const Action = ({ food, admin }: { food: Donut; admin?: boolean }) => {
       dispatch({
         type: "TOGGLE_DONUT_FORM",
         showDonutForm: true,
+        donutToEdit: food,
       });
     }
     // editFood(food, DonutItems, dispatch);
@@ -34,7 +35,7 @@ const Action = ({ food, admin }: { food: Donut; admin?: boolean }) => {
           >
             <BiEditAlt className="text-white md:text-xl" />
           </motion.div>
-          <motion.div
+          {food.id !== -1 && (<motion.div
             whileTap={{ scale: 1.1 }}
             whileHover={{ scale: 1.2 }}
             className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-600 flex items-center justify-center cursor-pointer"
@@ -42,7 +43,7 @@ const Action = ({ food, admin }: { food: Donut; admin?: boolean }) => {
             title="Delete"
           >
             <MdDeleteForever className="text-white md:text-xl" />
-          </motion.div>
+          </motion.div>)}
         </>
       ) : (
         <motion.div

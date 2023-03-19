@@ -10,6 +10,7 @@ export const initialState = {
   DonutItems: null,
   showCart: false,
   showDonutForm: false,
+  donutToEdit: null,
   showContactForm: false,
   showOrder: false,
   cartItems: [],

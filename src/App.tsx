@@ -19,6 +19,9 @@ import {
   dispatchUsers,
   fetchFoodData,
   fetchUserCartData,
+  hideCart,
+  hideDonutForm,
+  hideOrder,
   isAdmin,
 } from "./utils/functions";
 
@@ -49,13 +52,19 @@ function App() {
     fetchFoodData(dispatch);
     dispatchUsers(dispatch);
     user && fetchUserCartData(user, dispatch);
-  }, []);
+  }, [user, dispatch]);
 
   useEffect(() => {
     DonutItems &&
       cartItems.length > 0 &&
       calculateCartTotal(cartItems, DonutItems, dispatch);
   }, [cartItems, DonutItems, dispatch]);
+
+  useEffect(() => {
+    hideDonutForm(dispatch);
+    hideCart(dispatch);
+    hideOrder(dispatch);
+  }, [location, dispatch]);
 
   const renderHeader = () => {
     if (location.pathname.startsWith("/employee")) {

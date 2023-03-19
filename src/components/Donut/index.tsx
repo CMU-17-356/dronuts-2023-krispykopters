@@ -49,8 +49,9 @@ export const SingleFoodItem = ({
         </div>
         <div>
           {/* id == -1 is a placeholder for a new donut */}
-          {id !== -1 && qty <= 0 && <p className="mt-1 text-sm text-gray-500 font-semibold">Out of Stock</p>}
-          {id !== -1 && qty > 0 && <p className="mt-1 text-sm text-gray-500 font-semibold">In-Stock</p> }
+          {!admin && id !== -1 && qty <= 0 && <p className="mt-1 text-sm text-gray-500 font-semibold">Out of Stock</p>}
+          {!admin && id !== -1 && qty > 0 && <p className="mt-1 text-sm text-gray-500 font-semibold">In-Stock</p> }
+          {admin && id !== -1 && <p className="mt-1 text-sm text-gray-500 font-semibold">Quantity: {qty}</p> }
         </div>
       </div>
     </motion.div>

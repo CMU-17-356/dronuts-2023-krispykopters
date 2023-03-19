@@ -386,20 +386,25 @@ export const deleteFood = async (
   //   type: "TOGGLE_DONUT_FORM",
   //   showDonutForm: true,
   // });
-  toast.success("Food deleted successfully");
+  toast.success("Donut deleted successfully");
 };
 
 // edit food
 export const editFood = async (
   food: Donut,
-  DonutItems: Donut[],
   dispatch: any
 ) => {
-  // dispatch({
-  //   type: "TOGGLE_DONUT_FORM",
-  //   showDonutForm: true,
-  // });
-  toast.success("Food edited successfully");
+  hideDonutForm(dispatch);
+  toast.success("Donut edited successfully");
+};
+
+// create food
+export const listFood = async (
+  food: Donut,
+  dispatch: any
+) => {
+  hideDonutForm(dispatch);
+  toast.success("Donut listed successfully");
 };
 
 // Fulfilling order
