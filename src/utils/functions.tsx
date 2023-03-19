@@ -394,7 +394,22 @@ export const editFood = async (
   dispatch: any
 ) => {
   hideDonutForm(dispatch);
-  toast.success("Donut edited successfully");
+
+  console.log(`Editing food ${food}`);
+
+  const response = await fetch(`${ServerUrl}/api/store/admin/donut`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+    body: JSON.stringify(food)});
+
+  if (response.ok) {
+    toast.success("Donut edited successfully");
+  }
+  else {
+    toast.error(`Editing donut failed: ${response.status} - ${await response.text()}`)
+  }
 };
 
 // create food
