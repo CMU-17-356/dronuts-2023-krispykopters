@@ -55,15 +55,27 @@ storeRouter.post("/api/store/:name/donut", async (req, res) => {
   catch (e: unknown) {
     res.sendStatus(400);
   }
-
 });
 
 // Update donut
 storeRouter.post("/api/store/:name/donut", async (req, res) => {
-    console.log(`PUT /api/store/${req.params["name"]}/donut - ${req.body}`);
+  console.log(`PUT /api/store/${req.params["name"]}/donut - ${req.body}`);
 });
 
 // Delete donut
 storeRouter.delete("/api/store/:name/donut/:_id", async (req, res) => {
-    console.log(`DELETE /api/store/${req.params["name"]}/donut/${req.params["_id"]}`);
+
+  console.log(`DELETE /api/store/${req.params["name"]}/donut/${req.params["_id"]}`);
+
+  try {
+    await Donut.findByIdAndDelete(req.params["_id"]);
+    console.log(`Deleted donut: ${req.params["_id"]}`);
+    await Store.findOneAndUpdate({ name: req.params["name"] }, { $pull: { donutStock: req.params["_id"]}});
+    console.log(`Deleted donut from store: ${req.params["name"]}`);
+
+    res.sendStatus(200);
+  }
+  catch (e: unknown) {
+    res.sendStatus(400);
+  }
 });

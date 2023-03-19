@@ -376,7 +376,16 @@ export const deleteFood = async (
   DonutItems: Donut[],
   dispatch: any
 ) => {
-  toast.success("Donut deleted successfully");
+  console.log(`Deleting food ${food}`);
+
+  const response = await fetch(`${ServerUrl}/api/store/admin/donut/${food._id}`, { method: 'DELETE'});
+
+  if (response.ok) {
+    toast.success("Donut deleted successfully");
+  }
+  else {
+    toast.error(`Deleting donut failed: ${response.status} - ${await response.text()}`)
+  }
 };
 
 // edit food
