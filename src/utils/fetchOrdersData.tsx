@@ -7,7 +7,8 @@ export const orderData = [
     donuts: [data[1], data[2]],
     location: { lat: 0, long: 0 },
     orderTime: new Date("1/1/2023"),
-    drone: 1,
+    drone: "1",
+    status: "placed"
   },
   {
     _id: "2",
@@ -15,7 +16,8 @@ export const orderData = [
     donuts: [data[3]],
     location: { lat: 41, long: 41 },
     orderTime: new Date("1/2/2023"),
-    drone: 2,
+    drone: "2",
+    status: "placed"
   },
   {
     _id: "3",
@@ -23,6 +25,7 @@ export const orderData = [
     donuts: [data[1], data[1], data[2]],
     location: { lat: 2, long: 3 },
     orderTime: new Date("1/2/2023"),
-    drone: 3,
+    drone: "3",
+    status: "placed"
   },
 ];

@@ -5,7 +5,6 @@ import path from "path";
 import mongoose from "mongoose";
 
 // Import Schemas & Interfaces for db define
-import { Drone, DroneStatus, IDrone } from "./db/drone";
 import { Donut, IDonut } from "./db/donut";
 import { Customer, ICustomer } from "./db/customer";
 import { IOrder, Order } from "./db/order";
@@ -14,7 +13,6 @@ import { IStore, Store } from "./db/store";
 // Acquire the routers
 import { customerRouter } from "./routers/customerAPI"
 import { donutRouter } from "./routers/donutAPI"
-import { droneRouter } from "./routers/droneAPI"
 import { orderRouter } from "./routers/orderAPI"
 import { storeRouter } from "./routers/storeAPI"
 
@@ -26,12 +24,6 @@ const app = express();
 const host = "0.0.0.0";
 const port = 3000;
 
-// Link the api routers
-app.use('/customer', customerRouter);
-app.use('/donut', donutRouter);
-app.use('/drone', droneRouter);
-app.use('/order', orderRouter);
-
 /**
  * Database Connection func
  */
@@ -41,22 +33,6 @@ async function connectToMongo() {
 
   // Connect to MongoDB
   await mongoose.connect(`${process.env.MONGO_DB}`);
-
-  // Dummy Data if collection is empty
-  if ((await Drone.collection.countDocuments()) === 0) {
-    console.log("Inserting dummy Drone document");
-    // Mock Drone data
-    const drone: IDrone = {
-      name: "Frodo",
-      battery: 0.5,
-      location: {
-        lat: 40.4432,
-        long: 79.9428,
-      },
-      status: DroneStatus.Recharging,
-    };
-    await new Drone(drone).save();
-  }
 
   // If the DB is empty, create dummy data
   if ((await Order.collection.countDocuments()) === 0) {
@@ -140,6 +116,7 @@ async function createDummyOrder() {
       long: 79.9532,
     },
     orderTime: new Date(Date.now()),
+    status: "Placed"
   };
   await new Order(order).save();
 }
@@ -160,8 +137,8 @@ app.get("/api/testing", (req, res) => {
 app.use(express.json());
 
 // Subroutes
+app.use(customerRouter);
 app.use(donutRouter);
-app.use(droneRouter);
 app.use(orderRouter);
 app.use(storeRouter);
 

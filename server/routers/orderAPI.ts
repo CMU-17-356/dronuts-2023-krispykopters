@@ -5,7 +5,7 @@ const router = express();
 
 // Get all orders
 router.get("/api/orders", async (req, res) => {
-  const allOrders = await Order.find();
+  const allOrders = await Order.find().populate("customer").populate("donuts");
   console.log(allOrders);
   res.json(allOrders);
 });
