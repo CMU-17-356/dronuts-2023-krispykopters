@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 import { shuffleItems } from "../utils/functions";
 
 // The mock data is in here.
-import { data } from "../utils/fetchDronesData";
+import { data } from "../utils/fetchMockDonutsData";
 
 export const firebaseUploadImage = (
   imageFile,
@@ -109,7 +109,9 @@ export const firebaseRemoveUploadedImage = (
 
 export const silentRemoveUploadedImage = (ImageFile) => {
   const deleteRef = ref(storage, ImageFile);
-  deleteObject(deleteRef).then(() => {/**/});
+  deleteObject(deleteRef).then(() => {
+    /**/
+  });
 };
 
 export const firebaseSaveProduct = async (data) => {
