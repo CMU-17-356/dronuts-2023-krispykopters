@@ -1,5 +1,6 @@
 import { Donut } from "../../../types";
 import { motion } from "framer-motion";
+import { ServerUrl } from "../../consts";
 import Action from "./action";
 export const SingleFoodItem = ({
   item,

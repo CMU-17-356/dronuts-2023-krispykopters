@@ -1,13 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ServerUrl } from "../../src/consts";
+
 import { Donut } from "../../types";
 import { useStateValue } from "../context/StateProvider";
 
 // Import mock data from static
-import { data } from "./fetchDronesData";
 
 export const FilterFood = (category: string) => {
-  // const [data, changeData] = useState(data); further for changing dynamic data
-  return data.filter(
+  const [donuts, setDonuts] = useState([]);
+  useEffect(() => {
+    fetch(`${ServerUrl}/api/donuts`)
+     .then((response) => response.json())
+     .then((data) => {
+      console.log(data);
+      setDonuts(data);
+     })
+     .catch((err) => {
+        console.log(err.message);
+     })
+   }, []);
+  return donuts.filter(
     (item: Donut) => item.category.toLowerCase() === category.toLowerCase()
   );
 };
