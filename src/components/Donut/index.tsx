@@ -30,8 +30,8 @@ export const SingleFoodItem = ({
           alt={description}
           src={imageURL}
         />
-        {!admin && id !== -1 && qty > 0 && <Action food={item} admin={admin} />}
-        {!admin && id !== -1 && qty <= 0 && (
+        {(admin || qty > 0) && <Action food={item} admin={admin} />}
+        {!admin && qty <= 0 && (
           <p className="mt-1 text-sm text-red-500 font-semibold">Sold out </p>
         )}
       </div>
