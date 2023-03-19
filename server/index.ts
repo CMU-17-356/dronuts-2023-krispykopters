@@ -16,9 +16,6 @@ import { donutRouter } from "./routers/donutAPI"
 import { orderRouter } from "./routers/orderAPI"
 import { storeRouter } from "./routers/storeAPI"
 
-// Mock data for populating store inventory
-import { data } from "../src/utils/fetchMockDonutsData"
-
 /**
  * Main App Express
  * host & port
@@ -77,32 +74,7 @@ async function createDummyStore() {
     donutStock: [donutDoc._id],
     bankAccount: "account info",
   };
-  const storeDoc = await new Store(store).save();
-
-  console.log(`donuts: ${data.length}`);
-
-  for (let index = 0; index < data.length; index++) {
-    const donutJson = data[index];
-
-    console.log(`Adding donut: ${donutJson.title}`);
-
-    const donut: IDonut = {
-      id: donutJson.id,
-      title: donutJson.title,
-      description: donutJson.description,
-      price: donutJson.price,
-      calories: donutJson.calories,
-      qty: donutJson.qty,
-      category: donutJson.category,
-      imageURL: donutJson.imageURL,
-    };
-
-    const donutDoc = await new Donut(donut).save();
-
-    storeDoc.donutStock.push(donutDoc._id);
-
-    await storeDoc.save();
-  }
+  await new Store(store).save();
 }
 
 /**
