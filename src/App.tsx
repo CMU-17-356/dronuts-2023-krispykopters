@@ -19,6 +19,9 @@ import {
   dispatchUsers,
   fetchFoodData,
   fetchUserCartData,
+  hideCart,
+  hideDonutForm,
+  hideOrder,
   isAdmin,
 } from "./utils/functions";
 
@@ -29,32 +32,34 @@ import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
 import { ServerUrl } from "./consts";
+import DonutForm from "./components/DonutForm";
 
 function App() {
   const location = useLocation();
   const [
-    { showCart, showContactForm, user, DonutItems, cartItems, adminMode, showOrder },
+    { showCart, showContactForm, showDonutForm, user, DonutItems, cartItems, adminMode, showOrder },
     dispatch,
   ] = useStateValue();
 
   console.log(`Server url: ${ServerUrl}`)
 
-  fetch(`${ServerUrl}/api`)
-    .then(response =>
-      response.json()
-        .then(json => console.log(json)))
-
   useEffect(() => {
     fetchFoodData(dispatch);
     dispatchUsers(dispatch);
     user && fetchUserCartData(user, dispatch);
-  }, []);
+  }, [user, dispatch]);
 
   useEffect(() => {
     DonutItems &&
       cartItems.length > 0 &&
       calculateCartTotal(cartItems, DonutItems, dispatch);
   }, [cartItems, DonutItems, dispatch]);
+
+  useEffect(() => {
+    hideDonutForm(dispatch);
+    hideCart(dispatch);
+    hideOrder(dispatch);
+  }, [location, dispatch]);
 
   const renderHeader = () => {
     if (location.pathname.startsWith("/employee")) {
@@ -71,6 +76,7 @@ function App() {
         {showCart && <Cart />}
         {showContactForm && <Contact />}
         {showOrder && <OrderStatus />}
+        {showDonutForm && <DonutForm />}
         {!(adminMode && isAdmin(user)) && renderHeader()}
         <main
           className={`${

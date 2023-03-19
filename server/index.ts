@@ -5,16 +5,16 @@ import path from "path";
 import mongoose from "mongoose";
 
 // Import Schemas & Interfaces for db define
-import { Drone, DroneStatus, IDrone } from "./db/drone";
 import { Donut, IDonut } from "./db/donut";
 import { Customer, ICustomer } from "./db/customer";
-import { Order, IOrder } from "./db/order";
+import { IOrder, Order } from "./db/order";
+import { IStore, Store } from "./db/store";
 
 // Acquire the routers
 import { customerRouter } from "./routers/customerAPI"
 import { donutRouter } from "./routers/donutAPI"
-import { droneRouter } from "./routers/droneAPI"
 import { orderRouter } from "./routers/orderAPI"
+import { storeRouter } from "./routers/storeAPI"
 
 /**
  * Main App Express
@@ -40,35 +40,52 @@ async function connectToMongo() {
   // Connect to MongoDB
   await mongoose.connect(`${process.env.MONGO_DB}`);
 
-  // If the drone is empty, create dummy data
-  if ((await Drone.collection.countDocuments()) === 0) {
-    createDummyDrone();
+  // If the DB is empty, create dummy data
+  if ((await Order.collection.countDocuments()) === 0) {
+    await createDummyOrder();
+  }
+  if (await Store.collection.countDocuments() === 0) {
+    await createDummyStore();
   }
 
-  // If the order info is empty, create dummy data
-  if ((await Order.collection.countDocuments()) === 0) {
-    createDummyOrder();
-  }
   console.log("Mongo DB connection established");
 }
 
-/** Create Dummy Drone */
-async function createDummyDrone() {
-  console.log("Inserting dummy Drone document");
-    // Mock Drone data
-    const drone: IDrone = {
-      name: "Frodo",
-      battery: 0.5,
-      location: {
-        lat: 40.4432,
-        long: 79.9428,
-      },
-      status: DroneStatus.Recharging,
-    };
-    await new Drone(drone).save();
+/**
+ * Create Dummy Store
+ */
+async function createDummyStore() {
+  // Mock Drone data
+  console.log("Inserting dummy Donut document")
+  const donut: IDonut = {
+    id: 1,
+    price: 1.99,
+    qty: 24,
+    imageURL: "https://thefirstyearblog.com/wp-content/uploads/2020/10/chocolate-donuts-Square2.png",
+    title: "Triple Choco",
+    description: "Chocolate doughnut + chocolate glaze + chocolate sprinkles = delicious.",
+    calories: "200 kCal",
+    category: "Featured"
+  };
+  const donutDoc = await new Donut(donut).save();
+
+  const store: IStore = {
+    name: "admin",
+    password: "password",
+    location: {
+      lat: 40.443336,
+      long: -79.944023
+    },
+    droneCapacity: 3,
+    donutStock: [donutDoc._id],
+    bankAccount: "account info",
+  };
+  await new Store(store).save();
 }
 
-/** Create Dummy Order */
+/**
+ * Create Dummy Order
+ */
 async function createDummyOrder() {
   // Mock Drone data
   console.log("Inserting dummy Donut document");
@@ -105,6 +122,7 @@ async function createDummyOrder() {
       long: 79.9532,
     },
     orderTime: new Date(Date.now()),
+    status: "Placed"
   };
   await new Order(order).save();
 }
@@ -119,10 +137,19 @@ app.use(express.static(path.join(__dirname, "..", "build")));
 
 // Testing
 app.get("/api/testing", (req, res) => {
-  res.json({ id: 1, testing: "sucessful test!" });
+  res.json({ id: 1, testing: "sucessful test" });
 });
 
-// Initialization finished
+// Middleware
+app.use(express.json());
+
+// Subroutes
+app.use(customerRouter);
+app.use(donutRouter);
+app.use(orderRouter);
+app.use(storeRouter);
+
+// API listen
 app.listen(port, host, () => {
   console.log(`Starting server with directory ${__dirname}`);
   console.log(`Example app listening on port ${port}`);

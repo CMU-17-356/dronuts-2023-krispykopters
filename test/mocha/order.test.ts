@@ -28,7 +28,9 @@ describe("order", () => {
         lat: 1.0,
         long: 1.0
       },
-      orderTime: new Date(Date.now())
+      status: "Placed",
+      orderTime: new Date(Date.now()),
+      drone: "1"
     };
     const orderDoc = await new Order(order).save();
 
@@ -36,5 +38,7 @@ describe("order", () => {
     expect(orderDoc.donuts).to.have.same.members(order.donuts);
     expect(orderDoc.location).to.equal(order.location);
     expect(orderDoc.orderTime).to.equal(order.orderTime);
+    expect(orderDoc.status).to.equal(order.status);
+    expect(orderDoc.drone).to.equal(order.drone);
   });
 });

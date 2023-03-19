@@ -3,7 +3,7 @@ import { Donut } from "../../types";
 import { useStateValue } from "../context/StateProvider";
 
 // Import mock data from static
-import { data } from "./fetchDronesData";
+import { data } from "./fetchMockDonutsData";
 
 export const FilterFood = (category: string) => {
   // const [data, changeData] = useState(data); further for changing dynamic data
