@@ -9,6 +9,7 @@ export const initialState = {
   user: sessionUser,
   DonutItems: null,
   showCart: false,
+  showDonutForm: false,
   showContactForm: false,
   showOrder: false,
   cartItems: [],

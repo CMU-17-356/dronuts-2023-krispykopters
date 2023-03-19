@@ -251,6 +251,14 @@ export const hideContactForm = (dispatch: any) => {
   });
 };
 
+// Hide Donut Form
+export const hideDonutForm = (dispatch: any) => {
+  dispatch({
+    type: "TOGGLE_DONUT_FORM",
+    showDonutForm: false,
+  });
+};
+
 export const shuffleItems = (items: any) => {
   let currentIndex = items.length,
     randomIndex;
@@ -367,23 +375,31 @@ export const getAllUser = async () => {
       console.log(e);
     });
 };
+
 // delete food
 export const deleteFood = async (
   food: Donut,
   DonutItems: Donut[],
   dispatch: any
 ) => {
-  await firebaseDeleteFood(food.id);
-  // remove food from DonutItems
-  const foodIndex = DonutItems.indexOf(food);
-  if (foodIndex !== -1) {
-    DonutItems.splice(foodIndex, 1);
-  }
-  dispatch({
-    type: "SET_FOOD_ITEMS",
-    DonutItems,
-  });
+  // dispatch({
+  //   type: "TOGGLE_DONUT_FORM",
+  //   showDonutForm: true,
+  // });
   toast.success("Food deleted successfully");
+};
+
+// edit food
+export const editFood = async (
+  food: Donut,
+  DonutItems: Donut[],
+  dispatch: any
+) => {
+  // dispatch({
+  //   type: "TOGGLE_DONUT_FORM",
+  //   showDonutForm: true,
+  // });
+  toast.success("Food edited successfully");
 };
 
 // Fulfilling order

@@ -29,11 +29,12 @@ import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
 import { ServerUrl } from "./consts";
+import DonutForm from "./components/DonutForm";
 
 function App() {
   const location = useLocation();
   const [
-    { showCart, showContactForm, user, DonutItems, cartItems, adminMode, showOrder },
+    { showCart, showContactForm, showDonutForm, user, DonutItems, cartItems, adminMode, showOrder },
     dispatch,
   ] = useStateValue();
 
@@ -71,6 +72,7 @@ function App() {
         {showCart && <Cart />}
         {showContactForm && <Contact />}
         {showOrder && <OrderStatus />}
+        {showDonutForm && <DonutForm />}
         {!(adminMode && isAdmin(user)) && renderHeader()}
         <main
           className={`${
