@@ -37,12 +37,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         showDonutForm: action.showDonutForm,
-        donutToEdit: action.donutToEdit,
+        donutInfo: action.donutInfo,
+        newDonut: action.newDonut,
       };
     case actionTypes.UPDATE_DONUT_DATA:
       return {
         ...state,
-        donutToEdit: action.donutToEdit,
+        donutInfo: action.donutInfo,
       };
     case actionTypes.SET_CARTITEMS:
       return {

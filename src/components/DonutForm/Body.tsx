@@ -8,26 +8,28 @@ const EditDonutBody = ({
   donut: Donut;
 }) => {
 
-  const [{donutToEdit}, dispatch] = useStateValue();
+  const [{donutInfo}, dispatch] = useStateValue();
 
   const updateDonutData = (key:string, val:string) => {
     dispatch({
       type: "UPDATE_DONUT_DATA",
-      donutToEdit: {
-        ...donutToEdit,
+      donutInfo: {
+        ...donutInfo,
         [key]:val
       }
     });
   }
 
   const submitDonutEdit = (donut: Donut) => {
+    console.log("Editing donut");
     console.log(donut);
-    editFood(donutToEdit, dispatch);
+    editFood(donutInfo, dispatch);
   }
 
   const submitDonut = (donut: Donut) => {
+    console.log("Listing donut");
     console.log(donut);
-    listFood(donutToEdit, dispatch);
+    listFood(donutInfo, dispatch);
   }
 
   return (
@@ -73,7 +75,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Enter the name of the donut"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)} />
+              onChange = {(e) => updateDonutData("title", e.target.value)} />
           ) : (
             <input
               type="text"
@@ -81,7 +83,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Enter the name of the donut"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("title", e.target.value)}
               value={donut.title} />
           )}
         </div>
@@ -99,7 +101,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Describe the donut"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("description", e.target.value)}
             />
           ) : (
             <input
@@ -108,7 +110,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Describe the donut"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("description", e.target.value)}
               value={donut.description}
             />
           )}
@@ -127,7 +129,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Enter price of the donut"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("price", e.target.value)}
             />
           ) : (
             <input
@@ -136,7 +138,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Enter price of the donut"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("price", e.target.value)}
               value={donut.price}
             />
           )}
@@ -155,7 +157,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Enter the URL to the image of the donut"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("imageURL", e.target.value)}
             />
           ) : (
             <input
@@ -164,7 +166,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Enter the URL to the image of the donut"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("imageURL", e.target.value)}
               value={donut.imageURL}
             />
           )}
@@ -178,21 +180,21 @@ const EditDonutBody = ({
           </label>
           {donut.id === -1 ? (
             <input
-              type="number"
+              type="text"
               id="calories"
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Enter the calories of the donut"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("calories", e.target.value)}
             />
           ) : (
             <input
-              type="number"
+              type="text"
               id="calories"
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Enter the calories of the donut"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("calories", e.target.value)}
               value={donut.calories}
             />
           )}
@@ -211,7 +213,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Enter the quantity of the donut available for sale"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("qty", e.target.value)}
             />
           ) : (
             <input
@@ -220,7 +222,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="Enter the quantity of the donut available for sale"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("qty", e.target.value)}
               value={donut.qty}
             />
           )}
@@ -239,7 +241,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="E.g. featured, normal, etc"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("category", e.target.value)}
             />
           ) : (
             <input
@@ -248,7 +250,7 @@ const EditDonutBody = ({
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               placeholder="E.g. featured, normal, etc"
               autoComplete="off"
-              onChange = {(e) => updateDonutData("id", e.target.value)}
+              onChange = {(e) => updateDonutData("category", e.target.value)}
               value={donut.category}
             />
           )}
@@ -259,14 +261,14 @@ const EditDonutBody = ({
               type="submit"
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               value="Submit"
-              onClick={() => submitDonut(donutToEdit)}
+              onClick={() => submitDonut(donutInfo)}
             />
           ) : (
             <input
               type="submit"
               className="w-full px-3 py-2 mb-1 border-2 text-white border-gray-500 rounded-md focus:outline-none focus:border-orange-500 focus:text-orange-500 bg-cartItem transition-colors"
               value="Submit"
-              onClick={() => submitDonutEdit(donutToEdit)}
+              onClick={() => submitDonutEdit(donutInfo)}
             />
           )}
         </div>

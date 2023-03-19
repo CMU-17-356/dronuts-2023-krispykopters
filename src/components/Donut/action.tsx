@@ -7,15 +7,35 @@ import { BiEditAlt } from "react-icons/bi";
 import { Donut } from "../../../types";
 
 const Action = ({ food, admin }: { food: Donut; admin?: boolean }) => {
-  const [{ showDonutForm, cartItems, DonutItems, user, donutToEdit }, dispatch] = useStateValue();
+  const [{ showDonutForm, cartItems, DonutItems, user, donutInfo }, dispatch] = useStateValue();
 
   const handleEditDonut = (food: Donut, dispatch: any) => {
     if (!showDonutForm) {
-      dispatch({
-        type: "TOGGLE_DONUT_FORM",
-        showDonutForm: true,
-        donutToEdit: food,
-      });
+      if (food.id === -1) {
+        dispatch({
+          type: "TOGGLE_DONUT_FORM",
+          showDonutForm: true,
+          donutInfo: {
+            id: 0,
+            _id: "",
+            title: "",
+            description: "",
+            price: 0,
+            calories: "",
+            qty: 0,
+            category: "",
+            imageURL: "",
+          },
+          newDonut: true
+        });
+      } else {
+        dispatch({
+          type: "TOGGLE_DONUT_FORM",
+          showDonutForm: true,
+          donutInfo: food,
+          newDonut: false
+        });
+      }
     }
     // editFood(food, DonutItems, dispatch);
   }

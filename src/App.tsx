@@ -43,10 +43,10 @@ function App() {
 
   console.log(`Server url: ${ServerUrl}`)
 
-  fetch(`${ServerUrl}/api/donuts`)
-    .then(response =>
-      response.json()
-        .then(json => console.log(json)))
+  // fetch(`${ServerUrl}/api/donuts`)
+  //   .then(response =>
+  //     response.json()
+  //       .then(json => console.log(json)))
 
   useEffect(() => {
     fetchFoodData(dispatch);
