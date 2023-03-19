@@ -25,7 +25,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "preserver": "tsc --project tsconfig.server.json",
-    "server": "node ./dist/index.js",
+    "server": "node ./dist/server/index.js",
     "start": "cross-env PORT=3001 REACT_APP_SERVER_URL='http://localhost:3000' react-scripts start",
     "build": "react-scripts build",
     "test:jest": "jest --coverage ./test/jest",

@@ -14,4 +14,4 @@ COPY ./build ./build
 #TODO Run any build scripts here
 
 EXPOSE 3000
-CMD [ "node", "./dist/index.js" ]
+CMD [ "node", "./dist/server/index.js" ]
