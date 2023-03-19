@@ -43,7 +43,7 @@ function App() {
 
   console.log(`Server url: ${ServerUrl}`)
 
-  fetch(`${ServerUrl}/api`)
+  fetch(`${ServerUrl}/api/donuts`)
     .then(response =>
       response.json()
         .then(json => console.log(json)))

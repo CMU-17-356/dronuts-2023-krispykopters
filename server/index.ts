@@ -16,6 +16,7 @@ import { customerRouter } from "./routers/customerAPI"
 import { donutRouter } from "./routers/donutAPI"
 import { droneRouter } from "./routers/droneAPI"
 import { orderRouter } from "./routers/orderAPI"
+import { storeRouter } from "./routers/storeAPI"
 
 /**
  * Main App Express
@@ -154,6 +155,12 @@ app.use(express.static(path.join(__dirname, "..", "build")));
 app.get("/api/testing", (req, res) => {
   res.json({ id: 1, testing: "sucessful test" });
 });
+
+// Subroutes
+app.use(donutRouter)
+app.use(droneRouter)
+app.use(orderRouter)
+app.use(storeRouter)
 
 // API listen
 app.listen(port, host, () => {
