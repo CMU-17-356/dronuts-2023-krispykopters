@@ -19,10 +19,7 @@ import "leaflet/dist/leaflet.css";
 
 const Employees = () => {
   // Order Information
-  const [{ user }, dispatch] = useStateValue();
-
-  // Menu Information
-  const featuredDonut = FilterFood("featured");
+  const [{ user, DonutItems }, dispatch] = useStateValue();
 
   // Customized Colored Icon
   const myIcon = L.icon({
@@ -62,7 +59,7 @@ const Employees = () => {
           ))}
       </div>
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
-        <ManageMenuDisplay donuts={featuredDonut} />
+        <ManageMenuDisplay donuts={DonutItems} />
       </div>
       <Title title="Drone Locations" />
       <div>

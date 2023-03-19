@@ -15,6 +15,7 @@ import {
 
 import { MdShoppingBasket } from "react-icons/md";
 import { toast } from "react-toastify";
+import { ServerUrl } from "../consts";
 
 export const addToCart = async (
   cartItems: cartItem[],
@@ -85,19 +86,12 @@ export const fetchUserCartData = async (user: any, dispatch: any) => {
 
 // fetch the data for the food
 export const fetchFoodData = async (dispatch: any) => {
-  await firebaseFetchDonutItems()
-    .then((data) => {
-      dispatch({
-        type: "SET_FOOD_ITEMS",
-        DonutItems: data,
-      });
-    })
-    .then(() => {
-      /**/
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  const response = await fetch(`${ServerUrl}/api/store/admin`);
+  const storeJson = await response.json();
+  dispatch({
+    type: "SET_FOOD_ITEMS",
+    DonutItems: storeJson["donutStock"],
+  });
 };
 
 // get the specific food by Id

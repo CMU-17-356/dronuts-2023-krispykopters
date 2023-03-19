@@ -60,7 +60,7 @@ const Container = ({
       {items && items.length <= 0 && (
         <NotFound text="No Food Items Available " />
       )}
-      {<SingleFoodItem
+      {admin && (<SingleFoodItem
         key="-1"
         item={{
           id: -1,
@@ -68,14 +68,14 @@ const Container = ({
           title: "New Donut",
           description: "",
           price: 0,
-          calories: 0,
+          calories: "0",
           qty: 0,
           category: "normal",
           imageURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/800px-Question_mark_%28black%29.svg.png",
         }}
         col={col}
         admin={admin}
-      />}
+      />)}
     </motion.div>
   );
 };
