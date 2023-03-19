@@ -69,7 +69,7 @@ const Employees = () => {
         center={[40.442329, -79.944068]}
         zoom={14}
         scrollWheelZoom={false}
-        style={{ height: "100vh", width: "100wh" }}
+        style={{ height: "100vh", width: "100wh", zIndex: 1 }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -77,17 +77,17 @@ const Employees = () => {
         />
         <Marker position={[40.442329, -79.943868]} icon={myIcon}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            e.g This should popup information for this order/drone - 1
           </Popup>
         </Marker>
         <Marker position={[40.401329, -79.944768]} icon={myIcon}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+          e.g This should popup information for this order/drone - 2
           </Popup>
         </Marker>
         <Marker position={[40.420329, -79.944568]} icon={myIcon}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+          e.g This should popup information for this order/drone - 3
           </Popup>
         </Marker>
       </MapContainer>
