@@ -1,13 +1,13 @@
 import React from "react";
 import { useStateValue } from "../../context/StateProvider";
 import { motion } from "framer-motion";
-import { addToCart, deleteFood, editFood } from "../../utils/functions";
+import { addToCart, deleteFood } from "../../utils/functions";
 import { MdAddShoppingCart, MdDeleteForever } from "react-icons/md";
 import { BiEditAlt } from "react-icons/bi";
 import { Donut } from "../../../types";
 
 const Action = ({ food, admin }: { food: Donut; admin?: boolean }) => {
-  const [{ showDonutForm, cartItems, DonutItems, user, donutInfo }, dispatch] = useStateValue();
+  const [{ showDonutForm, cartItems, DonutItems, user }, dispatch] = useStateValue();
 
   const handleEditDonut = (food: Donut, dispatch: any) => {
     if (!showDonutForm) {
@@ -39,7 +39,7 @@ const Action = ({ food, admin }: { food: Donut; admin?: boolean }) => {
     }
   }
   const handleDeleteDonut = (food: Donut, dispatch: any) => {
-    deleteFood(food, DonutItems, dispatch);
+    deleteFood(food, dispatch);
   }
 
   return (

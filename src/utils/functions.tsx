@@ -373,7 +373,6 @@ export const getAllUser = async () => {
 // delete food
 export const deleteFood = async (
   food: Donut,
-  DonutItems: Donut[],
   dispatch: any
 ) => {
   console.log(`Deleting food ${food}`);
@@ -382,6 +381,7 @@ export const deleteFood = async (
 
   if (response.ok) {
     toast.success("Donut deleted successfully");
+    fetchFoodData(dispatch);
   }
   else {
     toast.error(`Deleting donut failed: ${response.status} - ${await response.text()}`)
@@ -406,6 +406,7 @@ export const editFood = async (
 
   if (response.ok) {
     toast.success("Donut edited successfully");
+    fetchFoodData(dispatch);
   }
   else {
     toast.error(`Editing donut failed: ${response.status} - ${await response.text()}`)
@@ -430,6 +431,7 @@ export const addFood = async (
 
   if (response.ok) {
     toast.success("Donut added successfully");
+    fetchFoodData(dispatch);
   }
   else {
     toast.error(`Adding donut failed: ${response.status} - ${await response.text()}`)
