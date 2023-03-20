@@ -121,11 +121,12 @@ async function createDummyOrder() {
   await new Order(order).save();
 }
 
-// Connection
+// Connect
 connectToMongo();
 
+// Enables CORS (cross-origin resource sharing).
+// In order for your server to be accessible by other origins (domains).
 app.use(cors());
-
 app.use(express.static(path.join(__dirname, "..", "build")));
 
 // Testing
