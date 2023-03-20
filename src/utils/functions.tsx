@@ -1,4 +1,4 @@
-import { Donut, cartItem } from "../../types";
+import { Donut, cartItem, Order } from "../../types";
 import {
   firebaseAddToCart,
   firebaseDeleteCartItem,
@@ -92,6 +92,41 @@ export const fetchFoodData = async (dispatch: any) => {
     type: "SET_FOOD_ITEMS",
     DonutItems: storeJson["donutStock"],
   });
+};
+
+// fulfill the order
+export const fulfillOrder = async (
+  dispatch: any, 
+  _id: string, 
+  status: boolean
+  ) => {
+    console.log('fetching', _id);
+    const response = await fetch(`${ServerUrl}/api/order/${_id}`);
+    const orderJson = await response.json();
+    orderJson["status"] = status;
+    console.log('updated order', orderJson);
+
+    try {
+      const putResponse = await fetch(`${ServerUrl}/api/order/${orderJson._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderJson),
+      });
+      console.log('putResponse', putResponse);
+      if (putResponse.ok) {
+        dispatch({
+          type: "SET_ORDER",
+          order: orderJson,
+        });
+        console.log('dispatched', orderJson);
+      } else {
+        throw new Error(`Failed to update order with ID ${_id}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
 };
 
 // get the specific food by Id
@@ -413,6 +448,7 @@ export const editFood = async (
   }
 };
 
+
 // create food
 export const addFood = async (
   food: Donut,
@@ -439,6 +475,6 @@ export const addFood = async (
 };
 
 // Fulfilling order
-export const fulfillOrder = {};
+// export const fulfillOrder = {};
 
 export const deleteOrder = {};

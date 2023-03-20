@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Order } from "../../../types";
 import { fulfillOrder } from "../../utils/functions";
 import { motion } from "framer-motion";
+import { Donut } from "../../../types";
+import { ServerUrl } from "../../consts";
+import { toast } from "react-toastify";
+import { useStateValue } from "../../context/StateProvider";
 
 export const OrderDisplay = ({
   order,
@@ -13,9 +17,32 @@ export const OrderDisplay = ({
   admin?: boolean;
 }) => {
   const [isFulfilled, setIsFulfilled] = useState(false);
+  const [{orderInfo}, dispatch] = useStateValue();
+  const [donutsOrdered, setDonutsOrdered] = useState<Donut[]>([]);
 
-  const handleFulfillOrder = () => {
+  const { _id, donuts: donutIds, drone, status } = order;
+  const abrevId = _id.slice(-3);
+
+  useEffect(() => {
+    const fetchDonuts = async () => {
+      const donuts: Donut[] = [];
+
+      for (const donutId of donutIds) {
+        const response = await fetch(`${ServerUrl}/api/donut/${donutId}`);
+        const data = await response.json();
+        donuts.push(data);
+      }
+
+      setDonutsOrdered(donuts);
+    };
+
+    fetchDonuts();
+  }, [donutIds]);
+
+  const handleFulfillOrder = async (order: Order) => {
     setIsFulfilled(true);
+    console.log("order", order);
+    fulfillOrder(dispatch, _id, false);
   };
 
   return (
@@ -28,34 +55,32 @@ export const OrderDisplay = ({
       } h-auto bg-cardOverlay rounded-lg p-2 px-3 backdrop-blur-lg hover:drop-shadow-sm cursor-pointer`}
     >
       <div>
-        <p>Order #{order._id}</p>
+        <p>Order #{abrevId}</p>
         <table>
-          <thead className = "flex items-end">
+          <thead className="flex items-end">
             <th>Items</th>
           </thead>
           <tbody>
-            {order.donuts &&
-              order.donuts.map((donut) => (
+            {donutsOrdered &&
+              donutsOrdered.map((item) => (
                 <tr>
-                  <td>{donut.title}</td>
+                  <td>{item.title}</td>
                 </tr>
               ))}
           </tbody>
         </table>
-        <motion.div
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 1.1 }}
-        >
-          {isFulfilled ? 
-            <p>Fulfilled</p> :
+        <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 1.1 }}>
+          {isFulfilled ? (
+            <p>Fulfilled</p>
+          ) : (
             <button
-                className={`flex items-end gap-2 justify-center bg-green-200 padding p-2 p-2`}
-                onClick={handleFulfillOrder}
-                disabled={isFulfilled}
+              className={`flex items-end gap-2 justify-center bg-green-200 padding p-2 p-2`}
+              onClick={() => handleFulfillOrder(order)}
+              disabled={isFulfilled}
             >
-            Load to Drone {order.drone}
-            </button> 
-            }
+              Load to Drone {drone}
+            </button>
+          )}
         </motion.div>
       </div>
     </motion.div>

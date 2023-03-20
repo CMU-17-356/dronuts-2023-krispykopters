@@ -28,6 +28,11 @@ const reducer = (state, action) => {
         ...state,
         DonutItems: action.DonutItems,
       };
+    case actionTypes.SET_ORDER:
+      return {
+        ...state,
+        order: action.order,
+      };
     case actionTypes.TOGGLE_CART:
       return {
         ...state,

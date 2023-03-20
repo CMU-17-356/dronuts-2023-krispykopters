@@ -17,6 +17,7 @@ import "leaflet/dist/leaflet.css";
 const Employees = () => {
   // Order Information
   const [{ user, DonutItems }, dispatch] = useStateValue();
+  const [fulfilledOrders, setFulfilledOrders] = useState<string[]>([]);
 
   // Customized Colored Icon
   const myIcon = L.icon({
@@ -46,13 +47,27 @@ const Employees = () => {
   // Drone Locations
   // const position: LatLngExpression | undefined = [51.505, -0.09];
 
+    const [orders, setOrders] = useState([]);
+  
+    useEffect(() => {
+      async function fetchData() {
+        const data = await orderData();
+        setOrders(data);
+      }
+      fetchData();
+    }, []);
+
+    console.log(orders);
+
   return (
     <div className="order-location-content">
       <Title title="Current Orders" />
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
-        {orderData &&
-          orderData.map((order: Order) => (
-            <OrderDisplay order={order} col admin={isAdmin(user)} />
+        {orders &&
+          orders
+          .filter((order: Order) => order.status)
+            .map((order: Order) => (
+              <OrderDisplay order={order} col admin={isAdmin(user)} />
           ))}
       </div>
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
