@@ -1,23 +1,16 @@
-// import React from 'react'
 import { Link } from "react-router-dom";
 import { MdShoppingBasket } from "react-icons/md";
 import { motion } from "framer-motion";
 import { useStateValue } from "../../context/StateProvider";
 
 const Navigations = ({ direction }: { direction?: string }) => {
-  const [{ showContactForm, cartItems, showOrder}, dispatch] = useStateValue();
+  const [{ cartItems}, dispatch] = useStateValue();
   const handleToggleCart = () => {
     dispatch({
       type: "TOGGLE_CART",
       showCart: true,
     });
   };
-  const handleToggleContact = () => {
-    dispatch({
-      type: "TOGGLE_CONTACT_FORM",
-      showContactForm: !showContactForm,
-    });
-  }
   return (
     <div className="flex items-center gap-8">
       <motion.ul
@@ -31,12 +24,6 @@ const Navigations = ({ direction }: { direction?: string }) => {
           className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
         >
           <Link to={'/'}>Home</Link>
-        </motion.li>
-        <motion.li
-          whileHover={{ scale: 1.1 }}
-          className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
-        >
-          <Link to={'/menu'}>Menu</Link>
         </motion.li>
         <motion.li
           whileHover={{ scale: 1.1 }}

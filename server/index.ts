@@ -42,7 +42,7 @@ async function connectToMongo() {
     await createDummyStore();
   }
 
-  console.log("Mongo DB connection established");
+  console.log("MongoDB connection established");
 }
 
 /**
@@ -148,10 +148,5 @@ app.listen(port, host, () => {
   console.log(`Starting server with directory ${__dirname}`);
   console.log(`Example app listening on port ${port}`);
 });
-
-// Index Page
-/* app.get("*", async (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-}); */
 
 export { app };
