@@ -14,13 +14,13 @@ const Menu = ({ title }: { title?: string }) => {
   return (
     <section className="w-full my-0" id="menu">
       <div className="w-full flex items-center justify-between">
-        <Title title="Fan Favorites" />
+        <Title title="Menu" />
       </div>
       <Container
         className="bg-containerbg"
         col
         scrollOffset={scrollValue}
-        items={filter === "all" ? DonutItems : FilterFood(filter)}
+        items={filter === "all" ? DonutItems : FilterFood(DonutItems, filter)}
       />
     </section>
   );

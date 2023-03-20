@@ -2,12 +2,8 @@ import { useState } from "react";
 import { Donut } from "../../types";
 import { useStateValue } from "../context/StateProvider";
 
-// Import mock data from static
-import { data } from "./fetchMockDonutsData";
-
-export const FilterFood = (category: string) => {
-  // const [data, changeData] = useState(data); further for changing dynamic data
-  return data.filter(
+export const FilterFood = (donuts: Donut[], category: string) => {
+  return donuts.filter(
     (item: Donut) => item.category.toLowerCase() === category.toLowerCase()
   );
 };
