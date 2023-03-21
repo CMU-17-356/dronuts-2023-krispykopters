@@ -143,6 +143,8 @@ app.use(donutRouter);
 app.use(orderRouter);
 app.use(storeRouter);
 
+app.get("*", (req, res) => res.sendFile(path.join(__dirname, "..", "build", "index.html")))
+
 // API listen
 app.listen(port, host, () => {
   console.log(`Starting server with directory ${__dirname}`);

@@ -14,12 +14,14 @@ const Container = ({
   items,
   className,
   admin,
+  showQuantity,
 }: {
   scrollOffset: number;
   col?: boolean;
   items: Donut[];
   className?: string;
   admin?: boolean;
+  showQuantity?: boolean;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
@@ -49,6 +51,7 @@ const Container = ({
             item={item}
             col={col}
             admin={admin}
+            showQuantity={showQuantity}
           />
         ))}
       {!items &&

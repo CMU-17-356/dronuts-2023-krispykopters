@@ -5,10 +5,12 @@ export const SingleFoodItem = ({
   item,
   col,
   admin,
+  showQuantity,
 }: {
   item: Donut;
   col?: boolean;
   admin?: boolean;
+  showQuantity?: boolean;
 }) => {
   // Const a food item
   const { id, title, price, qty, calories, imageURL, description } = item;
@@ -57,7 +59,10 @@ export const SingleFoodItem = ({
               Replenishing...
             </p>
           )}
-          {!admin && id !== -1 && qty > 0 && (
+          {!admin && id !== -1 && qty > 0 && showQuantity && (
+            <p className="mt-1 text-sm text-gray-500 font-semibold">Quantity: {qty}</p>
+          )}
+          {!admin && id !== -1 && qty > 0 && !showQuantity && (
             <p className="mt-1 text-sm text-gray-500 font-semibold">In-Stock</p>
           )}
           {admin && id !== -1 && (
