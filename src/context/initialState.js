@@ -8,6 +8,7 @@ const sessionUserMode = fetchSessionUserMode();
 export const initialState = {
   user: sessionUser,
   DonutItems: null,
+  OrderItems: [],
   showCart: false,
   showDonutForm: false,
   donutInfo: null,

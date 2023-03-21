@@ -94,38 +94,38 @@ export const fetchFoodData = async (dispatch: any) => {
   });
 };
 
+// fetch the data for order
+export const fetchOrderData = async (dispatch: any) => {
+  const response = await fetch(`${ServerUrl}/api/orders`);
+  const ordersJson = await response.json();
+  dispatch({
+    type: "SET_ORDER_ITEMS",
+    OrderItems: ordersJson,
+  });
+};
+
 // fulfill the order
 export const fulfillOrder = async (
-  dispatch: any, 
-  _id: string, 
-  status: boolean
+  dispatch: any,
+  order: Order,
   ) => {
-    console.log('fetching', _id);
-    const response = await fetch(`${ServerUrl}/api/order/${_id}`);
-    const orderJson = await response.json();
-    orderJson["status"] = status;
-    console.log('updated order', orderJson);
+    console.log('Fulfilling order', order);
 
-    try {
-      const putResponse = await fetch(`${ServerUrl}/api/order/${orderJson._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderJson),
-      });
-      console.log('putResponse', putResponse);
-      if (putResponse.ok) {
-        dispatch({
-          type: "SET_ORDER",
-          order: orderJson,
-        });
-        console.log('dispatched', orderJson);
-      } else {
-        throw new Error(`Failed to update order with ID ${_id}`);
-      }
-    } catch (error) {
-      console.error(error);
+    order.status = "OutForDelivery"
+
+    const putResponse = await fetch(`${ServerUrl}/api/order/${order._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(order),
+    });
+
+    if (putResponse.ok) {
+      toast.success("Order fulfilled successfully");
+      fetchOrderData(dispatch);
+    } else {
+      toast.error(`Adding donut failed: ${putResponse.status} - ${await putResponse.text()}`)
     }
 };
 
@@ -473,8 +473,5 @@ export const addFood = async (
     toast.error(`Adding donut failed: ${response.status} - ${await response.text()}`)
   }
 };
-
-// Fulfilling order
-// export const fulfillOrder = {};
 
 export const deleteOrder = {};

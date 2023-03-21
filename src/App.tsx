@@ -18,6 +18,7 @@ import {
   calculateCartTotal,
   dispatchUsers,
   fetchFoodData,
+  fetchOrderData,
   fetchUserCartData,
   hideCart,
   hideDonutForm,
@@ -45,6 +46,7 @@ function App() {
 
   useEffect(() => {
     fetchFoodData(dispatch);
+    fetchOrderData(dispatch);
     dispatchUsers(dispatch);
     user && fetchUserCartData(user, dispatch);
   }, [user, dispatch]);
