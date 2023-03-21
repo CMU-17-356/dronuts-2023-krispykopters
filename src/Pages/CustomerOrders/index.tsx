@@ -1,11 +1,6 @@
 import { useStateValue } from "../../context/StateProvider";
-
-import { OrderDisplay } from "../../components/Order/index";
-import { ManageMenuDisplay, Title } from "../../components/ManageMenu/index";
-import { isAdmin } from "../../utils/functions";
+import { Title } from "../../components/ManageMenu/index";
 import type { Drone, Order } from "../../../types";
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
-import { motion } from "framer-motion";
 import * as L from "leaflet";
 
 // Drone location Information
@@ -13,25 +8,6 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Container from "../../components/Container";
 import { useState } from "react";
-
-export const PrevNext = ({
-  onPrev,
-  onNext,
-}: {
-  onPrev: () => void;
-  onNext: () => void;
-}) => {
-  return (
-    <div className="hidden md:flex items-center gap-3">
-      <motion.div whileTap={{ scale: 1.1 }} onClick={onPrev} className="w-8 h-8 rounded-lg bg-orange-400 flex items-center justify-center cursor-pointer hover:bg-orange-600 transition-all duration-100 ease-in-out hover:shadow-lg">
-        <MdChevronLeft className="text-lg text-white" />
-      </motion.div>
-      <motion.div whileTap={{ scale: 1.1 }} onClick={onNext} className="w-8 h-8 rounded-lg bg-orange-400 flex items-center justify-center cursor-pointer hover:bg-orange-600 transition-all duration-100 ease-in-out hover:shadow-lg">
-        <MdChevronRight className="text-lg text-white" />
-      </motion.div>
-    </div>
-  );
-};
 
 const CustomerOrders = () => {
   //Order Information
@@ -50,10 +26,7 @@ const CustomerOrders = () => {
     // ...
   });
 
-
-
   return (
-
     <div className="customer-order-content">
       <Title title="My Orders" />
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
