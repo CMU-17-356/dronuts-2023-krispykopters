@@ -35,8 +35,7 @@ import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
 import { ServerUrl } from "./consts";
 import DonutForm from "./components/DonutForm";
-import CustomerOrder from "./Pages/CustomerOrder";
-import CustomerOrders from "./Pages/CustomerOrder";
+import CustomerOrders from "./Pages/CustomerOrders";
 
 function App() {
   const location = useLocation();
