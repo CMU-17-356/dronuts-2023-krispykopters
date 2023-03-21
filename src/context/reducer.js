@@ -1,6 +1,8 @@
 export const actionTypes = {
   SET_USER: "SET_USER",
   SET_FOOD_ITEMS: "SET_FOOD_ITEMS",
+  SET_ORDER_ITEMS: "SET_ORDER_ITEMS",
+  SET_DRONE_ITEMS: "SET_DRONE_ITEMS",
   TOGGLE_CART: "TOGGLE_CART",
   TOGGLE_DONUT_FORM: "TOGGLE_DONUT_FORM",
   UPDATE_DONUT_DATA: "UPDATE_DONUT_DATA",
@@ -27,6 +29,21 @@ const reducer = (state, action) => {
       return {
         ...state,
         DonutItems: action.DonutItems,
+      };
+    case actionTypes.SET_ORDER_ITEMS:
+      return {
+        ...state,
+        OrderItems: action.OrderItems,
+      };
+    case actionTypes.SET_DRONE_ITEMS:
+      return {
+        ...state,
+        DroneItems: action.DroneItems,
+      };
+    case actionTypes.SET_ORDER:
+      return {
+        ...state,
+        order: action.order,
       };
     case actionTypes.TOGGLE_CART:
       return {

@@ -1,11 +1,9 @@
-import { Donut, cartItem } from "../../types";
+import { Donut, cartItem, Order, Drone } from "../../types";
 import {
   firebaseAddToCart,
   firebaseDeleteCartItem,
-  firebaseDeleteFood,
   firebaseEmptyUserCart,
   firebaseFetchAllCartItems,
-  firebaseFetchDonutItems,
   firebaseGetAllUsers,
   firebaseGetUser,
   firebaseLogout,
@@ -92,6 +90,72 @@ export const fetchFoodData = async (dispatch: any) => {
     type: "SET_FOOD_ITEMS",
     DonutItems: storeJson["donutStock"],
   });
+};
+
+export const fetchDroneData = async (dispatch: any) => {
+  const drones: Drone[] = [];
+
+  for (let i = 205; i < 209; i++) {
+    const response = await fetch(`https://356-drone-api.fly.dev/api/drones/${i}`);
+    const droneJson = await response.json();
+    drones.push({
+      id: droneJson.id,
+      name: droneJson.drone_name,
+      lat: droneJson.location.lat,
+      lng: droneJson.location.lng,
+    });
+  }
+
+  console.log("Drones: ", drones);
+
+  dispatch({
+    type: "SET_DRONE_ITEMS",
+    DroneItems: drones,
+  });
+};
+
+// fetch the data for order
+export const fetchOrderData = async (dispatch: any) => {
+  const response = await fetch(`${ServerUrl}/api/orders`);
+  const ordersJson = await response.json();
+  dispatch({
+    type: "SET_ORDER_ITEMS",
+    OrderItems: ordersJson,
+  });
+};
+
+// fulfill the order
+export const fulfillOrder = async (
+  dispatch: any,
+  order: Order,
+  ) => {
+    console.log('Fulfilling order', order);
+
+    const putResponse = await fetch(`https://356-drone-api.fly.dev/api/drones/${order.drone}/send`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `lat=${order.location.lat}&lon=${order.location.long}`,
+    });
+
+    order.status = "OutForDelivery"
+
+    if (putResponse.ok) {
+
+      await fetch(`${ServerUrl}/api/order/${order._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order),
+      });
+
+      toast.success("Order fulfilled successfully");
+      fetchOrderData(dispatch);
+    } else {
+      toast.error(`Adding donut failed: ${putResponse.status} - ${await putResponse.text()}`)
+    }
 };
 
 // get the specific food by Id
@@ -413,6 +477,7 @@ export const editFood = async (
   }
 };
 
+
 // create food
 export const addFood = async (
   food: Donut,
@@ -437,8 +502,5 @@ export const addFood = async (
     toast.error(`Adding donut failed: ${response.status} - ${await response.text()}`)
   }
 };
-
-// Fulfilling order
-export const fulfillOrder = {};
 
 export const deleteOrder = {};
