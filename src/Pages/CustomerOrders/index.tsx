@@ -61,18 +61,44 @@ const CustomerOrders = () => {
           OrderItems
             .map((order: Order) =>
             (<section className="w-full my-5">
-              <p>Order #{order._id.slice(-4)}</p>
+              <strong>Order #{order._id.slice(-4)}</strong>
               <Container
                 className="bg-containerbg"
                 scrollOffset={scrollValue}
                 items={order.donuts}
                 admin={false}
-                showQuantity = {true}
+                showQuantity={true}
               />
+              <strong>Order Location</strong>
+              <MapContainer
+                center={[40.44394444, -79.94444444]}
+                zoom={14}
+                scrollWheelZoom={false}
+                style={{ height: "100vh", width: "100wh", zIndex: 1 }}
+              >
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {DroneItems &&
+                  DroneItems
+                    .filter((drone: Drone) => drone.id.toString() === order.drone)
+                    .map((drone: Drone) => (
+                      <Marker position={[drone.lat, drone.lng]} icon={myIcon}>
+                        <Popup>
+                          Drone {drone.id} - {drone.name}
+                        </Popup>
+                      </Marker>
+                    ))
+                }
+
+              </MapContainer>
+
             </section>
+
             ))}
         {(!OrderItems || OrderItems.length == 0) && (
-          <p>You currently have no new orders. Maybe you can change that?</p>
+          <strong>You currently have no new orders. Maybe you can change that?</strong>
         )}
       </div>
     </div>
