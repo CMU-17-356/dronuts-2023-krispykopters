@@ -1,9 +1,9 @@
 import { Order, IOrder } from "../db/order";
 import express from "express";
 import {Donut, IDonut} from "../db/donut";
-import {Coord, Customer} from "../../types";
+import {Customer, ICustomer} from "../db/customer";
 import {Types} from "mongoose";
-import {ICoord} from "../db/coord";
+import store from "../db/store";
 
 const router = express.Router();
 
@@ -16,35 +16,68 @@ router.get("/api/orders", async (req, res) => {
 
 // Get a specific order
 router.get("/api/order/:id", async (req, res) => {
-  try {
-    const order = await Order.findOne({ _id: req.params["id"] });
-    if (!order) {
-      throw new Error(`Order with ID ${req.params["id"]} not found`);
-    }
-    res.json(order);
-  } catch (error) {
-    console.error(error);
-    res.status(404).json({ message: "Order not found" });
-  }
+  const order = await Order.findById( req.params["id"] ).populate("customer").populate("donuts");
+  console.log(`GET /api/order/${req.params["id"]}`)
+  console.log(order);
+  res.json(order);
 });
 
+
 // Create a specific order
-router.post("/api/order/:id", async (req, res) => {
+router.post("/api/order", async (req, res) => {
   // To be added
-  console.log(`POST /api/${req.params["id"]} - ${JSON.stringify(req.body)}`);
+  console.log(`POST /api/order - ${JSON.stringify(req.body)}`);
   const orderJson = req.body;
+  const cartItems = orderJson.cartItems;
+  const DonutItems = orderJson.DonutItems;
+  const fids: Types.ObjectId[] = [];
+
+  for (let i = 0; i < cartItems.length; i++) {
+    const item = cartItems[i];
+    const storeDonut = await Donut.findOne({id: item.fid});
+
+    if (storeDonut) {
+      await Donut.findByIdAndUpdate(storeDonut._id, {qty: storeDonut.qty - item.qty});
+
+      const donut: IDonut = {
+        id: storeDonut.id,
+        price: storeDonut.price,
+        qty: item.qty,
+        imageURL: storeDonut.imageURL,
+        title: storeDonut.title,
+        description: storeDonut.description,
+        calories: storeDonut.calories,
+        category: storeDonut.category
+      };
+      const donutDoc = await new Donut(donut).save();
+      fids.push(donutDoc._id);
+    }
+  }
+
+  const customerDoc = await Customer.findOne({username: "TrueLordOfTheRing"});
+
+  if (!customerDoc) {
+    res.sendStatus(400);
+    return;
+  }
+
+  // Update stock in store
+  //
+  // //TODO: how to convert to DonutDoc and insert the _id
+  const order: IOrder = {
+    customer: customerDoc._id,
+    donuts: fids,
+    location: {
+        lat: orderJson.lat,
+        long: orderJson.lng,
+    },
+    status: "Placed",
+    drone: orderJson.drone,
+    orderTime: new Date(Date.now()),
+  };
+
   try {
-    const order: IOrder = {
-      customer: orderJson.id,
-      donuts: orderJson.donuts,
-      location: orderJson.ICoord,
-      status: orderJson.status,
-      orderTime: orderJson.orderTime
-    };
-
-    const orderDoc = await new Order(order).save();
-
-
+    await new Order(order).save();
     res.sendStatus(200);
   }
   catch (e: unknown) {
