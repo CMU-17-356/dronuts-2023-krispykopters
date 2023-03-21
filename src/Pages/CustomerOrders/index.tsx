@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const CustomerOrders = () => {
   //Order Information
-  const [{ user, DonutItems, OrderItems, DroneItems }, dispatch] = useStateValue();
+  const [{OrderItems, DroneItems}, dispatch] = useStateValue();
   const [scrollValue, setScrollValue] = useState(0);
   // Customized Colored Icon
   const myIcon = L.icon({
@@ -32,6 +32,7 @@ const CustomerOrders = () => {
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">
         {OrderItems &&
           OrderItems
+            .filter((order: Order) => order.customer.username === "TrueLordOfTheRing")
             .map((order: Order) =>
             (<section className="w-full my-5">
               <strong>Order #{order._id.slice(-4)}</strong>
@@ -70,9 +71,11 @@ const CustomerOrders = () => {
             </section>
 
             ))}
-        {(!OrderItems || OrderItems.length == 0) && (
-          <strong>You currently have no new orders. Maybe you can change that?</strong>
-        )}
+        {(!OrderItems || OrderItems.length === 0 ||
+          OrderItems.filter((order: Order) => order.customer.username === "TrueLordOfTheRing").length === 0)
+          && (
+            <strong>You currently have no new orders. Maybe you can change that?</strong>
+          )}
       </div>
     </div>
   );
