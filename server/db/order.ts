@@ -6,7 +6,7 @@ import { ICoord } from "./coord";
  */
 export interface IOrder {
   customer : Types.ObjectId,  // Reference to Customer
-  donuts : [Types.ObjectId],  // List of donuts in order
+  donuts : Types.ObjectId[], // List of donuts in order
   location : ICoord,          // Delivery coordinates
   status: string,             // "Placed", "OutForDelivery" or "Delivered"
   drone?: string,             // The Id of the drone for delivery
