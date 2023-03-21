@@ -19,6 +19,7 @@ import {
   dispatchUsers,
   fetchFoodData,
   fetchOrderData,
+  fetchDroneData,
   fetchUserCartData,
   hideCart,
   hideDonutForm,
@@ -47,6 +48,7 @@ function App() {
   useEffect(() => {
     fetchFoodData(dispatch);
     fetchOrderData(dispatch);
+    fetchDroneData(dispatch);
     dispatchUsers(dispatch);
     user && fetchUserCartData(user, dispatch);
   }, [user, dispatch]);

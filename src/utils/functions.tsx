@@ -1,11 +1,9 @@
-import { Donut, cartItem, Order } from "../../types";
+import { Donut, cartItem, Order, Drone } from "../../types";
 import {
   firebaseAddToCart,
   firebaseDeleteCartItem,
-  firebaseDeleteFood,
   firebaseEmptyUserCart,
   firebaseFetchAllCartItems,
-  firebaseFetchDonutItems,
   firebaseGetAllUsers,
   firebaseGetUser,
   firebaseLogout,
@@ -94,6 +92,28 @@ export const fetchFoodData = async (dispatch: any) => {
   });
 };
 
+export const fetchDroneData = async (dispatch: any) => {
+  const drones: Drone[] = [];
+
+  for (let i = 205; i < 209; i++) {
+    const response = await fetch(`https://356-drone-api.fly.dev/api/drones/${i}`);
+    const droneJson = await response.json();
+    drones.push({
+      id: droneJson.id,
+      name: droneJson.drone_name,
+      lat: droneJson.location.lat,
+      lng: droneJson.location.lng,
+    });
+  }
+
+  console.log("Drones: ", drones);
+
+  dispatch({
+    type: "SET_DRONE_ITEMS",
+    DroneItems: drones,
+  });
+};
+
 // fetch the data for order
 export const fetchOrderData = async (dispatch: any) => {
   const response = await fetch(`${ServerUrl}/api/orders`);
@@ -111,17 +131,26 @@ export const fulfillOrder = async (
   ) => {
     console.log('Fulfilling order', order);
 
-    order.status = "OutForDelivery"
-
-    const putResponse = await fetch(`${ServerUrl}/api/order/${order._id}`, {
+    const putResponse = await fetch(`https://356-drone-api.fly.dev/api/drones/${order.drone}/send`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify(order),
+      body: `lat=${order.location.lat}&lon=${order.location.long}`,
     });
 
+    order.status = "OutForDelivery"
+
     if (putResponse.ok) {
+
+      await fetch(`${ServerUrl}/api/order/${order._id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order),
+      });
+
       toast.success("Order fulfilled successfully");
       fetchOrderData(dispatch);
     } else {
