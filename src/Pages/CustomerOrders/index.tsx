@@ -35,7 +35,7 @@ const CustomerOrders = () => {
             .filter((order: Order) => order.customer.username === "TrueLordOfTheRing")
             .map((order: Order) =>
             (<section className="w-full my-5">
-              <strong>Order #{order._id.slice(-4)}</strong>
+              <p className="text-textColor font-bold text-xl">Order #{order._id.slice(-4)}</p>
               <Container
                 className="bg-containerbg"
                 scrollOffset={scrollValue}
@@ -43,12 +43,12 @@ const CustomerOrders = () => {
                 admin={false}
                 showQuantity={true}
               />
-              <strong>Order Location</strong>
+              <p className="text-textColor font-bold text-xl">Order Location</p>
               <MapContainer
                 center={[40.44394444, -79.94444444]}
                 zoom={14}
                 scrollWheelZoom={false}
-                style={{ height: "100vh", width: "100wh", zIndex: 1 }}
+                style={{ height: "50vh", width: "50wh", zIndex: 1 }}
               >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
