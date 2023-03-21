@@ -1,7 +1,11 @@
 import { Order, IOrder } from "../db/order";
 import express from "express";
+import {Donut, IDonut} from "../db/donut";
+import {Coord, Customer} from "../../types";
+import {Types} from "mongoose";
+import {ICoord} from "../db/coord";
 
-const router = express();
+const router = express.Router();
 
 // Get all orders
 router.get("/api/orders", async (req, res) => {
@@ -27,8 +31,62 @@ router.get("/api/order/:id", async (req, res) => {
 // Create a specific order
 router.post("/api/order/:id", async (req, res) => {
   // To be added
-  console.log("Create a specific order");
+  console.log(`POST /api/${req.params["id"]} - ${JSON.stringify(req.body)}`);
+  const orderJson = req.body;
+  try {
+    const order: IOrder = {
+      customer: orderJson.id,
+      donuts: orderJson.donuts,
+      location: orderJson.ICoord,
+      status: orderJson.status,
+      orderTime: orderJson.orderTime
+    };
+
+    const orderDoc = await new Order(order).save();
+
+
+    res.sendStatus(200);
+  }
+  catch (e: unknown) {
+    res.sendStatus(400);
+  }
 });
+
+
+//
+// // Add new donut
+// storeRouter.post("/api/store/:name/donut", async (req, res) => {
+//   console.log(`POST /api/store/${req.params["name"]}/donut - ${JSON.stringify(req.body)}`);
+//
+//   const donutJson = req.body;
+//
+//   try {
+//     const store = await Store.findOne({ name: req.params["name"] });
+//
+//     const donut: IDonut = {
+//       id: donutJson.id,
+//       title: donutJson.title,
+//       description: donutJson.description,
+//       price: donutJson.price,
+//       calories: donutJson.calories,
+//       qty: donutJson.qty,
+//       category: donutJson.category,
+//       imageURL: donutJson.imageURL,
+//     };
+//
+//     const donutDoc = await new Donut(donut).save();
+//
+//     store?.donutStock.push(donutDoc._id);
+//
+//     await store?.save();
+//
+//     res.sendStatus(200);
+//   }
+//   catch (e: unknown) {
+//     res.sendStatus(400);
+//   }
+// });
+
 
 // Update a specific order
 router.put("/api/order/:id", async (req, res) => {

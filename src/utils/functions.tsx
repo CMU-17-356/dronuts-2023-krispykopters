@@ -14,6 +14,9 @@ import {
 import { MdShoppingBasket } from "react-icons/md";
 import { toast } from "react-toastify";
 import { ServerUrl } from "../consts";
+import {IOrder} from "../../server/db/order";
+import {Types} from "mongoose";
+import {Customer, ICustomer} from "../../server/db/customer";
 
 export const addToCart = async (
   cartItems: cartItem[],
@@ -502,5 +505,68 @@ export const addFood = async (
     toast.error(`Adding donut failed: ${response.status} - ${await response.text()}`)
   }
 };
+
+// fetch the data for the food
+export const fetchOrderData = async (dispatch: any) => {
+  const response = await fetch(`${ServerUrl}/api/store/admin`);
+  const storeJson = await response.json();
+  dispatch({
+    type: "SET_FOOD_ITEMS",
+    DonutItems: storeJson["donutStock"],
+  });
+};
+
+
+// create order
+export const addOrder = async (
+    cartItems: cartItem[],
+    DonutItems: Donut[],
+    checkoutData: any,
+    dispatch: any
+) => {
+
+  // TODO: how to initialize
+  let fids:[Types.ObjectId] = [];
+  cartItems.forEach((item: cartItem) => {
+    const foodItem = getFoodyById(DonutItems, item.fid);
+    // const donutDoc = await new Customer(foodItem).save();
+    // Donut.findOne({ fid: item.fid }).populate("donutStock");
+    //TODO: how to convert to DonutDoc and insert the _id
+    fids.push(new Types.ObjectId(foodItem?._id));
+    // fids.push(new Types.ObjectId(donutDoc._id));
+  });
+
+  //TODO: how to convert to DonutDoc and insert the _id
+
+  const order: IOrder = {
+    customer: cartItem[0].uid,
+    donuts: fids,
+    location: checkoutData,
+    status: "Placed",
+    orderTime: new Date(Date.now()),
+    drone: "1"
+  };
+
+  console.log(`Adding order ${order}`);
+
+  const response = await fetch(`${ServerUrl}/api/order`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+    body: JSON.stringify(order)});
+
+  if (response.ok) {
+    toast.success("Order added successfully");
+    //TODO
+    // fetchFoodData(dispatch);
+  }
+  else {
+    toast.error(`Adding donut failed: ${response.status} - ${await response.text()}`)
+  }
+};
+
+// Fulfilling order
+export const fulfillOrder = {};
 
 export const deleteOrder = {};

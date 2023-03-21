@@ -3,12 +3,14 @@ import CardForm from "./forms/Card";
 import CheckoutFooter from "./footer";
 import MomoForm from "./forms/Momo";
 import Selector from "./Selector";
+import {cartItem, Order} from "../../../types"
 import { motion } from "framer-motion";
 import { useStateValue } from "../../context/StateProvider";
-import { emptyCart, hideCart } from "../../utils/functions";
+import {addFood, emptyCart, hideCart, addOrder} from "../../utils/functions";
 import { useState, useEffect } from "react";
 import { ImSpinner3 } from "react-icons/im";
 import { toast } from "react-toastify";
+import {Donut} from "../../../types";
 
 const Body = ({ action }: { action: any }) => {
   const [
@@ -35,6 +37,8 @@ const Body = ({ action }: { action: any }) => {
     });
   };
 
+
+
   const [loading, setLoading] = useState(false);
 
   const completePayment = () => {
@@ -59,10 +63,27 @@ const Body = ({ action }: { action: any }) => {
       );
     }, 3000);
 
+
+    // const submitOrder = (order: Order) => {
+    //   console.log("Adding order");
+    //   console.log(order);
+
+      addOrder(cartItems,DonutItems,checkoutData, dispatch);
+    // }
+
+    // console.log("CHECKING OUT!!");
+    // console.log("checkoutData",checkoutData);
+    // console.log("showOrder",showOrder);
+    // console.log("cartItems",cartItems);
+    // console.log("DonutItems",DonutItems);
+
+    // addFood(checkoutData, dispatch);
+
     dispatch({
       type: "TOGGLE_ORDER",
       checkoutData: checkoutData,
       showOrder: !showOrder,
+
     });
   };
 
