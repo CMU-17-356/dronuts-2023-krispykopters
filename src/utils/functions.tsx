@@ -130,6 +130,7 @@ export const fetchOrderData = async (dispatch: any) => {
   });
 };
 
+
 // fulfill the order
 export const fulfillOrder = async (
   dispatch: any,
@@ -144,6 +145,8 @@ export const fulfillOrder = async (
       },
       body: `lat=${order.location.lat}&lon=${order.location.long}`,
     });
+
+    console.log(`Drone response: ${putResponse.status}`)
 
     order.status = "OutForDelivery"
 
@@ -508,17 +511,6 @@ export const addFood = async (
     }
 };
 
-// fetch the data for the food
-export const fetchOrderData = async (dispatch: any) => {
-    const response = await fetch(`${ServerUrl}/api/store/admin`);
-    const storeJson = await response.json();
-    dispatch({
-        type: "SET_FOOD_ITEMS",
-        DonutItems: storeJson["donutStock"],
-    });
-};
-
-
 // create order
 export const addOrder = async (
     cartItems: cartItem[],
@@ -554,8 +546,5 @@ export const addOrder = async (
         toast.error(`Adding donut failed: ${response.status} - ${await response.text()}`)
     }
 };
-
-// Fulfilling order
-export const fulfillOrder = {};
 
 export const deleteOrder = {};
