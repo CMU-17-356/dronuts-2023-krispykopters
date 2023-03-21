@@ -63,22 +63,12 @@ const Body = ({action}: { action: any }) => {
         }, 3000);
 
 
-        // const submitOrder = (order: Order) => {
-        //   console.log("Adding order");
-        //   console.log(order);
-
         console.log("CHECKING OUT!!");
         console.log("checkoutData",checkoutData);
-        // console.log("showOrder",showOrder);
         console.log("cartItems",cartItems);
         console.log("DonutItems",DonutItems);
 
         addOrder(cartItems, DonutItems, checkoutData, dispatch);
-        // }
-
-
-
-        // addFood(checkoutData, dispatch);
 
         dispatch({
             type: "TOGGLE_ORDER",

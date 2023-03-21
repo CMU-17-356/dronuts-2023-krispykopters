@@ -62,8 +62,6 @@ router.post("/api/order", async (req, res) => {
   }
 
   // Update stock in store
-  //
-  // //TODO: how to convert to DonutDoc and insert the _id
   const order: IOrder = {
     customer: customerDoc._id,
     donuts: fids,
@@ -84,42 +82,6 @@ router.post("/api/order", async (req, res) => {
     res.sendStatus(400);
   }
 });
-
-
-//
-// // Add new donut
-// storeRouter.post("/api/store/:name/donut", async (req, res) => {
-//   console.log(`POST /api/store/${req.params["name"]}/donut - ${JSON.stringify(req.body)}`);
-//
-//   const donutJson = req.body;
-//
-//   try {
-//     const store = await Store.findOne({ name: req.params["name"] });
-//
-//     const donut: IDonut = {
-//       id: donutJson.id,
-//       title: donutJson.title,
-//       description: donutJson.description,
-//       price: donutJson.price,
-//       calories: donutJson.calories,
-//       qty: donutJson.qty,
-//       category: donutJson.category,
-//       imageURL: donutJson.imageURL,
-//     };
-//
-//     const donutDoc = await new Donut(donut).save();
-//
-//     store?.donutStock.push(donutDoc._id);
-//
-//     await store?.save();
-//
-//     res.sendStatus(200);
-//   }
-//   catch (e: unknown) {
-//     res.sendStatus(400);
-//   }
-// });
-
 
 // Update a specific order
 router.put("/api/order/:id", async (req, res) => {

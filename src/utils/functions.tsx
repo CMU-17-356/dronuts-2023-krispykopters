@@ -540,10 +540,9 @@ export const addOrder = async (
 
     if (response.ok) {
         toast.success("Order added successfully");
-        //TODO
-        // fetchFoodData(dispatch);
+        fetchOrderData(dispatch);
     } else {
-        toast.error(`Adding donut failed: ${response.status} - ${await response.text()}`)
+        toast.error(`Adding order failed: ${response.status} - ${await response.text()}`)
     }
 };
 
