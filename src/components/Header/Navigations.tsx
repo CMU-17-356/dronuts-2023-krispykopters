@@ -29,6 +29,7 @@ const Navigations = ({ direction }: { direction?: string }) => {
           whileHover={{ scale: 1.1 }}
           className="md:text-sm lg:text-md text-base text-textColor cursor-pointer hover:text-headingColor duration-100 transition-all ease-in-out"
         >
+          <Link to={'/customer-orders'}>Orders</Link>
         </motion.li>
       </motion.ul>
 

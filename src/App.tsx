@@ -35,6 +35,8 @@ import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
 import { ServerUrl } from "./consts";
 import DonutForm from "./components/DonutForm";
+import CustomerOrder from "./Pages/CustomerOrder";
+import CustomerOrders from "./Pages/CustomerOrder";
 
 function App() {
   const location = useLocation();
@@ -100,6 +102,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/customer-orders" element={<CustomerOrders />} />
           </Routes>
 
           {!(adminMode && isAdmin(user))}
