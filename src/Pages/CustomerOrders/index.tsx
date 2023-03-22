@@ -36,6 +36,12 @@ const CustomerOrders = () => {
             .map((order: Order) =>
             (<section className="w-full my-5">
               <p className="text-textColor font-bold text-xl">Order #{order._id.slice(-4)}</p>
+              { order.status === "Placed" && 
+                (<p className="text-textColor font-semi-bold text-xl">Preparing your order - ETA 10 min</p>)
+              }
+              { order.status === "OutForDelivery" && 
+                (<p className="text-textColor font-semi-bold text-xl">Donuts on route- ETA 10 min</p>)
+              }
               <Container
                 className="bg-containerbg"
                 scrollOffset={scrollValue}
