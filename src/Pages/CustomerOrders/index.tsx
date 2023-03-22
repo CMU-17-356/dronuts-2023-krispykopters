@@ -40,7 +40,7 @@ const CustomerOrders = () => {
                 (<p className="text-textColor font-semi-bold text-xl">Preparing your order - ETA 10 min</p>)
               }
               { order.status === "OutForDelivery" && 
-                (<p className="text-textColor font-semi-bold text-xl">Donuts on route- ETA 10 min</p>)
+                (<p className="text-textColor font-semi-bold text-xl">Donuts being delivered- ETA 5 min</p>)
               }
               <Container
                 className="bg-containerbg"
